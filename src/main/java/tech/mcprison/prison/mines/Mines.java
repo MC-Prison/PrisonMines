@@ -1,5 +1,7 @@
 package tech.mcprison.prison.mines;
 
+import tech.mcprison.prison.Prison;
+import tech.mcprison.prison.mines.events.StateChangeEvent;
 import tech.mcprison.prison.modules.Module;
 import tech.mcprison.prison.output.Output;
 
@@ -8,11 +10,14 @@ import tech.mcprison.prison.output.Output;
  */
 public class Mines extends Module {
     private static Mines i = null;
+    private static MinesState state;
     private MinesConfig config;
 
     public MinesConfig getConfig() {
         return config;
     }
+
+    public MinesState getState() {return state;}
 
     public static Mines get() {
         return i;
@@ -20,15 +25,8 @@ public class Mines extends Module {
 
     private MinesList mines;
 
-    public MinesList getCells() {
+    public MinesList getMines() {
         return mines;
-    }
-
-    private static String version = "Unregistered-Snapshot";
-    private boolean initialized = false;
-
-    public boolean getInitialized() {
-        return initialized;
     }
 
     public Mines(String version) {
@@ -36,6 +34,16 @@ public class Mines extends Module {
     }
 
     public void enable() {
-        Output.get().logInfo("&bEnabling &ePrison Mines&b...");
+        Output.get().logInfo("&bEnabling &7Prison Mines&b...");
+        Prison.get().getCommandHandler().registerCommands(new MinesCommands());
+        mines = new MinesList().initialize();
+
+    }
+    public void setState(MinesState state){
+        this.state = state;
+        Prison.get().getEventBus().post(new StateChangeEvent(state));
+    }
+    public void disable() {
+
     }
 }
