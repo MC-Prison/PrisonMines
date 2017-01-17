@@ -39,7 +39,7 @@ public class Mine implements Jsonable<Mine> {
         return name;
     }
     public Location getSpawnLocation(){
-        return new Location(Prison.get().getPlatform().getWorld(worldName),spawnX,spawnY,spawnZ,pitch,yaw);
+        return new Location(Prison.get().getPlatform().getWorld(worldName).get(),spawnX,spawnY,spawnZ,pitch,yaw);
     }
     public void teleport(Player... players){
         for (Player p : players){
@@ -49,9 +49,9 @@ public class Mine implements Jsonable<Mine> {
     }
     public Bounds getBounds() {
         return new Bounds(
-            new Location(Prison.get().getPlatform().getWorld(worldName), (double) minX,
+            new Location(Prison.get().getPlatform().getWorld(worldName).get(), (double) minX,
                 (double) minY, (double) minZ),
-            new Location(Prison.get().getPlatform().getWorld(worldName), (double) maxX,
+            new Location(Prison.get().getPlatform().getWorld(worldName).get(), (double) maxX,
                 (double) maxY, (double) maxZ));
     }
 
@@ -79,7 +79,7 @@ public class Mine implements Jsonable<Mine> {
             for (int y = minY; y <= maxY; y++) {
                 for (int x = minX; x <= maxX; x++) {
                     for (int z = minZ; z <= maxZ; z++) {
-                        new Location(Prison.get().getPlatform().getWorld(worldName), x, y, z)
+                        new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
                             .getBlockAt().setType(blockTypes.get(i));
                         i++;
                     }
