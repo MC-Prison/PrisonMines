@@ -1,23 +1,3 @@
-/*
- *  Copyright (C) 2017 The Prison Team
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-group 'tech.mcprison.prison'
-version '3.0.0-SNAPSHOT'
-
 buildscript {
 
     repositories {
@@ -31,6 +11,13 @@ buildscript {
 
 }
 
+plugins {
+    id 'org.spongepowered.plugin' version '0.6'
+}
+
+group 'tech.mcprison.prison'
+version '3.0.0-SNAPSHOT'
+
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
@@ -39,23 +26,50 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 sourceCompatibility = 1.8
 
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+        runtimeClasspath += configurations.provided
+    }
+}
+
 repositories {
     mavenCentral()
+    maven { url = 'http://repo.spongepowered.org/maven' }
     maven { url = "https://hub.spigotmc.org/nexus/content/groups/public" }
     maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url = "https://dmp9software.co.uk/artifactory/libs-release-local/" }
-    maven {
-        name = 'sponge'
-        url = 'http://repo.spongepowered.org/maven'
-    }
-    jcenter()
 }
 
 dependencies {
     compile group: 'tech.mcprison.prison', name: 'prison-core', version: '1.0'
-    compile group: 'org.spigotmc', name: 'spigot-api', version: '1.9.4-R0.1-SNAPSHOT'
-    compile 'org.spongepowered:spongeapi:4.1.0'
+    provided group: 'org.spigotmc', name: 'spigot-api', version: '1.9.4-R0.1-SNAPSHOT'
+    provided group: 'org.spongepowered', name: 'spongeapi', version: '5.0.0'
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        expand 'version': project.version
+        include 'plugin.yml'
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'plugin.yml'
+    }
+}
+
+sponge {
+    plugin {
+        meta {
+            name = 'PrisonMines'
+        }
+    }
 }
 
 shadowJar {
@@ -65,5 +79,7 @@ shadowJar {
     classifier ''
     version = null
 }
+
+build.dependsOn(shadowJar)
 
 build.dependsOn(shadowJar)
