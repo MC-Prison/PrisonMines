@@ -1,6 +1,6 @@
 package tech.mcprison.prison.mines.events;
 
-import tech.mcprison.prison.internal.events.Cancelable;
+import tech.mcprison.prison.events.Cancelable;
 import tech.mcprison.prison.mines.Mine;
 
 /**
