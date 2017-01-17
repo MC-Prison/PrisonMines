@@ -30,7 +30,7 @@ public class Mines extends Module {
     }
 
     public Mines(String version) {
-        super("Mines", version, 30);
+        super("Mines", version, 1);
     }
 
     public void enable() {

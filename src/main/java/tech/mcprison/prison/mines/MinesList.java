@@ -25,8 +25,6 @@ import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
-import tech.mcprison.prison.util.ChatColor;
-import tech.mcprison.prison.util.Location;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -162,7 +160,7 @@ public class MinesList implements List<Mine> {
     // Mine methods
     public MinesList initialize() {
 
-        for (File f : new File(Mines.get().getDataFolder(),"/mines/").listFiles(new FileFilter() {
+        for (File f : new File(Mines.get().getDataFolder(), "/mines/").listFiles(new FileFilter() {
             @Override public boolean accept(File pathname) {
                 return pathname.getName().endsWith(".json");
             }
@@ -170,9 +168,9 @@ public class MinesList implements List<Mine> {
             try {
                 Mine m = Mine.load(f);
                 add(m);
-                Output.get().logInfo("Loaded mine "+m.getName());
+                Output.get().logInfo("Loaded mine " + m.getName());
             } catch (IOException e) {
-                Output.get().logError("Failed to load mine "+f.getName(),e);
+                Output.get().logError("Failed to load mine " + f.getName(), e);
             }
         }
         return this;
@@ -209,23 +207,18 @@ public class MinesList implements List<Mine> {
         Random random = new Random();
         ArrayList<BlockType> blocks = new ArrayList<>();
         World world = bounds.getMin().getWorld();
-        int minX = bounds.getMin().getBlockX();
-        int minY = bounds.getMin().getBlockY();
-        int minZ = bounds.getMin().getBlockZ();
-        int maxX = bounds.getMax().getBlockX();
-        int maxY = bounds.getMax().getBlockY();
-        int maxZ = bounds.getMax().getBlockZ();
-        for (int y = minY; y <= maxY; y++) {
-            for (int x = minX; x <= maxX; x++) {
-                for (int z = minZ; z <= maxZ; z++) {
-                    double chance = random.nextDouble();
-                    for (Map.Entry<BlockType, Double> entry : m.getBlocks().entrySet()) {
-                        if (chance <= entry.getValue()) {
-                            world.getBlockAt(new Location(world, x, y, z)).setType(entry.getKey());
-                            break;
-                        }
-                    }
+        for (int i = 0; i > (int) bounds.getArea(); i++) {
+            double chance = random.nextDouble();
+            boolean set = false;
+            for (Map.Entry<BlockType, Double> entry : m.getBlocks().entrySet()) {
+                if (chance <= entry.getValue()) {
+                    blocks.add(entry.getKey());
+                    set = true;
+                    break;
                 }
+            }
+            if (!set) {
+                blocks.add(BlockType.AIR);
             }
         }
         randomizedBlocks.put(m, blocks);
@@ -252,7 +245,7 @@ public class MinesList implements List<Mine> {
     }
 
     public GUI createGUI() {
-        GUI g = Prison.get().getPlatform().createGUI(ChatColor.stripColor("") + "", size() <= 9 ?
+        GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
             9 :
             size() <= 18 ? 18 : size() <= 27 ? 27 : size() <= 36 ? 36 : size() <= 45 ? 45 : 54);
         final int[] i = {-1};
@@ -264,7 +257,7 @@ public class MinesList implements List<Mine> {
             @Override public void action(Mine c) {
                 g.addButton(i[0]++, new Button(BlockType.GRASS, new Action() {
                     @Override public void run(GUI gui) {
-
+                        // TODO: Finish this
                     }
                 }, "&6" + c.getName(), true));
             }

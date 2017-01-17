@@ -27,7 +27,9 @@ public class Mine implements Jsonable<Mine> {
     public static Mine load(File path) throws IOException {
         return new Mine().fromFile(path);
     }
+    public void setBounds(Bounds bounds){
 
+    }
     public static Mine load(String json) throws IOException {
         return new Mine().fromJson(json);
     }
@@ -44,7 +46,7 @@ public class Mine implements Jsonable<Mine> {
     public void teleport(Player... players){
         for (Player p : players){
             p.teleport(getSpawnLocation());
-            p.sendMessage("&bTeleported to mine '"+name+"'");
+            p.sendMessage("&bTeleported to mine '&7"+name+"&b'");
         }
     }
     public Bounds getBounds() {
@@ -84,6 +86,12 @@ public class Mine implements Jsonable<Mine> {
                         i++;
                     }
                 }
+            }
+            Output.get().logInfo("Reset mine "+name);
+            try {
+                Mines.get().getMines().generateBlockList(this);
+            } catch (Exception e){
+
             }
             return true;
         } catch (Exception e) {
