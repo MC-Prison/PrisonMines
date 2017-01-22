@@ -20,7 +20,9 @@ package tech.mcprison.prison.mines;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.gui.Action;
 import tech.mcprison.prison.gui.Button;
+import tech.mcprison.prison.gui.ClickedButton;
 import tech.mcprison.prison.gui.GUI;
+import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.util.BlockType;
@@ -139,6 +141,18 @@ public class MinesList implements List<Mine> {
         return (MinesList) mines.subList(fromIndex, toIndex);
     }
 
+    public boolean contains(String name) {
+        return select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return true;
+            }
+
+            @Override public void action(Mine c) {
+
+            }
+        }).size() > 0;
+    }
+
     // Chain LINQ-style methods
     public MinesList select(MinesFilter filter) {
         MinesList out = new MinesList();
@@ -158,8 +172,27 @@ public class MinesList implements List<Mine> {
     }
 
     // Mine methods
-    public MinesList initialize() {
+    public Mine get(String name) {
+        MinesList sublist = select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return c.getName().equals(name);
+            }
 
+            @Override public void action(Mine c) {
+
+            }
+        });
+        if (sublist.size() == 0) {
+            return null;
+        }
+        return sublist.get(0);
+    }
+
+    public MinesList initialize() {
+        Mines.get().setState(MinesState.INITIALIZING);
+        if (!new File(Mines.get().getDataFolder(), "/mines/").exists()){
+            new File(Mines.get().getDataFolder(), "/mines/").mkdir();
+        }
         for (File f : new File(Mines.get().getDataFolder(), "/mines/").listFiles(new FileFilter() {
             @Override public boolean accept(File pathname) {
                 return pathname.getName().endsWith(".json");
@@ -173,7 +206,14 @@ public class MinesList implements List<Mine> {
                 Output.get().logError("Failed to load mine " + f.getName(), e);
             }
         }
+        Mines.get().setState(MinesState.INITIALIZED);
         return this;
+    }
+
+    public void save() {
+        for (Mine mine : this) {
+            mine.save();
+        }
     }
 
     public void reset() {
@@ -244,6 +284,25 @@ public class MinesList implements List<Mine> {
         guiSelection = mines;
     }
 
+    private HashMap<Player,MinesList> players;
+
+    public void addTeleportRule(Player player,MinesList sublist){
+        removeTeleportRule(player);
+        if (players == null){
+            players = new HashMap<>();
+        }
+        players.put(player,sublist);
+    }
+
+    public void removeTeleportRule(Player player){
+        players.remove(player);
+    }
+
+    public MinesList getTeleportRule(Player player){
+        return players.get(player);
+    }
+
+
     public GUI createGUI() {
         GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
             9 :
@@ -256,8 +315,8 @@ public class MinesList implements List<Mine> {
 
             @Override public void action(Mine c) {
                 g.addButton(i[0]++, new Button(BlockType.GRASS, new Action() {
-                    @Override public void run(GUI gui) {
-                        // TODO: Finish this
+                    @Override public void run(ClickedButton btn) {
+                        c.teleport(btn.getPlayer());
                     }
                 }, "&6" + c.getName(), true));
             }

@@ -9,7 +9,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="prisonmines_main" />
-    <orderEntry type="library" name="Gradle: tech.mcprison.prison:prison-core:1.0" level="project" />
+    <orderEntry type="library" name="Gradle: tech.mcprison.prison:prison-core:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.11" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:19.0" level="project" />

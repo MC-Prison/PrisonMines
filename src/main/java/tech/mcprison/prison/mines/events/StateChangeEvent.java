@@ -10,7 +10,7 @@ public class StateChangeEvent {
     public boolean canceled;
     public MinesState state;
 
-    public StateChangeEvent(MinesState state){
+    public StateChangeEvent(MinesState state) {
         this.state = state;
     }
 

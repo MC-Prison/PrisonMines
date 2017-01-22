@@ -5,5 +5,6 @@ package tech.mcprison.prison.mines;
  */
 public interface MinesFilter {
     boolean accept(Mine c);
+
     void action(Mine c);
 }

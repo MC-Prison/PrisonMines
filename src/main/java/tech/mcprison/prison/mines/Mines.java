@@ -17,7 +17,9 @@ public class Mines extends Module {
         return config;
     }
 
-    public MinesState getState() {return state;}
+    public MinesState getState() {
+        return state;
+    }
 
     public static Mines get() {
         return i;
@@ -39,11 +41,13 @@ public class Mines extends Module {
         mines = new MinesList().initialize();
 
     }
-    public void setState(MinesState state){
+
+    public void setState(MinesState state) {
         this.state = state;
         Prison.get().getEventBus().post(new StateChangeEvent(state));
     }
-    public void disable() {
 
+    public void disable() {
+        setState(MinesState.DISPOSED);
     }
 }
