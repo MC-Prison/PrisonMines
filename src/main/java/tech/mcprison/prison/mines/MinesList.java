@@ -190,7 +190,7 @@ public class MinesList implements List<Mine> {
 
     public MinesList initialize() {
         Mines.get().setState(MinesState.INITIALIZING);
-        if (!new File(Mines.get().getDataFolder(), "/mines/").exists()){
+        if (!new File(Mines.get().getDataFolder(), "/mines/").exists()) {
             new File(Mines.get().getDataFolder(), "/mines/").mkdir();
         }
         for (File f : new File(Mines.get().getDataFolder(), "/mines/").listFiles(new FileFilter() {
@@ -284,21 +284,21 @@ public class MinesList implements List<Mine> {
         guiSelection = mines;
     }
 
-    private HashMap<Player,MinesList> players;
+    private HashMap<Player, MinesList> players;
 
-    public void addTeleportRule(Player player,MinesList sublist){
+    public void addTeleportRule(Player player, MinesList sublist) {
         removeTeleportRule(player);
-        if (players == null){
+        if (players == null) {
             players = new HashMap<>();
         }
-        players.put(player,sublist);
+        players.put(player, sublist);
     }
 
-    public void removeTeleportRule(Player player){
+    public void removeTeleportRule(Player player) {
         players.remove(player);
     }
 
-    public MinesList getTeleportRule(Player player){
+    public MinesList getTeleportRule(Player player) {
         return players.get(player);
     }
 

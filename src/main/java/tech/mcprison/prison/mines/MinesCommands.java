@@ -112,15 +112,17 @@ public class MinesCommands {
                 .getBlockY() + "&b Z1: &7" + m.getBounds().getMin().getBlockZ() + "&b X2: &7" + m
                 .getBounds().getMax().getBlockX() + "&b Y2: &7" + m.getBounds().getMax().getBlockY()
                 + "&b Z2: &7" + m.getBounds().getMax().getBlockZ());
-        sender.sendMessage("&bSize: &7"+m.getBounds().getWidth()+"&8x&b"+m.getBounds().getLength()+" &8(&7"+m.getBounds().getHeight()+" &bblocks deep&8)");
+        sender.sendMessage(
+            "&bSize: &7" + m.getBounds().getWidth() + "&8x&b" + m.getBounds().getLength() + " &8(&7"
+                + m.getBounds().getHeight() + " &bblocks deep&8)");
         sender.sendMessage(String.format("%0" + (title.length() - 4) + "d", 0).replace("0", "="));
     }
 
     @Command(identifier = "mines list", permissions = {"prison.mines.delete", "prison.admin"})
     public void listCommand(CommandSender sender) {
         sender.sendMessage("&b============ &7/mines list&b ============");
-        for (Mine m : Mines.get().getMines()){
-            sender.sendMessage("&8"+m.getName());
+        for (Mine m : Mines.get().getMines()) {
+            sender.sendMessage("&8" + m.getName());
         }
         sender.sendMessage("&b============ &7/mines list&b ============");
     }

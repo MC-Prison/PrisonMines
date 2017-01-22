@@ -81,7 +81,9 @@ public class Mine implements Jsonable<Mine> {
         return name;
     }
 
-    public World getWorld(){return Prison.get().getPlatform().getWorld(worldName).get();}
+    public World getWorld() {
+        return Prison.get().getPlatform().getWorld(worldName).get();
+    }
 
     public Location getSpawnLocation() {
         return new Location(Prison.get().getPlatform().getWorld(worldName).get(), spawnX, spawnY,
