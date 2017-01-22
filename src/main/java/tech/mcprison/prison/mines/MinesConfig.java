@@ -1,12 +1,14 @@
 package tech.mcprison.prison.mines;
 
+import tech.mcprison.prison.store.AbstractJsonable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Created by DMP9 on 08/01/2017.
  */
-public class MinesConfig {
+public class MinesConfig extends AbstractJsonable<MinesConfig> {
     public boolean asyncReset = true;
     public boolean resetMessages = true;
     public boolean multiworld = false;
