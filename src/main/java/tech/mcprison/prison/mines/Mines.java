@@ -36,6 +36,7 @@ public class Mines extends Module {
     }
 
     public void enable() {
+        i = this;
         Output.get().logInfo("&bEnabling &7Prison Mines&b...");
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
         mines = new MinesList().initialize();

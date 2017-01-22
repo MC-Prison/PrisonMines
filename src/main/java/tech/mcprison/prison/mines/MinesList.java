@@ -29,7 +29,6 @@ import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.util.*;
 
@@ -193,11 +192,9 @@ public class MinesList implements List<Mine> {
         if (!new File(Mines.get().getDataFolder(), "/mines/").exists()) {
             new File(Mines.get().getDataFolder(), "/mines/").mkdir();
         }
-        for (File f : new File(Mines.get().getDataFolder(), "/mines/").listFiles(new FileFilter() {
-            @Override public boolean accept(File pathname) {
-                return pathname.getName().endsWith(".json");
-            }
-        })) {
+        File[] files = new File(Mines.get().getDataFolder(), "/mines/").listFiles(
+            pathname -> pathname.getName().endsWith(".json"));
+        for (File f : files) {
             try {
                 Mine m = Mine.load(f);
                 add(m);
