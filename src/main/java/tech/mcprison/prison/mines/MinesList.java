@@ -39,6 +39,11 @@ public class MinesList implements List<Mine> {
     // Base list
     List<Mine> mines;
 
+    // Declarations
+
+    HashMap<Mine, List<BlockType>> randomizedBlocks;
+    int resetCount = 0;
+
     // Inherited methods -- don't know why I make things so difficult
     public int size() {
         return mines.size();
@@ -143,7 +148,7 @@ public class MinesList implements List<Mine> {
     public boolean contains(String name) {
         return select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
-                return true;
+                return c.getName().equalsIgnoreCase(name);
             }
 
             @Override public void action(Mine c) {
@@ -163,18 +168,75 @@ public class MinesList implements List<Mine> {
         return out;
     }
 
-    public MinesList foreach(MinesFilter filter) {
+    public MinesList forEach(MinesFilter filter) {
         for (Mine c : this) {
             filter.action(c);
         }
         return this;
     }
 
+    private void uselessVoid() {
+    }
+
+    private void selectiveSend(Player x) {
+        if (Mines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
+            x.sendMessage(Mines.get().getConfig().resetMessage);
+        }
+    }
+
+    private void selectiveSend2(Player x) {
+        if (Mines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
+            x.sendMessage(Mines.get().getConfig().resetWarning
+                .replaceAll("%mins%", "" + (resetCount / 60))
+                .replaceAll("%seconds%", "" + resetCount));
+        }
+    }
+
     // Mine methods
+    public TimerTask getTimerTask() {
+        return new TimerTask() {
+            @Override public void run() {
+                if (Mines.get().getConfig().aliveTime == 0) {
+                    return;
+                }
+                if (size() == 0) {
+                    return;
+                }
+                if (resetCount == 0) {
+                    reset();
+                    if (!Mines.get().getConfig().multiworld) {
+                        Prison.get().getPlatform().getOnlinePlayers()
+                            .forEach(x -> x.sendMessage(Mines.get().getConfig().resetMessage));
+                    } else {
+                        Prison.get().getPlatform().getOnlinePlayers()
+                            .forEach(x -> selectiveSend(x));
+                    }
+                    resetCount = Mines.get().getConfig().aliveTime;
+                }
+                for (int i : Mines.get().getConfig().resetWarningTimes) {
+                    if (resetCount == i) {
+                        if (!Mines.get().getConfig().multiworld) {
+                            Prison.get().getPlatform().getOnlinePlayers().forEach(x -> x
+                                .sendMessage(Mines.get().getConfig().resetWarning
+                                    .replaceAll("%mins%", "" + (resetCount / 60))
+                                    .replaceAll("%seconds%", "" + resetCount)));
+                        } else {
+                            Prison.get().getPlatform().getOnlinePlayers()
+                                .forEach(x -> selectiveSend2(x));
+                        }
+                    }
+                }
+                if (resetCount > 0) {
+                    resetCount--;
+                }
+            }
+        };
+    }
+
     public Mine get(String name) {
         MinesList sublist = select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
-                return c.getName().equals(name);
+                return c.getName().equalsIgnoreCase(name);
             }
 
             @Override public void action(Mine c) {
@@ -192,18 +254,20 @@ public class MinesList implements List<Mine> {
         if (!new File(Mines.get().getDataFolder(), "/mines/").exists()) {
             new File(Mines.get().getDataFolder(), "/mines/").mkdir();
         }
-        File[] files = new File(Mines.get().getDataFolder(), "/mines/").listFiles(
-            pathname -> pathname.getName().endsWith(".json"));
+        File[] files = new File(Mines.get().getDataFolder(), "/mines/")
+            .listFiles(pathname -> pathname.getName().endsWith(".json"));
         for (File f : files) {
             try {
                 Mine m = Mine.load(f);
                 add(m);
-                Output.get().logInfo("Loaded mine " + m.getName());
+                Output.get().logInfo("&aLoaded mine " + m.getName());
             } catch (IOException e) {
-                Output.get().logError("Failed to load mine " + f.getName(), e);
+                Output.get().logError("&cFailed to load mine " + f.getName(), e);
             }
         }
         Mines.get().setState(MinesState.INITIALIZED);
+        Output.get().logInfo("&bLoaded " + size() + " mines");
+        resetCount = Mines.get().getConfig().aliveTime;
         return this;
     }
 
@@ -223,14 +287,12 @@ public class MinesList implements List<Mine> {
                 c.reset();
             }
         };
-        foreach(resetFilter);
+        forEach(resetFilter);
     }
 
     public void reset(MinesFilter resetFilter) {
-        foreach(resetFilter);
+        forEach(resetFilter);
     }
-
-    HashMap<Mine, List<BlockType>> randomizedBlocks;
 
     public List<BlockType> getRandomizedBlocks(Mine m) {
         if (!randomizedBlocks.containsKey(m)) {
@@ -305,17 +367,19 @@ public class MinesList implements List<Mine> {
             9 :
             size() <= 18 ? 18 : size() <= 27 ? 27 : size() <= 36 ? 36 : size() <= 45 ? 45 : 54);
         final int[] i = {-1};
-        select(guiSelection).foreach(new MinesFilter() {
+        select(guiSelection).forEach(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return false;
             }
 
             @Override public void action(Mine c) {
-                g.addButton(i[0]++, new Button(BlockType.GRASS, new Action() {
-                    @Override public void run(ClickedButton btn) {
-                        c.teleport(btn.getPlayer());
-                    }
-                }, "&6" + c.getName(), true));
+                if (i[0] < 55) {
+                    g.addButton(i[0]++, new Button(BlockType.GRASS, new Action() {
+                        @Override public void run(ClickedButton btn) {
+                            c.teleport(btn.getPlayer());
+                        }
+                    }, "&6" + c.getName(), true));
+                }
             }
         });
         return g.build();

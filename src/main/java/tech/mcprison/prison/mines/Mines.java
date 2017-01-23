@@ -7,6 +7,9 @@ import tech.mcprison.prison.output.Output;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by DMP9 on 08/01/2017.
@@ -15,6 +18,7 @@ public class Mines extends Module {
     private static Mines i = null;
     private static MinesState state;
     private MinesConfig config;
+    private List<String> worlds;
 
     public MinesConfig getConfig() {
         return config;
@@ -38,8 +42,17 @@ public class Mines extends Module {
         super("Mines", version, 1);
     }
 
+    public List<String> getWorlds(){
+        return worlds;
+    }
+
     public void enable() {
+        getLogger().logInfo("&b========================");
+        getLogger().logInfo("&7      Prison Mines      ");
+        getLogger().logInfo("&7 (C) The MC-Prison Team ");
+        getLogger().logInfo("&b========================");
         i = this;
+        getLogger().logInfo("Loading config...");
         config = new MinesConfig();
         File configFile = new File(getDataFolder(),"config.json");
         if (!configFile.exists()){
@@ -55,9 +68,16 @@ public class Mines extends Module {
                 Output.get().logError("Failed to load config",e);
             }
         }
-        Output.get().logInfo("&bEnabling &7Prison Mines&b...");
+        ListIterator<String> iterator = config.worlds.listIterator();
+        worlds = new ArrayList<>();
+        while (iterator.hasNext())
+        {
+            worlds.add(iterator.next().toLowerCase());
+        }
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
+        getLogger().logInfo("Loading mines...");
         mines = new MinesList().initialize();
+        Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(),1200L,1200L);
     }
 
     public void setState(MinesState state) {
@@ -67,6 +87,6 @@ public class Mines extends Module {
 
     public void disable() {
         setState(MinesState.DISPOSED);
-        mines.forEach(x -> x.save());
+        mines.forEach(Mine::save);
     }
 }

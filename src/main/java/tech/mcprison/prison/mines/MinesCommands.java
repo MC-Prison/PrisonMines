@@ -5,6 +5,7 @@ import tech.mcprison.prison.commands.Arg;
 import tech.mcprison.prison.commands.Command;
 import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.internal.Player;
+import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.selection.Selection;
 import tech.mcprison.prison.util.BlockType;
 
@@ -117,6 +118,23 @@ public class MinesCommands {
                 + m.getBounds().getHeight() + " &bblocks deep&8)");
         sender.sendMessage(String.format("%0" + (title.length() - 4) + "d", 0).replace("0", "="));
     }
+
+    @Command(identifier = "mines reset", permissions = {"prison.mines.info", "prison.admin"})
+    public void resetCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to be reset") String name) {
+        if (!Mines.get().getMines().contains(name)) {
+            sender.sendMessage("&cThat mine doesn't exist!");
+            return;
+        }
+        try {
+            Mines.get().getMines().get(name).reset();
+        }catch (Exception e){
+            sender.sendMessage("&cCouldn't reset mine. Check the log for details.");
+            Output.get().logError("Couldn't reset mine " + name,e);
+        }
+        sender.sendMessage("&aMine reset!");
+    }
+
 
     @Command(identifier = "mines list", permissions = {"prison.mines.delete", "prison.admin"})
     public void listCommand(CommandSender sender) {

@@ -63,9 +63,9 @@ public class Mine implements Jsonable<Mine> {
     public void save() {
         try {
             toFile(new File(Mines.get().getDataFolder(), "/mines/" + name + ".json"));
-            Output.get().logInfo("Saved mine " + name);
+            Output.get().logInfo("&aSaved mine " + name);
         } catch (IOException e) {
-            Output.get().logError("Failed to save mine " + name, e);
+            Output.get().logError("&cFailed to save mine " + name, e);
         }
     }
 
@@ -135,7 +135,7 @@ public class Mine implements Jsonable<Mine> {
                     }
                 }
             }
-            Output.get().logInfo("Reset mine " + name);
+            Output.get().logInfo("&aReset mine " + name);
             try {
                 Mines.get().getMines().generateBlockList(this);
             } catch (Exception e) {
@@ -143,7 +143,7 @@ public class Mine implements Jsonable<Mine> {
             }
             return true;
         } catch (Exception e) {
-            Output.get().logError("Failed to reset mine " + name, e);
+            Output.get().logError("&aFailed to reset mine " + name, e);
             return false;
         }
     }
