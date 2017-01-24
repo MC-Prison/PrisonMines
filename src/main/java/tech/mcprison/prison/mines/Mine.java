@@ -122,6 +122,23 @@ public class Mine implements Jsonable<Mine> {
         Files.write(file.toPath(), toJson().getBytes());
     }
 
+    public boolean isInMine(Location location){
+        if (!location.getWorld().getName().equalsIgnoreCase(worldName)){
+            return false;
+        }
+        for (int y = minY; y <= maxY; y++) {
+            for (int x = minX; x <= maxX; x++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    if (location.getBlockX() == x && location.getBlockY() == y
+                        && location.getBlockZ() == z) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean reset() {
         try {
             int i = 0;

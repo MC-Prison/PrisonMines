@@ -27,6 +27,7 @@ import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
+import tech.mcprison.prison.util.Location;
 
 import java.io.File;
 import java.io.IOException;
@@ -361,6 +362,42 @@ public class MinesList implements List<Mine> {
         return players.get(player);
     }
 
+    public boolean canTeleport(Player player, Mine mine) {
+        if (getTeleportRule(player) == null){
+            return true;
+        }
+        else {
+            return getTeleportRule(player).contains(mine);
+        }
+    }
+
+    public boolean allowedToMine(Player player,Location location){
+        MinesList sublist = select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return c.isInMine(location);
+            }
+
+            @Override public void action(Mine c) {
+
+            }
+        });
+        if (sublist.size() > 1){
+            Output.get().logWarn("Potential overlap in mines -- there are "+sublist.size() + " mines at location " + location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ() + " in world "+location.getWorld().getName());
+            forEach(x -> Output.get().logWarn(x.getName()));
+        }
+        if (sublist.select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return canTeleport(player,c);
+            }
+
+            @Override public void action(Mine c) {
+
+            }
+        }).size() == 0){
+            return true;
+        }
+        return false;
+    }
 
     public GUI createGUI() {
         GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
