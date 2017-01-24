@@ -45,6 +45,11 @@ public class MinesList implements List<Mine> {
     HashMap<Mine, List<BlockType>> randomizedBlocks;
     int resetCount = 0;
 
+    // NPE
+    public MinesList(){
+        mines = new ArrayList<>();
+    }
+
     // Inherited methods -- don't know why I make things so difficult
     public int size() {
         return mines.size();
