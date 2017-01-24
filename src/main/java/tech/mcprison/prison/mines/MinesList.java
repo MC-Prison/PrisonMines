@@ -252,6 +252,7 @@ public class MinesList implements List<Mine> {
 
     public MinesList initialize() {
         Mines.get().setState(MinesState.INITIALIZING);
+        mines = new ArrayList<>();
         if (!new File(Mines.get().getDataFolder(), "/mines/").exists()) {
             new File(Mines.get().getDataFolder(), "/mines/").mkdir();
         }
