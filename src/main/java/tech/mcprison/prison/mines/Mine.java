@@ -26,6 +26,9 @@ public class Mine implements Jsonable<Mine> {
 
     private HashMap<BlockType, Double> blocks;
 
+    public Mine(){
+        blocks = new HashMap<>();
+    }
     public static Mine load(File path) throws IOException {
         return new Mine().fromFile(path);
     }
