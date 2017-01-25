@@ -315,7 +315,7 @@ public class MinesList implements List<Mine> {
         Random random = new Random();
         ArrayList<BlockType> blocks = new ArrayList<>();
         World world = bounds.getMin().getWorld();
-        int target = new Double(bounds.getArea()).intValue()+1;
+        int target = m.area();
         for (int i = 0; i < target; i++) {
             int chance = random.nextInt(101);
             boolean set = false;
