@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d220a92-d53e-4725-9098-65d2ac8c2140" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mine.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Mine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+            <state relative-caret-position="68">
+              <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
               <folding>
                 <element signature="e#820#821#0" expanded="true" />
                 <element signature="e#860#861#0" expanded="true" />
@@ -79,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -566,8 +566,8 @@
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
       </list>
     </option>
   </component>
@@ -1067,12 +1067,12 @@
       <workItem from="1484854577591" duration="11082000" />
       <workItem from="1485104727024" duration="77000" />
       <workItem from="1485104814383" duration="16819000" />
-      <workItem from="1485203866322" duration="7315000" />
+      <workItem from="1485203866322" duration="7680000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47038000" />
+    <option name="totallyTimeSpent" value="47403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1509,17 +1509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-          <folding>
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="e#860#861#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1549,6 +1538,17 @@
             <element signature="e#11114#11115#0" expanded="true" />
             <element signature="e#11641#11642#0" expanded="true" />
             <element signature="e#11701#11702#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
+          <folding>
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="e#860#861#0" expanded="true" />
           </folding>
         </state>
       </provider>

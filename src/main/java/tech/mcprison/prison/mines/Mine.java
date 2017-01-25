@@ -156,6 +156,7 @@ public class Mine implements Jsonable<Mine> {
                 }
             }
             Output.get().logInfo("&aReset mine " + name);
+            Output.get().logInfo("(Reset "+i+" blocks)");
             try {
                 Mines.get().getMines().generateBlockList(this);
             } catch (Exception e) {
