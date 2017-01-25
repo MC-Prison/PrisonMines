@@ -161,6 +161,7 @@ public class Mine implements Jsonable<Mine> {
         try {
             int i = 0;
             List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
+            Output.get().logInfo("Area: "+getBounds().getArea()+" Blocks generated: "+blockTypes.size());
             for (int y = minY; y <= maxY; y++) {
                 for (int x = minX; x <= maxX; x++) {
                     for (int z = minZ; z <= maxZ; z++) {
@@ -172,7 +173,6 @@ public class Mine implements Jsonable<Mine> {
                 }
             }
             Output.get().logInfo("&aReset mine " + name);
-            Output.get().logInfo("(Reset "+i+" blocks)");
             try {
                 Mines.get().getMines().generateBlockList(this);
             } catch (Exception e) {

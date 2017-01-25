@@ -59,7 +59,7 @@ public class MinesCommands {
             sender.sendMessage("&cThat block has already been added!");
             return;
         }
-        Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType,chance));
+        Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType,chance/100));
         sender.sendMessage("&aAdded block &6" + blockType.getId().replaceAll("_", " ").toLowerCase()
             + "&a to mine &6" + mine);
     }
