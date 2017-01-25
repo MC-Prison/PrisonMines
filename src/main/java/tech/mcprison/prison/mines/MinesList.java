@@ -48,6 +48,7 @@ public class MinesList implements List<Mine> {
     // NPE
     public MinesList(){
         mines = new ArrayList<>();
+        randomizedBlocks = new HashMap<>();
     }
 
     // Inherited methods -- don't know why I make things so difficult
