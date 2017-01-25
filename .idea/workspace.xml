@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d220a92-d53e-4725-9098-65d2ac8c2140" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -86,8 +85,8 @@
       <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="317" column="49" lean-forward="true" selection-start-line="317" selection-start-column="49" selection-end-line="317" selection-end-column="49" />
+            <state relative-caret-position="338">
+              <caret line="320" column="27" lean-forward="false" selection-start-line="320" selection-start-column="27" selection-end-line="320" selection-end-column="27" />
               <folding>
                 <element signature="e#0#13011#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -1099,12 +1098,12 @@
       <workItem from="1484854577591" duration="11082000" />
       <workItem from="1485104727024" duration="77000" />
       <workItem from="1485104814383" duration="16819000" />
-      <workItem from="1485203866322" duration="11739000" />
+      <workItem from="1485203866322" duration="12346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51462000" />
+    <option name="totallyTimeSpent" value="52069000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1571,8 +1570,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="317" column="49" lean-forward="true" selection-start-line="317" selection-start-column="49" selection-end-line="317" selection-end-column="49" />
+        <state relative-caret-position="338">
+          <caret line="320" column="27" lean-forward="false" selection-start-line="320" selection-start-column="27" selection-end-line="320" selection-end-column="27" />
           <folding>
             <element signature="e#0#13011#0" expanded="true" />
             <element signature="imports" expanded="true" />
