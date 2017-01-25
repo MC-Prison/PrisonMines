@@ -156,7 +156,17 @@ public class Mine implements Jsonable<Mine> {
         }
         return false;
     }
-
+    public int area(){
+        int out = 0;
+        for (int y = minY; y <= maxY; y++) {
+            for (int x = minX; x <= maxX; x++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    out++;
+                }
+            }
+        }
+        return out;
+    }
     public boolean reset() {
         try {
             int i = 0;
@@ -171,6 +181,7 @@ public class Mine implements Jsonable<Mine> {
                     }
                 }
             }
+
             Output.get().logInfo("&aReset mine " + name);
             try {
                 Mines.get().getMines().generateBlockList(this);

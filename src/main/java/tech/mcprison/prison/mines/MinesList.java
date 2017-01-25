@@ -315,16 +315,18 @@ public class MinesList implements List<Mine> {
         Random random = new Random();
         ArrayList<BlockType> blocks = new ArrayList<>();
         World world = bounds.getMin().getWorld();
-        int target = new Double(bounds.getArea()).intValue();
-        Output.get().logInfo("Target " + target);
+        int target = new Double(bounds.getArea()).intValue()+1;
         for (int i = 0; i < target; i++) {
-            int chance = random.nextInt(100);
+            int chance = random.nextInt(101);
             boolean set = false;
             for (Block block : m.getBlocks()) {
                 if (chance <= block.chance) {
                     blocks.add(block.type);
                     set = true;
                     break;
+                }
+                else {
+                    chance -= block.chance;
                 }
             }
             if (!set) {
