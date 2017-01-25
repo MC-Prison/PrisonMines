@@ -78,7 +78,7 @@ public class Mines extends Module {
         getLogger().logInfo("Loading mines...");
         mines = new MinesList().initialize();
         Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(),1200L,1200L);
-        getLogger().logInfo("All done! Enjoy :)");
+
     }
 
     public void setState(MinesState state) {

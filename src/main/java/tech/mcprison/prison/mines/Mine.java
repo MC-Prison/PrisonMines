@@ -61,9 +61,9 @@ public class Mine implements Jsonable<Mine> {
         return this;
     }
 
-    public Mine setBlocks(HashMap<BlockType, Double> blockMap) {
+    public Mine setBlocks(HashMap<BlockType, Integer> blockMap) {
         blocks = new ArrayList<>();
-        for (Map.Entry<BlockType, Double> entry : blockMap.entrySet()){
+        for (Map.Entry<BlockType, Integer> entry : blockMap.entrySet()){
             blocks.add(new Block().create(entry.getKey(),entry.getValue()));
         }
         return this;
@@ -165,7 +165,6 @@ public class Mine implements Jsonable<Mine> {
             for (int y = minY; y <= maxY; y++) {
                 for (int x = minX; x <= maxX; x++) {
                     for (int z = minZ; z <= maxZ; z++) {
-                        Output.get().logInfo("loop");
                         new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
                             .getBlockAt().setType(blockTypes.get(i));
                         i++;

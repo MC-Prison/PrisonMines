@@ -45,7 +45,7 @@ public class MinesCommands {
 
     @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock", "prison.admin"}, onlyPlayers = false)
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") double chance) {
+        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") int chance) {
         if (!Mines.get().getMines().contains(mine)) {
             sender.sendMessage("&cThat mine doesn't exist!");
             return;
@@ -59,7 +59,7 @@ public class MinesCommands {
             sender.sendMessage("&cThat block has already been added!");
             return;
         }
-        Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType,chance/100));
+        Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType,chance));
         sender.sendMessage("&aAdded block &6" + blockType.getId().replaceAll("_", " ").toLowerCase()
             + "&a to mine &6" + mine);
     }
