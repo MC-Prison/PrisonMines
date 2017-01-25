@@ -24,6 +24,7 @@ import tech.mcprison.prison.gui.ClickedButton;
 import tech.mcprison.prison.gui.GUI;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
+import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
@@ -317,9 +318,9 @@ public class MinesList implements List<Mine> {
         for (int i = 0; i > (int) bounds.getArea(); i++) {
             double chance = random.nextDouble();
             boolean set = false;
-            for (Map.Entry<BlockType, Double> entry : m.getBlocks().entrySet()) {
-                if (chance <= entry.getValue()) {
-                    blocks.add(entry.getKey());
+            for (Block block : m.getBlocks()) {
+                if (chance <= block.chance) {
+                    blocks.add(block.type);
                     set = true;
                     break;
                 }

@@ -3,6 +3,7 @@ package tech.mcprison.prison.mines;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
+import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.store.Jsonable;
 import tech.mcprison.prison.util.BlockType;
@@ -12,8 +13,10 @@ import tech.mcprison.prison.util.Location;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by DMP9 on 08/01/2017.
@@ -24,10 +27,10 @@ public class Mine implements Jsonable<Mine> {
     private float pitch, yaw;
     private String worldName, name;
 
-    private HashMap<BlockType, Double> blocks;
+    private List<Block> blocks;
 
     public Mine(){
-        blocks = new HashMap<>();
+        blocks = new ArrayList<>();
     }
     public static Mine load(File path) throws IOException {
         return new Mine().fromFile(path);
@@ -59,7 +62,10 @@ public class Mine implements Jsonable<Mine> {
     }
 
     public Mine setBlocks(HashMap<BlockType, Double> blockMap) {
-        blocks = blockMap;
+        blocks = new ArrayList<>();
+        for (Map.Entry<BlockType, Double> entry : blockMap.entrySet()){
+            blocks.add(new Block().create(entry.getKey(),entry.getValue()));
+        }
         return this;
     }
 
@@ -108,7 +114,7 @@ public class Mine implements Jsonable<Mine> {
                 (double) maxY, (double) maxZ));
     }
 
-    public HashMap<BlockType, Double> getBlocks() {
+    public List<Block> getBlocks() {
         return blocks;
     }
 
@@ -137,6 +143,15 @@ public class Mine implements Jsonable<Mine> {
                         return true;
                     }
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean isInMine(BlockType blockType) {
+        for (Block block : blocks){
+            if (blockType == block.type){
+                return true;
             }
         }
         return false;

@@ -5,6 +5,7 @@ import tech.mcprison.prison.commands.Arg;
 import tech.mcprison.prison.commands.Command;
 import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.internal.Player;
+import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.selection.Selection;
 import tech.mcprison.prison.util.BlockType;
@@ -44,7 +45,7 @@ public class MinesCommands {
 
     @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock", "prison.admin"})
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") int chance) {
+        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") double chance) {
         if (!Mines.get().getMines().contains(mine)) {
             sender.sendMessage("&cThat mine doesn't exist!");
             return;
@@ -54,11 +55,11 @@ public class MinesCommands {
             sender.sendMessage("&6" + block + "&c is not a block!");
             return;
         }
-        if (Mines.get().getMines().get(mine).getBlocks().containsKey(blockType)) {
+        if (Mines.get().getMines().get(mine).isInMine(blockType)) {
             sender.sendMessage("&cThat block has already been added!");
             return;
         }
-        Mines.get().getMines().get(mine).getBlocks().put(blockType, (double) (chance / 100));
+        Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType,chance));
         sender.sendMessage("&aAdded block &6" + blockType.getId().replaceAll("_", " ").toLowerCase()
             + "&a to mine &6" + mine);
     }
@@ -75,7 +76,7 @@ public class MinesCommands {
             sender.sendMessage("&6" + block + "&c is not a block!");
             return;
         }
-        if (!Mines.get().getMines().get(mine).getBlocks().containsKey(blockType)) {
+        if (!Mines.get().getMines().get(mine).isInMine(blockType)) {
             sender.sendMessage("&cThat block isn't in the mine!");
             return;
         }
