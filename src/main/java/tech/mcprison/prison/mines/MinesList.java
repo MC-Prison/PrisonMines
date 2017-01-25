@@ -311,6 +311,7 @@ public class MinesList implements List<Mine> {
     }
 
     public void generateBlockList(Mine m) {
+        Output.get().logInfo("Generating blocks for mine "+m.getName());
         Bounds bounds = m.getBounds();
         Random random = new Random();
         ArrayList<BlockType> blocks = new ArrayList<>();
@@ -329,6 +330,7 @@ public class MinesList implements List<Mine> {
                 blocks.add(BlockType.AIR);
             }
         }
+        Output.get().logInfo("Generated "+blocks.size());
         randomizedBlocks.put(m, blocks);
     }
 
