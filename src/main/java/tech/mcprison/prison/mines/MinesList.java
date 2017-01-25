@@ -329,6 +329,7 @@ public class MinesList implements List<Mine> {
             if (!set) {
                 blocks.add(BlockType.AIR);
             }
+            Output.get().logInfo("loop2");
         }
         Output.get().logInfo("Generated "+blocks.size());
         randomizedBlocks.put(m, blocks);
