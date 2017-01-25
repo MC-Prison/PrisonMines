@@ -43,7 +43,7 @@ public class MinesCommands {
         sender.sendMessage("&aMine created successfully!");
     }
 
-    @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock", "prison.admin"})
+    @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock", "prison.admin"}, onlyPlayers = false)
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") double chance) {
         if (!Mines.get().getMines().contains(mine)) {
@@ -64,7 +64,7 @@ public class MinesCommands {
             + "&a to mine &6" + mine);
     }
 
-    @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock", "prison.admin"})
+    @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock", "prison.admin"}, onlyPlayers = false)
     public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block) {
         if (!Mines.get().getMines().contains(mine)) {
@@ -83,7 +83,7 @@ public class MinesCommands {
     }
 
 
-    @Command(identifier = "mines delete", permissions = {"prison.mines.delete", "prison.admin"})
+    @Command(identifier = "mines delete", permissions = {"prison.mines.delete", "prison.admin"}, onlyPlayers = false)
     public void deleteCommand(CommandSender sender,
         @Arg(name = "mineName", description = "The name of the mine to be deleted") String name) {
         if (!Mines.get().getMines().contains(name)) {
@@ -94,7 +94,7 @@ public class MinesCommands {
         sender.sendMessage("&aMine deleted successfully!");
     }
 
-    @Command(identifier = "mines info", permissions = {"prison.mines.info", "prison.admin"})
+    @Command(identifier = "mines info", permissions = {"prison.mines.info", "prison.admin"}, onlyPlayers = false)
     public void infoCommand(CommandSender sender,
         @Arg(name = "mineName", description = "The name of the mine") String name) {
         if (!Mines.get().getMines().contains(name)) {
@@ -137,7 +137,7 @@ public class MinesCommands {
     }
 
 
-    @Command(identifier = "mines list", permissions = {"prison.mines.delete", "prison.admin"})
+    @Command(identifier = "mines list", permissions = {"prison.mines.delete", "prison.admin"}, onlyPlayers = false)
     public void listCommand(CommandSender sender) {
         sender.sendMessage("&b============ &7/mines list&b ============");
         for (Mine m : Mines.get().getMines()) {
