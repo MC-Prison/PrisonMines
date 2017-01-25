@@ -415,7 +415,7 @@ public class MinesList implements List<Mine> {
         GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
             9 :
             size() <= 18 ? 18 : size() <= 27 ? 27 : size() <= 36 ? 36 : size() <= 45 ? 45 : 54);
-        final int[] i = {-1};
+        final int[] i = {0};
         select(guiSelection).forEach(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return false;
