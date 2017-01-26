@@ -77,7 +77,7 @@ public class Mines extends Module {
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
         getLogger().logInfo("Loading mines...");
         mines = new MinesList().initialize();
-        Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(),1,1);
+        Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(),20,20);
 
     }
 
