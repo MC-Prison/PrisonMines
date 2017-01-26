@@ -237,6 +237,7 @@ public class MinesList implements List<Mine> {
                 if (resetCount > 0) {
                     resetCount--;
                 }
+                Output.get().logInfo("Time left until reset "+resetCount);
             }
         };
     }

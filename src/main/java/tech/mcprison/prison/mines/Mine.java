@@ -107,6 +107,7 @@ public class Mine implements Jsonable<Mine> {
     }
 
     public Bounds getBounds() {
+        checkMinMax();
         return new Bounds(
             new Location(Prison.get().getPlatform().getWorld(worldName).get(), (double) minX,
                 (double) minY, (double) minZ),
@@ -131,6 +132,18 @@ public class Mine implements Jsonable<Mine> {
         Files.write(file.toPath(), toJson().getBytes());
     }
 
+    private void checkMinMax(){
+        // Flip the locations, had some issues with this
+        if (maxX < minX){
+            if (maxY < minY){
+                if (maxZ < minZ){
+                    Location min = getBounds().getMin();
+                    Location max = getBounds().getMax();
+                    setBounds(new Bounds(max,min));
+                }
+            }
+        }
+    }
     public boolean isInMine(Location location){
         if (!location.getWorld().getName().equalsIgnoreCase(worldName)){
             return false;
