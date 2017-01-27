@@ -212,17 +212,18 @@ public class MinesList implements List<Mine> {
                 }
                 if (resetCount == 0) {
                     reset();
-                    if (!Mines.get().getConfig().multiworld) {
-                        Prison.get().getPlatform().getOnlinePlayers()
-                            .forEach(x -> x.sendMessage(Mines.get().getConfig().resetMessage));
-                    } else {
-                        Prison.get().getPlatform().getOnlinePlayers()
-                            .forEach(x -> selectiveSend(x));
+                    if (Mines.get().getConfig().resetMessages) {
+                        if (!Mines.get().getConfig().multiworld) {
+                            Prison.get().getPlatform().getOnlinePlayers()
+                                .forEach(x -> x.sendMessage(Mines.get().getConfig().resetMessage));
+                        } else {
+                            Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x));
+                        }
                     }
                     resetCount = Mines.get().getConfig().aliveTime;
                 }
                 for (int i : Mines.get().getConfig().resetWarningTimes) {
-                    if (resetCount == i) {
+                    if (resetCount == i && Mines.get().getConfig().resetMessages) {
                         if (!Mines.get().getConfig().multiworld) {
                             Prison.get().getPlatform().getOnlinePlayers().forEach(x -> x
                                 .sendMessage(Mines.get().getConfig().resetWarning
@@ -237,7 +238,6 @@ public class MinesList implements List<Mine> {
                 if (resetCount > 0) {
                     resetCount--;
                 }
-                Output.get().logInfo("Current time until reset: "+resetCount);
             }
         };
     }

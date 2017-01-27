@@ -18,6 +18,6 @@ public class MinesConfig extends AbstractJsonable<MinesConfig> {
         new ArrayList<>(Arrays.<String>asList(new String[] {"plots", "mines"}));
     public ArrayList<Integer> resetWarningTimes =
         new ArrayList<>(Arrays.<Integer>asList(new Integer[] {600, 300, 60}));
-    public String resetMessage = "&b[&7Prison&b] &2Mines have been reset!";
-    public String resetWarning = "&b[&7Prison&b] &2Mines are going to reset in &6%mins%";
+    public String resetMessage = "&b[&5Prison&b] &2Mines have been reset!";
+    public String resetWarning = "&b[&5Prison&b] &2Mines are going to reset in &6%mins% &2mins";
 }
