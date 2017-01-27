@@ -107,7 +107,6 @@ public class Mine implements Jsonable<Mine> {
     }
 
     public Bounds getBounds() {
-        checkMinMax();
         return new Bounds(
             new Location(Prison.get().getPlatform().getWorld(worldName).get(), (double) minX,
                 (double) minY, (double) minZ),
@@ -192,9 +191,9 @@ public class Mine implements Jsonable<Mine> {
             checkMinMax();
             int i = 0;
             List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
-            for (int y = minY; y <= maxY; y++) {
-                for (int x = minX; x <= maxX; x++) {
-                    for (int z = minZ; z <= maxZ; z++) {
+            for (int y = getBounds().getMin().getBlockY(); y <= getBounds().getMax().getBlockY(); y++) {
+                for (int x = getBounds().getMin().getBlockX(); x <= getBounds().getMax().getBlockX(); x++) {
+                    for (int z = getBounds().getMin().getBlockZ(); z <= getBounds().getMax().getBlockZ(); z++) {
                         new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
                             .getBlockAt().setType(blockTypes.get(i));
                         i++;
