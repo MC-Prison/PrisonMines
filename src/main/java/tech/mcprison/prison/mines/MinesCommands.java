@@ -60,10 +60,15 @@ public class MinesCommands {
             return;
         }
         Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType,chance));
-        sender.sendMessage("&aAdded block &6" + blockType.getId().replaceAll("_", " ").toLowerCase()
+        sender.sendMessage("&aAdded block &6" + blockType.getId().replaceAll("_", " ").replaceAll("minecraft:","").toLowerCase()
             + "&a to mine &6" + mine);
     }
 
+    private void delblock(Block block,BlockType blockType,Mine mine){
+        if (block.type == blockType){
+            mine.getBlocks().remove(block);
+        }
+    }
     @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock", "prison.admin"}, onlyPlayers = false)
     public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block) {
@@ -80,6 +85,10 @@ public class MinesCommands {
             sender.sendMessage("&cThat block isn't in the mine!");
             return;
         }
+        Mine m = Mines.get().getMines().get(mine);
+        m.getBlocks().forEach(x -> delblock(x,blockType,m));
+        sender.sendMessage("&aDeleted block &6" + blockType.getId().replaceAll("_", " ").replaceAll("minecraft:","").toLowerCase()
+            + "&a from mine &6" + mine);
     }
 
 

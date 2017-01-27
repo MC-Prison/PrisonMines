@@ -137,9 +137,15 @@ public class Mine implements Jsonable<Mine> {
         if (maxX < minX){
             if (maxY < minY){
                 if (maxZ < minZ){
-                    Location min = getBounds().getMin();
-                    Location max = getBounds().getMax();
-                    setBounds(new Bounds(max,min));
+                    int oldX = minX;
+                    int oldY = minY;
+                    int oldZ = minZ;
+                    minX = maxX;
+                    minY = maxY;
+                    minZ = maxZ;
+                    maxX = oldX;
+                    maxY = oldY;
+                    maxZ = oldZ;
                 }
             }
         }
@@ -171,6 +177,7 @@ public class Mine implements Jsonable<Mine> {
     }
     public int area(){
         int out = 0;
+        checkMinMax();
         for (int y = minY; y <= maxY; y++) {
             for (int x = minX; x <= maxX; x++) {
                 for (int z = minZ; z <= maxZ; z++) {
@@ -182,9 +189,9 @@ public class Mine implements Jsonable<Mine> {
     }
     public boolean reset() {
         try {
+            checkMinMax();
             int i = 0;
             List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
-            Output.get().logInfo("Area: "+getBounds().getArea()+" Blocks generated: "+blockTypes.size());
             for (int y = minY; y <= maxY; y++) {
                 for (int x = minX; x <= maxX; x++) {
                     for (int z = minZ; z <= maxZ; z++) {
@@ -196,10 +203,12 @@ public class Mine implements Jsonable<Mine> {
             }
 
             Output.get().logInfo("&aReset mine " + name);
-            try {
-                Mines.get().getMines().generateBlockList(this);
-            } catch (Exception e) {
-
+            if (Mines.get().getConfig().asyncReset) {
+                try {
+                    Mines.get().getMines().generateBlockList(this);
+                } catch (Exception e) {
+                    Output.get().logWarn("Couldn't generate blocks for mine "+name+" prior to next reset, async reset will be ignored",e);
+                }
             }
             return true;
         } catch (Exception e) {
