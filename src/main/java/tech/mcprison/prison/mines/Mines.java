@@ -18,7 +18,7 @@ import java.util.ListIterator;
  * Created by DMP9 on 08/01/2017.
  */
 public class Mines extends Module {
-    public static final String JENKINS_BUILD = "67";
+    public static final String JENKINS_BUILD = "68";
     public static boolean DEVELOPMENT_BUILD = true;
 
     private static Mines i = null;

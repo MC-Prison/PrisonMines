@@ -142,9 +142,27 @@ public class Mine implements Jsonable<Mine> {
         if (!location.getWorld().getName().equalsIgnoreCase(worldName)) {
             return false;
         }
-        for (int y = minY; y <= maxY; y++) {
-            for (int x = minX; x <= maxX; x++) {
-                for (int z = minZ; z <= maxZ; z++) {
+        int _maxX = (getBounds().getMin().getBlockX() < getBounds().getMax().getBlockX() ?
+            getBounds().getMax().getBlockX() :
+            getBounds().getMin().getBlockX());
+        int _minX = (getBounds().getMin().getBlockX() > getBounds().getMax().getBlockX() ?
+            getBounds().getMax().getBlockX() :
+            getBounds().getMin().getBlockX());
+        int _maxY = (getBounds().getMin().getBlockY() < getBounds().getMax().getBlockY() ?
+            getBounds().getMax().getBlockY() :
+            getBounds().getMin().getBlockY());
+        int _minY = (getBounds().getMin().getBlockY() > getBounds().getMax().getBlockY() ?
+            getBounds().getMax().getBlockY() :
+            getBounds().getMin().getBlockY());
+        int _maxZ = (getBounds().getMin().getBlockZ() < getBounds().getMax().getBlockZ() ?
+            getBounds().getMax().getBlockZ() :
+            getBounds().getMin().getBlockZ());
+        int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
+            getBounds().getMax().getBlockZ() :
+            getBounds().getMin().getBlockZ());
+        for (int y = _minY; y <= _maxY; y++) {
+            for (int x = _minX; x <= _maxX; x++) {
+                for (int z = _minZ; z <= _maxZ; z++) {
                     if (location.getBlockX() == x && location.getBlockY() == y
                         && location.getBlockZ() == z) {
                         return true;
