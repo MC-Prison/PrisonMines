@@ -18,7 +18,7 @@ import java.util.ListIterator;
  * Created by DMP9 on 08/01/2017.
  */
 public class Mines extends Module {
-    public static final String JENKINS_BUILD = "66";
+    public static final String JENKINS_BUILD = "67";
     public static boolean DEVELOPMENT_BUILD = true;
 
     private static Mines i = null;
@@ -70,7 +70,7 @@ public class Mines extends Module {
         if (DEVELOPMENT_BUILD) {
             getLogger().logInfo("You are using a Mines development build (Jenkins Build #"+JENKINS_BUILD+")");
         }else{
-            getLogger().logInfo("You are using Mines v"+getVersion());
+            getLogger().logInfo("You are using Mines v"+getVersion()+" (#"+JENKINS_BUILD+")");
         }
         getLogger().logInfo("Loading config...");
         config = new MinesConfig();
@@ -107,6 +107,7 @@ public class Mines extends Module {
         }
         getLogger().logInfo("Loading mines...");
         mines = new MinesList().initialize();
+        new MinesListener().init();
         Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(), 20, 20);
 
     }
