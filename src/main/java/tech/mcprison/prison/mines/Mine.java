@@ -59,6 +59,7 @@ public class Mine implements Jsonable<Mine> {
     }
 
     public Mine setSpawn(Location location) {
+        hasSpawn = true;
         spawnX = location.getX();
         spawnY = location.getY();
         spawnZ = location.getZ();
@@ -105,14 +106,9 @@ public class Mine implements Jsonable<Mine> {
         return Prison.get().getPlatform().getWorld(worldName).get();
     }
 
-    public Location getSpawnLocation() {
-        return new Location(Prison.get().getPlatform().getWorld(worldName).get(), spawnX, spawnY,
-            spawnZ, pitch, yaw);
-    }
-
     public void teleport(Player... players) {
         for (Player p : players) {
-            p.teleport(getSpawnLocation());
+            p.teleport(getSpawn().get());
             p.sendMessage("&bTeleported to mine '&7" + name + "&b'");
         }
     }

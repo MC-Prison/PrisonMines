@@ -305,6 +305,18 @@ public class MinesList implements List<Mine> {
         forEach(resetFilter);
     }
 
+    public boolean isInMine(Location location){
+        return select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return c.getBounds().within(location);
+            }
+
+            @Override public void action(Mine c) {
+
+            }
+        }).size() > 0;
+    }
+
     public List<BlockType> getRandomizedBlocks(Mine m) {
         if (!randomizedBlocks.containsKey(m)) {
             generateBlockList(m);
@@ -339,22 +351,6 @@ public class MinesList implements List<Mine> {
 
     public HashMap<Mine, List<BlockType>> getRandomizedBlocks() {
         return randomizedBlocks;
-    }
-
-    boolean override = false;
-    MinesFilter guiSelection = new MinesFilter() {
-        @Override public boolean accept(Mine c) {
-            return true;
-        }
-
-        @Override public void action(Mine c) {
-
-        }
-    };
-
-    public void setGUIOverride(MinesFilter mines) {
-        override = true;
-        guiSelection = mines;
     }
 
     private HashMap<Player, MinesList> players;
@@ -414,12 +410,19 @@ public class MinesList implements List<Mine> {
         return false;
     }
 
-    public GUI createGUI() {
+    public GUI createGUI(Player player) {
         GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
             9 :
             size() <= 18 ? 18 : size() <= 27 ? 27 : size() <= 36 ? 36 : size() <= 45 ? 45 : 54);
         final int[] i = {0};
-        select(guiSelection).forEach(new MinesFilter() {
+        select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return c.hasSpawn() && canTeleport(player,c);
+            }
+            @Override public void action(Mine c) {
+
+            }
+        }).forEach(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return false;
             }

@@ -6,6 +6,7 @@ import tech.mcprison.prison.commands.Command;
 import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.mines.util.Block;
+import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.selection.Selection;
 import tech.mcprison.prison.util.BlockType;
@@ -16,9 +17,28 @@ import java.util.Objects;
  * Created by DMP9 on 14/01/2017.
  */
 public class MinesCommands {
+    @Command(identifier = "autosmelt", permissions = "prison.mines.autosmelt")
+    public void autosmeltCommand(CommandSender sender){
+        if(MinesUtil.usingAutosmelt((Player)sender)){
+            try {
+                MinesUtil.disableAutosmelt((Player)sender);
+            } catch (Exception e) {
+                Output.get().logError("Couldn't disable autosmelt for player "+sender.getName());
+                sender.sendMessage("&cCouldn't disable autosmelt. Contact a server operator for details.");
+            }
+        }
+        else{
+            try {
+                MinesUtil.enableAutosmelt((Player)sender);
+            } catch (Exception e) {
+                Output.get().logError("Couldn't enable autosmelt for player "+sender.getName());
+                sender.sendMessage("&cCouldn't enable autosmelt. Contact a server operator for details.");
+            }
+        }
+    }
     @Command(identifier = "mines", permissions = "prison.mines.gui")
     public void minesCommand(CommandSender sender) {
-        Mines.get().getMines().createGUI().show((Player) sender);
+        Mines.get().getMines().createGUI((Player)sender).show((Player) sender);
     }
 
     @Command(identifier = "mines create", permissions = {"prison.mines.create", "prison.admin"})
@@ -43,8 +63,24 @@ public class MinesCommands {
         sender.sendMessage("&aMine created successfully!");
     }
 
+    @Command(identifier = "mines spawnpoint", permissions = {"prison.mines.spawnpoint",
+        "prison.admin"}) public void spawnpointCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to assign the spawnpoint to")
+            String name) {
+        if (!Mines.get().getMines().contains(name)) {
+            sender.sendMessage("&cThat mine doesn't exist!");
+            return;
+        }
+        if (!((Player) sender).getLocation().getWorld().getName()
+            .equalsIgnoreCase(Mines.get().getMines().get(name).getWorld().getName())) {
+            sender.sendMessage("&cThe spawnpoint must be in the same world as the mine!");
+        }
+        Mines.get().getMines().get(name).setSpawn(((Player) sender).getLocation());
+        sender.sendMessage("&aSpawnpoint set!");
+    }
+
     @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock",
-        "prison.admin"}, onlyPlayers = false)
+        "prison.admin"}, onlyPlayers = false, description = "Adds a block to a mine")
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") int chance) {
         if (!Mines.get().getMines().contains(mine)) {
@@ -67,7 +103,7 @@ public class MinesCommands {
     }
 
     @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock",
-        "prison.admin"}, onlyPlayers = false)
+        "prison.admin"}, onlyPlayers = false, description = "Deletes a block from a mine")
     public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block) {
         if (!Mines.get().getMines().contains(mine)) {
@@ -90,7 +126,8 @@ public class MinesCommands {
 
 
     @Command(identifier = "mines delete", permissions = {"prison.mines.delete",
-        "prison.admin"}, onlyPlayers = false) public void deleteCommand(CommandSender sender,
+        "prison.admin"}, onlyPlayers = false, description = "Deletes a mine")
+    public void deleteCommand(CommandSender sender,
         @Arg(name = "mineName", description = "The name of the mine to be deleted") String name) {
         if (!Mines.get().getMines().contains(name)) {
             sender.sendMessage("&cThat mine doesn't exist!");
@@ -101,7 +138,8 @@ public class MinesCommands {
     }
 
     @Command(identifier = "mines info", permissions = {"prison.mines.info",
-        "prison.admin"}, onlyPlayers = false) public void infoCommand(CommandSender sender,
+        "prison.admin"}, onlyPlayers = false, description = "Lists basic information about a mine")
+    public void infoCommand(CommandSender sender,
         @Arg(name = "mineName", description = "The name of the mine") String name) {
         if (!Mines.get().getMines().contains(name)) {
             sender.sendMessage("&cThat mine doesn't exist!");
@@ -123,10 +161,17 @@ public class MinesCommands {
         sender.sendMessage(
             "&bSize: &7" + m.getBounds().getWidth() + "&8x&b" + m.getBounds().getLength() + " &8(&7"
                 + m.getBounds().getHeight() + " &bblocks deep&8)");
-        sender.sendMessage(String.format("%0" + (title.length() - 4) + "d", 0).replace("0", "="));
+        if (m.hasSpawn()) {
+            sender.sendMessage(
+                "&bSpawnpoint: X: &7" + m.getSpawn().get().getX() + "&bY: &7" + m.getSpawn().get()
+                    .getY() + "&bZ: &7" + m.getSpawn().get().getZ());
+        } else {
+            sender.sendMessage("&bSpawnpoint: &cnot set");
+        }
+        sender.sendMessage(String.format("%0" + (title.length() - 7) + "d", 0).replace("0", "="));
     }
 
-    @Command(identifier = "mines reset", permissions = {"prison.mines.info", "prison.admin"})
+    @Command(identifier = "mines reset", permissions = {"prison.mines.reset", "prison.admin"})
     public void resetCommand(CommandSender sender,
         @Arg(name = "mineName", description = "The name of the mine to be reset") String name) {
         if (!Mines.get().getMines().contains(name)) {

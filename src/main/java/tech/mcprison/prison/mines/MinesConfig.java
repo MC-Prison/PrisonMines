@@ -12,8 +12,9 @@ public class MinesConfig extends AbstractJsonable<MinesConfig> {
     public boolean asyncReset = true;
     public boolean resetMessages = true;
     public boolean multiworld = false;
+    public boolean savePlayers = false;
     public int aliveTime = 600;
-    public String guiName = "Prison";
+    public String guiName = "&4Prison";
     public ArrayList<String> worlds =
         new ArrayList<>(Arrays.<String>asList(new String[] {"plots", "mines"}));
     public ArrayList<Integer> resetWarningTimes =

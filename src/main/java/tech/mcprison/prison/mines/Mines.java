@@ -2,11 +2,14 @@ package tech.mcprison.prison.mines;
 
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.mines.events.StateChangeEvent;
+import tech.mcprison.prison.mines.util.Miner;
 import tech.mcprison.prison.modules.Module;
 import tech.mcprison.prison.output.Output;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -19,6 +22,7 @@ public class Mines extends Module {
     private static MinesState state;
     private MinesConfig config;
     private List<String> worlds;
+    private List<Miner> players;
 
     public MinesConfig getConfig() {
         return config;
@@ -27,6 +31,8 @@ public class Mines extends Module {
     public MinesState getState() {
         return state;
     }
+    public List<Miner> getPlayers() {return players;}
+    public void addMiner(Miner miner){players.add(miner);}
 
     public static Mines get() {
         return i;
@@ -54,6 +60,7 @@ public class Mines extends Module {
         i = this;
         getLogger().logInfo("Loading config...");
         config = new MinesConfig();
+        players = new ArrayList<>();
         File configFile = new File(getDataFolder(), "config.json");
         if (!configFile.exists()) {
             try {
@@ -74,6 +81,15 @@ public class Mines extends Module {
             worlds.add(iterator.next().toLowerCase());
         }
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
+        if (config.savePlayers){
+            getLogger().logInfo("Loading players...");
+            try {
+                String json = new String(Files.readAllBytes(new File(getDataFolder(),"/players.json").toPath()));
+                players = Prison.get().getGson().fromJson(json,players.getClass());
+            } catch (IOException e) {
+                getLogger().logError("Couldn't load players",e);
+            }
+        }
         getLogger().logInfo("Loading mines...");
         mines = new MinesList().initialize();
         Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(), 20, 20);
@@ -88,5 +104,15 @@ public class Mines extends Module {
     public void disable() {
         setState(MinesState.DISPOSED);
         mines.forEach(Mine::save);
+        if (config.savePlayers){
+            try {
+                FileWriter fileWriter = new FileWriter(new File(getDataFolder(),"/players.json"));
+                Prison.get().getGson().toJson(players,fileWriter);
+                fileWriter.close();
+            } catch (IOException e) {
+                Output.get().logError("Couldn't save players.",e);
+            }
+            getLogger().logInfo("&aSaved players!");
+        }
     }
 }
