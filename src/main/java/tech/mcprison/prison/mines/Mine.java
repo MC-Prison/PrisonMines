@@ -13,10 +13,7 @@ import tech.mcprison.prison.util.Location;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by DMP9 on 08/01/2017.
@@ -26,6 +23,7 @@ public class Mine implements Jsonable<Mine> {
     private double spawnX, spawnY, spawnZ;
     private float pitch, yaw;
     private String worldName, name;
+    private boolean hasSpawn = false;
 
     private List<Block> blocks;
 
@@ -35,6 +33,18 @@ public class Mine implements Jsonable<Mine> {
 
     public static Mine load(File path) throws IOException {
         return new Mine().fromFile(path);
+    }
+
+    public boolean hasSpawn() {
+        return hasSpawn;
+    }
+
+    public Optional<Location> getSpawn() {
+        if (!hasSpawn) {
+            return Optional.empty();
+        } else {
+            return Optional.of(new Location(getWorld(), spawnX, spawnY, spawnZ, pitch, yaw));
+        }
     }
 
     public Mine setBounds(Bounds bounds) {

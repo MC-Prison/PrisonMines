@@ -8,7 +8,8 @@ import tech.mcprison.prison.util.BlockType;
 public class Block {
     public BlockType type = BlockType.AIR;
     public int chance = 100;
-    public Block create(BlockType block,int chance){
+
+    public Block create(BlockType block, int chance) {
         type = block;
         this.chance = chance;
         return this;

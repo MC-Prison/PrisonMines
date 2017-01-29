@@ -47,7 +47,7 @@ public class MinesList implements List<Mine> {
     int resetCount = 0;
 
     // NPE
-    public MinesList(){
+    public MinesList() {
         mines = new ArrayList<>();
         randomizedBlocks = new HashMap<>();
     }
@@ -194,9 +194,9 @@ public class MinesList implements List<Mine> {
 
     private void selectiveSend2(Player x) {
         if (Mines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
-            x.sendMessage(Mines.get().getConfig().resetWarning
-                .replaceAll("%mins%", "" + (resetCount / 60))
-                .replaceAll("%seconds%", "" + resetCount));
+            x.sendMessage(
+                Mines.get().getConfig().resetWarning.replaceAll("%mins%", "" + (resetCount / 60))
+                    .replaceAll("%seconds%", "" + resetCount));
         }
     }
 
@@ -217,7 +217,8 @@ public class MinesList implements List<Mine> {
                             Prison.get().getPlatform().getOnlinePlayers()
                                 .forEach(x -> x.sendMessage(Mines.get().getConfig().resetMessage));
                         } else {
-                            Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x));
+                            Prison.get().getPlatform().getOnlinePlayers()
+                                .forEach(x -> selectiveSend(x));
                         }
                     }
                     resetCount = Mines.get().getConfig().aliveTime;
@@ -325,8 +326,7 @@ public class MinesList implements List<Mine> {
                     blocks.add(block.type);
                     set = true;
                     break;
-                }
-                else {
+                } else {
                     chance -= block.chance;
                 }
             }
@@ -376,15 +376,14 @@ public class MinesList implements List<Mine> {
     }
 
     public boolean canTeleport(Player player, Mine mine) {
-        if (getTeleportRule(player) == null){
+        if (getTeleportRule(player) == null) {
             return true;
-        }
-        else {
+        } else {
             return getTeleportRule(player).contains(mine);
         }
     }
 
-    public boolean allowedToMine(Player player,Location location){
+    public boolean allowedToMine(Player player, Location location) {
         MinesList sublist = select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return c.isInMine(location);
@@ -394,19 +393,22 @@ public class MinesList implements List<Mine> {
 
             }
         });
-        if (sublist.size() > 1){
-            Output.get().logWarn("Potential overlap in mines -- there are "+sublist.size() + " mines at location " + location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ() + " in world "+location.getWorld().getName());
+        if (sublist.size() > 1) {
+            Output.get().logWarn(
+                "Potential overlap in mines -- there are " + sublist.size() + " mines at location "
+                    + location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ()
+                    + " in world " + location.getWorld().getName());
             forEach(x -> Output.get().logWarn(x.getName()));
         }
         if (sublist.select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
-                return canTeleport(player,c);
+                return canTeleport(player, c);
             }
 
             @Override public void action(Mine c) {
 
             }
-        }).size() == 0){
+        }).size() == 0) {
             return true;
         }
         return false;

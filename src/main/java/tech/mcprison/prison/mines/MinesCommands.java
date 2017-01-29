@@ -43,7 +43,8 @@ public class MinesCommands {
         sender.sendMessage("&aMine created successfully!");
     }
 
-    @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock", "prison.admin"}, onlyPlayers = false)
+    @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock",
+        "prison.admin"}, onlyPlayers = false)
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") int chance) {
         if (!Mines.get().getMines().contains(mine)) {
@@ -59,12 +60,14 @@ public class MinesCommands {
             sender.sendMessage("&cThat block has already been added!");
             return;
         }
-        Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType,chance));
-        sender.sendMessage("&aAdded block &6" + blockType.getId().replaceAll("_", " ").replaceAll("minecraft:","").toLowerCase()
-            + "&a to mine &6" + mine);
+        Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType, chance));
+        sender.sendMessage(
+            "&aAdded block &6" + blockType.getId().replaceAll("_", " ").replaceAll("minecraft:", "")
+                .toLowerCase() + "&a to mine &6" + mine);
     }
 
-    @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock", "prison.admin"}, onlyPlayers = false)
+    @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock",
+        "prison.admin"}, onlyPlayers = false)
     public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block) {
         if (!Mines.get().getMines().contains(mine)) {
@@ -81,13 +84,13 @@ public class MinesCommands {
             return;
         }
         Mines.get().getMines().get(mine).getBlocks().removeIf(x -> x.type == blockType);
-        sender.sendMessage("&aDeleted block &6" + blockType.getId().replaceAll("_", " ").replaceAll("minecraft:","").toLowerCase()
-            + "&a from mine &6" + mine);
+        sender.sendMessage("&aDeleted block &6" + blockType.getId().replaceAll("_", " ")
+            .replaceAll("minecraft:", "").toLowerCase() + "&a from mine &6" + mine);
     }
 
 
-    @Command(identifier = "mines delete", permissions = {"prison.mines.delete", "prison.admin"}, onlyPlayers = false)
-    public void deleteCommand(CommandSender sender,
+    @Command(identifier = "mines delete", permissions = {"prison.mines.delete",
+        "prison.admin"}, onlyPlayers = false) public void deleteCommand(CommandSender sender,
         @Arg(name = "mineName", description = "The name of the mine to be deleted") String name) {
         if (!Mines.get().getMines().contains(name)) {
             sender.sendMessage("&cThat mine doesn't exist!");
@@ -97,8 +100,8 @@ public class MinesCommands {
         sender.sendMessage("&aMine deleted successfully!");
     }
 
-    @Command(identifier = "mines info", permissions = {"prison.mines.info", "prison.admin"}, onlyPlayers = false)
-    public void infoCommand(CommandSender sender,
+    @Command(identifier = "mines info", permissions = {"prison.mines.info",
+        "prison.admin"}, onlyPlayers = false) public void infoCommand(CommandSender sender,
         @Arg(name = "mineName", description = "The name of the mine") String name) {
         if (!Mines.get().getMines().contains(name)) {
             sender.sendMessage("&cThat mine doesn't exist!");
@@ -132,16 +135,16 @@ public class MinesCommands {
         }
         try {
             Mines.get().getMines().get(name).reset();
-        }catch (Exception e){
+        } catch (Exception e) {
             sender.sendMessage("&cCouldn't reset mine. Check the log for details.");
-            Output.get().logError("Couldn't reset mine " + name,e);
+            Output.get().logError("Couldn't reset mine " + name, e);
         }
         sender.sendMessage("&aMine reset!");
     }
 
 
-    @Command(identifier = "mines list", permissions = {"prison.mines.delete", "prison.admin"}, onlyPlayers = false)
-    public void listCommand(CommandSender sender) {
+    @Command(identifier = "mines list", permissions = {"prison.mines.delete",
+        "prison.admin"}, onlyPlayers = false) public void listCommand(CommandSender sender) {
         sender.sendMessage("&b============ &7/mines list&b ============");
         for (Mine m : Mines.get().getMines()) {
             sender.sendMessage("&8" + m.getName());

@@ -42,7 +42,7 @@ public class Mines extends Module {
         super("Mines", version, 1);
     }
 
-    public List<String> getWorlds(){
+    public List<String> getWorlds() {
         return worlds;
     }
 
@@ -54,30 +54,29 @@ public class Mines extends Module {
         i = this;
         getLogger().logInfo("Loading config...");
         config = new MinesConfig();
-        File configFile = new File(getDataFolder(),"config.json");
-        if (!configFile.exists()){
+        File configFile = new File(getDataFolder(), "config.json");
+        if (!configFile.exists()) {
             try {
                 config.toFile(configFile);
             } catch (IOException e) {
-                Output.get().logError("Failed to create config",e);
+                Output.get().logError("Failed to create config", e);
             }
-        }else{
+        } else {
             try {
                 config = config.fromFile(configFile);
             } catch (IOException e) {
-                Output.get().logError("Failed to load config",e);
+                Output.get().logError("Failed to load config", e);
             }
         }
         ListIterator<String> iterator = config.worlds.listIterator();
         worlds = new ArrayList<>();
-        while (iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             worlds.add(iterator.next().toLowerCase());
         }
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
         getLogger().logInfo("Loading mines...");
         mines = new MinesList().initialize();
-        Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(),20,20);
+        Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(), 20, 20);
 
     }
 
