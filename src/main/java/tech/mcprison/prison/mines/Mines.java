@@ -18,6 +18,9 @@ import java.util.ListIterator;
  * Created by DMP9 on 08/01/2017.
  */
 public class Mines extends Module {
+    public static final String JENKINS_BUILD = "66";
+    public static boolean DEVELOPMENT_BUILD = true;
+
     private static Mines i = null;
     private static MinesState state;
     private MinesConfig config;
@@ -64,7 +67,11 @@ public class Mines extends Module {
         getLogger().logInfo("&7 (C) The MC-Prison Team ");
         getLogger().logInfo("&b========================");
         i = this;
-        getLogger().logInfo("You are using Jenkins Build #65");
+        if (DEVELOPMENT_BUILD) {
+            getLogger().logInfo("You are using a Mines development build (Jenkins Build #"+JENKINS_BUILD+")");
+        }else{
+            getLogger().logInfo("You are using Mines v"+getVersion());
+        }
         getLogger().logInfo("Loading config...");
         config = new MinesConfig();
         players = new ArrayList<>();

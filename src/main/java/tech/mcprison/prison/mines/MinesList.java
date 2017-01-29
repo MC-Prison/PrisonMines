@@ -309,7 +309,7 @@ public class MinesList implements List<Mine> {
     public boolean isInMine(Location location) {
         return select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
-                return c.getBounds().within(location);
+                return c.isInMine(location);
             }
 
             @Override public void action(Mine c) {
