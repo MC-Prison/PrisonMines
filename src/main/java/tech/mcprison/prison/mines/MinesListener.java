@@ -22,6 +22,7 @@ public class MinesListener {
         if (!Mines.get().getMines().allowedToMine(event.getPlayer(), event.getBlockLocation())) {
             event.getPlayer().sendMessage("&c&lHey!&r &bYou're not allowed to mine at this mine!");
             event.setCanceled(true);
+            return;
         }
         if (Mines.get().getMines().isInMine(event.getBlockLocation())) {
             event.setCanceled(true);
@@ -41,6 +42,7 @@ public class MinesListener {
                     }
                 }
             }
+            drops.forEach(x -> event.getPlayer().give(x));
             block.setType(BlockType.AIR);
         }
     }

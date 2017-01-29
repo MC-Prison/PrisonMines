@@ -18,27 +18,29 @@ import java.util.Objects;
  */
 public class MinesCommands {
     @Command(identifier = "autosmelt", permissions = "prison.mines.autosmelt")
-    public void autosmeltCommand(CommandSender sender){
-        if(MinesUtil.usingAutosmelt((Player)sender)){
+    public void autosmeltCommand(CommandSender sender) {
+        if (MinesUtil.usingAutosmelt((Player) sender)) {
             try {
-                MinesUtil.disableAutosmelt((Player)sender);
+                MinesUtil.disableAutosmelt((Player) sender);
             } catch (Exception e) {
-                Output.get().logError("Couldn't disable autosmelt for player "+sender.getName());
-                sender.sendMessage("&cCouldn't disable autosmelt. Contact a server operator for details.");
+                Output.get().logError("Couldn't disable autosmelt for player " + sender.getName());
+                sender.sendMessage(
+                    "&cCouldn't disable autosmelt. Contact a server operator for details.");
             }
-        }
-        else{
+        } else {
             try {
-                MinesUtil.enableAutosmelt((Player)sender);
+                MinesUtil.enableAutosmelt((Player) sender);
             } catch (Exception e) {
-                Output.get().logError("Couldn't enable autosmelt for player "+sender.getName());
-                sender.sendMessage("&cCouldn't enable autosmelt. Contact a server operator for details.");
+                Output.get().logError("Couldn't enable autosmelt for player " + sender.getName());
+                sender.sendMessage(
+                    "&cCouldn't enable autosmelt. Contact a server operator for details.");
             }
         }
     }
+
     @Command(identifier = "mines", permissions = "prison.mines.gui")
     public void minesCommand(CommandSender sender) {
-        Mines.get().getMines().createGUI((Player)sender).show((Player) sender);
+        Mines.get().getMines().createGUI((Player) sender).show((Player) sender);
     }
 
     @Command(identifier = "mines create", permissions = {"prison.mines.create", "prison.admin"})

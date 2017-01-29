@@ -15,34 +15,38 @@ public class Miner {
     private boolean autosmelt = false;
     private boolean autoblock = false;
 
-    public Optional<Player> getPlayer(){
+    public Optional<Player> getPlayer() {
         return Prison.get().getPlatform().getPlayer(UUID.fromString(uuid));
     }
 
-    public boolean isUsingAutosmelt(){
+    public boolean isUsingAutosmelt() {
         return autosmelt;
     }
 
-    public boolean isUsingAutoblock(){
+    public boolean isUsingAutoblock() {
         return autoblock;
     }
 
-    public static Miner fromPlayer(Player player){
+    public static Miner fromPlayer(Player player) {
         Miner miner = new Miner();
         miner.username = player.getName();
         miner.uuid = player.getUUID().toString();
         return miner;
     }
-    public void enableAutosmelt(){
+
+    public void enableAutosmelt() {
         autosmelt = true;
     }
-    public void enableAutoblock(){
+
+    public void enableAutoblock() {
         autoblock = true;
     }
-    public void disableAutosmelt(){
+
+    public void disableAutosmelt() {
         autosmelt = false;
     }
-    public void disableAutoblock(){
+
+    public void disableAutoblock() {
         autoblock = false;
     }
 }

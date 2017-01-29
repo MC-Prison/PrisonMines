@@ -305,7 +305,7 @@ public class MinesList implements List<Mine> {
         forEach(resetFilter);
     }
 
-    public boolean isInMine(Location location){
+    public boolean isInMine(Location location) {
         return select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return c.getBounds().within(location);
@@ -417,8 +417,9 @@ public class MinesList implements List<Mine> {
         final int[] i = {0};
         select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
-                return c.hasSpawn() && canTeleport(player,c);
+                return c.hasSpawn() && canTeleport(player, c);
             }
+
             @Override public void action(Mine c) {
 
             }

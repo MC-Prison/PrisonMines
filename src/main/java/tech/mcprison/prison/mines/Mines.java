@@ -31,8 +31,14 @@ public class Mines extends Module {
     public MinesState getState() {
         return state;
     }
-    public List<Miner> getPlayers() {return players;}
-    public void addMiner(Miner miner){players.add(miner);}
+
+    public List<Miner> getPlayers() {
+        return players;
+    }
+
+    public void addMiner(Miner miner) {
+        players.add(miner);
+    }
 
     public static Mines get() {
         return i;
@@ -81,13 +87,14 @@ public class Mines extends Module {
             worlds.add(iterator.next().toLowerCase());
         }
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
-        if (config.savePlayers){
+        if (config.savePlayers) {
             getLogger().logInfo("Loading players...");
             try {
-                String json = new String(Files.readAllBytes(new File(getDataFolder(),"/players.json").toPath()));
-                players = Prison.get().getGson().fromJson(json,players.getClass());
+                String json = new String(
+                    Files.readAllBytes(new File(getDataFolder(), "/players.json").toPath()));
+                players = Prison.get().getGson().fromJson(json, players.getClass());
             } catch (IOException e) {
-                getLogger().logError("Couldn't load players",e);
+                getLogger().logError("Couldn't load players", e);
             }
         }
         getLogger().logInfo("Loading mines...");
@@ -104,13 +111,13 @@ public class Mines extends Module {
     public void disable() {
         setState(MinesState.DISPOSED);
         mines.forEach(Mine::save);
-        if (config.savePlayers){
+        if (config.savePlayers) {
             try {
-                FileWriter fileWriter = new FileWriter(new File(getDataFolder(),"/players.json"));
-                Prison.get().getGson().toJson(players,fileWriter);
+                FileWriter fileWriter = new FileWriter(new File(getDataFolder(), "/players.json"));
+                Prison.get().getGson().toJson(players, fileWriter);
                 fileWriter.close();
             } catch (IOException e) {
-                Output.get().logError("Couldn't save players.",e);
+                Output.get().logError("Couldn't save players.", e);
             }
             getLogger().logInfo("&aSaved players!");
         }
