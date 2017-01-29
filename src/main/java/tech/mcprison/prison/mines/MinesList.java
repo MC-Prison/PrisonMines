@@ -399,7 +399,7 @@ public class MinesList implements List<Mine> {
         }
         if (sublist.select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
-                return canTeleport(player, c);
+                return !canTeleport(player, c);
             }
 
             @Override public void action(Mine c) {

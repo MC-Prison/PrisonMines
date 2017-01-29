@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d220a92-d53e-4725-9098-65d2ac8c2140" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mines.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Mines.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="20" column="52" lean-forward="false" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,26 +83,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MinesConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="382" column="68" lean-forward="true" selection-start-line="382" selection-start-column="68" selection-end-line="382" selection-end-column="68" />
+            <state relative-caret-position="363">
+              <caret line="400" column="53" lean-forward="true" selection-start-line="400" selection-start-column="53" selection-end-line="400" selection-end-column="53" />
               <folding>
-                <element signature="e#0#13258#0" expanded="true" />
+                <element signature="e#0#13259#0" expanded="true" />
                 <element signature="imports" expanded="true" />
                 <element signature="e#9141#9142#0" expanded="true" />
                 <element signature="e#9200#9201#0" expanded="true" />
+                <element signature="e#11995#11996#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,8 +112,8 @@
       <file leaf-file-name="Mine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2363">
-              <caret line="151" column="46" lean-forward="true" selection-start-line="151" selection-start-column="46" selection-end-line="151" selection-end-column="46" />
+            <state relative-caret-position="499">
+              <caret line="168" column="21" lean-forward="true" selection-start-line="168" selection-start-column="21" selection-end-line="168" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1045#1046#0" expanded="true" />
@@ -150,6 +141,7 @@
       <find>i</find>
       <find>fromFile</find>
       <find>within</find>
+      <find>isIn</find>
       <find>allowed</find>
     </findStrings>
   </component>
@@ -598,9 +590,9 @@
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
       </list>
     </option>
   </component>
@@ -1131,12 +1123,12 @@
       <workItem from="1485104727024" duration="77000" />
       <workItem from="1485104814383" duration="16819000" />
       <workItem from="1485203866322" duration="24193000" />
-      <workItem from="1485698511748" duration="13743000" />
+      <workItem from="1485698511748" duration="14414000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77659000" />
+    <option name="totallyTimeSpent" value="78330000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1248,10 +1240,11 @@
         <state relative-caret-position="2448">
           <caret line="214" column="58" lean-forward="false" selection-start-line="214" selection-start-column="58" selection-end-line="214" selection-end-column="58" />
           <folding>
-            <element signature="e#0#13258#0" expanded="true" />
+            <element signature="e#0#13259#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#9141#9142#0" expanded="true" />
             <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#11995#11996#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1293,10 +1286,11 @@
         <state relative-caret-position="2108">
           <caret line="192" column="5" lean-forward="false" selection-start-line="192" selection-start-column="5" selection-end-line="192" selection-end-column="5" />
           <folding>
-            <element signature="e#0#13258#0" expanded="true" />
+            <element signature="e#0#13259#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#9141#9142#0" expanded="true" />
             <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#11995#11996#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1354,10 +1348,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13258#0" expanded="true" />
+            <element signature="e#0#13259#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#9141#9142#0" expanded="true" />
             <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#11995#11996#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1407,10 +1402,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13258#0" expanded="true" />
+            <element signature="e#0#13259#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#9141#9142#0" expanded="true" />
             <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#11995#11996#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1460,10 +1456,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13258#0" expanded="true" />
+            <element signature="e#0#13259#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#9141#9142#0" expanded="true" />
             <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#11995#11996#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1513,10 +1510,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13258#0" expanded="true" />
+            <element signature="e#0#13259#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#9141#9142#0" expanded="true" />
             <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#11995#11996#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1650,15 +1648,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="382" column="68" lean-forward="true" selection-start-line="382" selection-start-column="68" selection-end-line="382" selection-end-column="68" />
+        <state relative-caret-position="136">
+          <caret line="20" column="52" lean-forward="false" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
           <folding>
-            <element signature="e#0#13258#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#9141#9142#0" expanded="true" />
-            <element signature="e#9200#9201#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="168" column="21" lean-forward="true" selection-start-line="168" selection-start-column="21" selection-end-line="168" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1045#1046#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1671,24 +1678,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="151" column="46" lean-forward="true" selection-start-line="151" selection-start-column="46" selection-end-line="151" selection-end-column="46" />
+        <state relative-caret-position="363">
+          <caret line="400" column="53" lean-forward="true" selection-start-line="400" selection-start-column="53" selection-end-line="400" selection-end-column="53" />
           <folding>
+            <element signature="e#0#13259#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#1045#1046#0" expanded="true" />
-            <element signature="e#1076#1077#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#9141#9142#0" expanded="true" />
+            <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#11995#11996#0" expanded="true" />
           </folding>
         </state>
       </provider>
