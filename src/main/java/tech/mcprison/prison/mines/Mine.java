@@ -29,9 +29,10 @@ public class Mine implements Jsonable<Mine> {
 
     private List<Block> blocks;
 
-    public Mine(){
+    public Mine() {
         blocks = new ArrayList<>();
     }
+
     public static Mine load(File path) throws IOException {
         return new Mine().fromFile(path);
     }
@@ -63,8 +64,8 @@ public class Mine implements Jsonable<Mine> {
 
     public Mine setBlocks(HashMap<BlockType, Integer> blockMap) {
         blocks = new ArrayList<>();
-        for (Map.Entry<BlockType, Integer> entry : blockMap.entrySet()){
-            blocks.add(new Block().create(entry.getKey(),entry.getValue()));
+        for (Map.Entry<BlockType, Integer> entry : blockMap.entrySet()) {
+            blocks.add(new Block().create(entry.getKey(), entry.getValue()));
         }
         return this;
     }
@@ -131,26 +132,8 @@ public class Mine implements Jsonable<Mine> {
         Files.write(file.toPath(), toJson().getBytes());
     }
 
-    private void checkMinMax(){
-        // Flip the locations, had some issues with this
-        if (maxX < minX){
-            if (maxY < minY){
-                if (maxZ < minZ){
-                    int oldX = minX;
-                    int oldY = minY;
-                    int oldZ = minZ;
-                    minX = maxX;
-                    minY = maxY;
-                    minZ = maxZ;
-                    maxX = oldX;
-                    maxY = oldY;
-                    maxZ = oldZ;
-                }
-            }
-        }
-    }
-    public boolean isInMine(Location location){
-        if (!location.getWorld().getName().equalsIgnoreCase(worldName)){
+    public boolean isInMine(Location location) {
+        if (!location.getWorld().getName().equalsIgnoreCase(worldName)) {
             return false;
         }
         for (int y = minY; y <= maxY; y++) {
@@ -167,33 +150,69 @@ public class Mine implements Jsonable<Mine> {
     }
 
     public boolean isInMine(BlockType blockType) {
-        for (Block block : blocks){
-            if (blockType == block.type){
+        for (Block block : blocks) {
+            if (blockType == block.type) {
                 return true;
             }
         }
         return false;
     }
-    public int area(){
+
+    public int area() {
         int out = 0;
-        checkMinMax();
-        for (int y = minY; y <= maxY; y++) {
-            for (int x = minX; x <= maxX; x++) {
-                for (int z = minZ; z <= maxZ; z++) {
+        int _maxX = (getBounds().getMin().getBlockX() < getBounds().getMax().getBlockX() ?
+            getBounds().getMax().getBlockX() :
+            getBounds().getMin().getBlockX());
+        int _minX = (getBounds().getMin().getBlockX() > getBounds().getMax().getBlockX() ?
+            getBounds().getMax().getBlockX() :
+            getBounds().getMin().getBlockX());
+        int _maxY = (getBounds().getMin().getBlockY() < getBounds().getMax().getBlockY() ?
+            getBounds().getMax().getBlockY() :
+            getBounds().getMin().getBlockY());
+        int _minY = (getBounds().getMin().getBlockY() > getBounds().getMax().getBlockY() ?
+            getBounds().getMax().getBlockY() :
+            getBounds().getMin().getBlockY());
+        int _maxZ = (getBounds().getMin().getBlockZ() < getBounds().getMax().getBlockZ() ?
+            getBounds().getMax().getBlockZ() :
+            getBounds().getMin().getBlockZ());
+        int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
+            getBounds().getMax().getBlockZ() :
+            getBounds().getMin().getBlockZ());
+        for (int y = _minY; y <= _maxY; y++) {
+            for (int x = _minX; x <= _maxX; x++) {
+                for (int z = _minZ; z <= _maxZ; z++) {
                     out++;
                 }
             }
         }
         return out;
     }
+
     public boolean reset() {
         try {
-            checkMinMax();
             int i = 0;
             List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
-            for (int y = getBounds().getMin().getBlockY(); y <= getBounds().getMax().getBlockY(); y++) {
-                for (int x = getBounds().getMin().getBlockX(); x <= getBounds().getMax().getBlockX(); x++) {
-                    for (int z = getBounds().getMin().getBlockZ(); z <= getBounds().getMax().getBlockZ(); z++) {
+            int _maxX = (getBounds().getMin().getBlockX() < getBounds().getMax().getBlockX() ?
+                getBounds().getMax().getBlockX() :
+                getBounds().getMin().getBlockX());
+            int _minX = (getBounds().getMin().getBlockX() > getBounds().getMax().getBlockX() ?
+                getBounds().getMax().getBlockX() :
+                getBounds().getMin().getBlockX());
+            int _maxY = (getBounds().getMin().getBlockY() < getBounds().getMax().getBlockY() ?
+                getBounds().getMax().getBlockY() :
+                getBounds().getMin().getBlockY());
+            int _minY = (getBounds().getMin().getBlockY() > getBounds().getMax().getBlockY() ?
+                getBounds().getMax().getBlockY() :
+                getBounds().getMin().getBlockY());
+            int _maxZ = (getBounds().getMin().getBlockZ() < getBounds().getMax().getBlockZ() ?
+                getBounds().getMax().getBlockZ() :
+                getBounds().getMin().getBlockZ());
+            int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
+                getBounds().getMax().getBlockZ() :
+                getBounds().getMin().getBlockZ());
+            for (int y = _minY; y <= _maxY; y++) {
+                for (int x = _minX; x <= _maxX; x++) {
+                    for (int z = _minZ; z <= _maxZ; z++) {
                         new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
                             .getBlockAt().setType(blockTypes.get(i));
                         i++;
@@ -206,12 +225,13 @@ public class Mine implements Jsonable<Mine> {
                 try {
                     Mines.get().getMines().generateBlockList(this);
                 } catch (Exception e) {
-                    Output.get().logWarn("Couldn't generate blocks for mine "+name+" prior to next reset, async reset will be ignored",e);
+                    Output.get().logWarn("Couldn't generate blocks for mine " + name
+                        + " prior to next reset, async reset will be ignored", e);
                 }
             }
             return true;
         } catch (Exception e) {
-            Output.get().logError("&aFailed to reset mine " + name, e);
+            Output.get().logError("&cFailed to reset mine " + name, e);
             return false;
         }
     }
