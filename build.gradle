@@ -16,7 +16,7 @@ plugins {
 }
 
 group 'tech.mcprison.prison'
-version '3.0.0-SNAPSHOT'
+version '3.0.0-RC'
 
 apply plugin: 'java'
 apply plugin: 'maven'

@@ -36,7 +36,8 @@ public class MinesCommands {
                     "&cCouldn't enable autosmelt. Contact a server operator for details.");
             }
         }
-        sender.sendMessage("&aAutosmelt " + (MinesUtil.usingAutosmelt((Player)sender) ? "enabled" : "disabled"));
+        sender.sendMessage(
+            "&aAutosmelt " + (MinesUtil.usingAutosmelt((Player) sender) ? "enabled" : "disabled"));
     }
 
     @Command(identifier = "mines", permissions = "prison.mines.gui")

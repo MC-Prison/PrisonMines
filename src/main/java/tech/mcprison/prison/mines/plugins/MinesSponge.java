@@ -11,18 +11,18 @@ import tech.mcprison.prison.mines.Mines;
  * Created by DMP9 on 22/01/2017.
  */
 @Plugin( //
-    id = "prison-ranks", //
-    name = "PrisonRanks", //
+    id = "prison-mines", //
+    name = "PrisonMines", //
     version = MinesSponge.Version, //
     dependencies = { //
         @Dependency(id = "prison-sponge") //
     }, //
-    description = "A ranks module for Prison.", //
+    description = "A mines module for Prison.", //
     url = "https://mc-prison.tech", //
     authors = {"The MC-Prison Team"} //
 ) public class MinesSponge {
 
-    static final String Version = "3.0.0-SNAPSHOT";
+    static final String Version = "3.0.0-RC";
 
     @Listener public void onEnable(GameStartedServerEvent event) {
         Prison.get().getModuleManager().registerModule(new Mines(Version));
