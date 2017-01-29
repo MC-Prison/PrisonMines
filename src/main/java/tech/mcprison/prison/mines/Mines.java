@@ -64,6 +64,7 @@ public class Mines extends Module {
         getLogger().logInfo("&7 (C) The MC-Prison Team ");
         getLogger().logInfo("&b========================");
         i = this;
+        getLogger().logInfo("You are using Jenkins Build #65");
         getLogger().logInfo("Loading config...");
         config = new MinesConfig();
         players = new ArrayList<>();

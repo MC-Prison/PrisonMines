@@ -50,6 +50,7 @@ public class MinesList implements List<Mine> {
     public MinesList() {
         mines = new ArrayList<>();
         randomizedBlocks = new HashMap<>();
+        players = new HashMap<>();
     }
 
     // Inherited methods -- don't know why I make things so difficult
