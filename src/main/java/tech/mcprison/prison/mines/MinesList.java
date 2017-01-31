@@ -35,14 +35,13 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Created by DMP9 on 01/01/2017.
+ * Represents a collection of mines which can be iterated through in a normal for loop
  */
 public class MinesList implements List<Mine> {
     // Base list
     List<Mine> mines;
 
     // Declarations
-
     HashMap<Mine, List<BlockType>> randomizedBlocks;
     int resetCount = 0;
 
@@ -54,22 +53,44 @@ public class MinesList implements List<Mine> {
     }
 
     // Inherited methods -- don't know why I make things so difficult
+
+    /**
+     * Gets the amount of mines in this {@link MinesList}
+     * @return the amount of loaded mines
+     */
     public int size() {
         return mines.size();
     }
 
+    /**
+     * Returns true if there are no mines in this {@link MinesList}, false otherwise
+     * @return true if size() is equal to 0
+     */
     public boolean isEmpty() {
         return mines.isEmpty();
     }
 
+    /**
+     * Check if there is an exact match of the specified {@link Mine} in this {@link MinesList}
+     * @param o the mine to check for
+     * @return
+     */
     public boolean contains(Object o) {
         return mines.contains(o);
     }
 
+    /**
+     * Gets the iterator of this {@link MinesList}
+     * @return the iterator
+     */
     public Iterator<Mine> iterator() {
         return mines.iterator();
     }
 
+    /**
+     * Converts this {@link MinesList} to an array
+     * @return a Mine[] with all the mines contained in this instance
+     */
     public Mine[] toArray() {
         return (Mine[]) mines.toArray();
     }
@@ -78,6 +99,11 @@ public class MinesList implements List<Mine> {
         return mines.toArray(a);
     }
 
+    /**
+     * Adds a {@link Mine} to this {@link MinesList} instance
+     * @param c the mine instance
+     * @return if the add was successful
+     */
     public boolean add(Mine c) {
         if (contains(c)) {
             return false;
@@ -86,6 +112,11 @@ public class MinesList implements List<Mine> {
         }
     }
 
+    /**
+     * Removes an {@link Mine} from this {@link MinesList} instance (if the object is present)
+     * @param c
+     * @return false if the mine was not found in this instance OR if the remove operation wasn't successful
+     */
     public boolean remove(Object c) {
         if (!contains(c)) {
             return false;
@@ -94,18 +125,38 @@ public class MinesList implements List<Mine> {
         }
     }
 
+    /**
+     * Checks if this {@link MinesList} contains all of the objects in the specified colleciton
+     * @param c the collection
+     * @return true if all of the objects are contained in this mine, false otherwise
+     */
     public boolean containsAll(Collection c) {
         return mines.containsAll(c);
     }
 
+    /**
+     * Adds all of the specified {@link Mine}s to this {@link MinesList}
+     * @param c the collection to merge with this instance
+     * @return true if the add operation succeeded
+     */
     public boolean addAll(Collection<? extends Mine> c) {
         return mines.addAll(c);
     }
 
+    /**
+     * Adds all of the specified {@link Mine}s to this {@link MinesList} starting at the specified index
+     * @param c the collection to merge with this instance
+     * @return true if the add operation succeeded
+     */
     public boolean addAll(int index, Collection<? extends Mine> c) {
         return mines.addAll(index, c);
     }
 
+    /**
+     * Removes all of the objects contained within the given collection (if they are present)
+     * @param c the collection to remove from this instance
+     * @return if the removal was successful
+     */
     public boolean removeAll(Collection c) {
         return mines.removeAll(c);
     }

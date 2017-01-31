@@ -22,7 +22,7 @@ import tech.mcprison.prison.mines.Mines;
     authors = {"The MC-Prison Team"} //
 ) public class MinesSponge {
 
-    static final String Version = "3.0.0-RC";
+    static final String Version = "3.0.0-RC2";
 
     @Listener public void onEnable(GameStartedServerEvent event) {
         Prison.get().getModuleManager().registerModule(new Mines(Version));

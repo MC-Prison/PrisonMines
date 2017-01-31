@@ -27,10 +27,19 @@ public class Mine implements Jsonable<Mine> {
 
     private List<Block> blocks;
 
+    /**
+     * Creates a new, empty mine instance
+     */
     public Mine() {
         blocks = new ArrayList<>();
     }
 
+    /**
+     * Loads a mine from a {@link File}
+     * @param path
+     * @return a mine loaded from the specified file
+     * @throws IOException An I/O error occurred
+     */
     public static Mine load(File path) throws IOException {
         return new Mine().fromFile(path);
     }
@@ -139,38 +148,7 @@ public class Mine implements Jsonable<Mine> {
     }
 
     public boolean isInMine(Location location) {
-        if (!location.getWorld().getName().equalsIgnoreCase(worldName)) {
-            return false;
-        }
-        int _maxX = (getBounds().getMin().getBlockX() < getBounds().getMax().getBlockX() ?
-            getBounds().getMax().getBlockX() :
-            getBounds().getMin().getBlockX());
-        int _minX = (getBounds().getMin().getBlockX() > getBounds().getMax().getBlockX() ?
-            getBounds().getMax().getBlockX() :
-            getBounds().getMin().getBlockX());
-        int _maxY = (getBounds().getMin().getBlockY() < getBounds().getMax().getBlockY() ?
-            getBounds().getMax().getBlockY() :
-            getBounds().getMin().getBlockY());
-        int _minY = (getBounds().getMin().getBlockY() > getBounds().getMax().getBlockY() ?
-            getBounds().getMax().getBlockY() :
-            getBounds().getMin().getBlockY());
-        int _maxZ = (getBounds().getMin().getBlockZ() < getBounds().getMax().getBlockZ() ?
-            getBounds().getMax().getBlockZ() :
-            getBounds().getMin().getBlockZ());
-        int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
-            getBounds().getMax().getBlockZ() :
-            getBounds().getMin().getBlockZ());
-        for (int y = _minY; y <= _maxY; y++) {
-            for (int x = _minX; x <= _maxX; x++) {
-                for (int z = _minZ; z <= _maxZ; z++) {
-                    if (location.getBlockX() == x && location.getBlockY() == y
-                        && location.getBlockZ() == z) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return getBounds().within(location);
     }
 
     public boolean isInMine(BlockType blockType) {
@@ -234,6 +212,16 @@ public class Mine implements Jsonable<Mine> {
             int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
                 getBounds().getMax().getBlockZ() :
                 getBounds().getMin().getBlockZ());
+            for (Player player : Prison.get().getPlatform().getOnlinePlayers()){
+                if (getBounds().within(player.getLocation())){
+                    if (hasSpawn){
+                        teleport(player);
+                    }else{
+                        Location l = player.getLocation();
+                        player.teleport(new Location(l.getWorld(),l.getX(),maxY+1,l.getZ(),l.getPitch(),l.getYaw()));
+                    }
+                }
+            }
             for (int y = _minY; y <= _maxY; y++) {
                 for (int x = _minX; x <= _maxX; x++) {
                     for (int z = _minZ; z <= _maxZ; z++) {

@@ -1,8 +1,17 @@
 package tech.mcprison.prison.mines;
 
 /**
- * Created by DMP9 on 15/01/2017.
+ * Represents a state of the Mines module
  */
 public enum MinesState {
-    DISPOSED, INITIALIZED, INITIALIZING
+    /**
+     * The mines module has been disabled.
+     */
+    DISPOSED, /**
+     * The mines module is loaded and working
+     */
+    INITIALIZED, /**
+     * The mines module is loading.
+     */
+    INITIALIZING
 }

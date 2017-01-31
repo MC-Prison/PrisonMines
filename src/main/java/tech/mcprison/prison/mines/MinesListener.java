@@ -11,13 +11,20 @@ import tech.mcprison.prison.util.BlockType;
 import java.util.List;
 
 /**
- * Created by DMP9 on 23/01/2017.
+ * Represents a class the Mines module uses to listen for events. There is no external use for this class.
  */
 public class MinesListener {
+    /**
+     * Initializes the mines listener
+     */
     public void init() {
         Prison.get().getEventBus().register(this);
     }
 
+    /**
+     * Called when a block is broken.
+     * @param event the event passed by prison-core
+     */
     @Subscribe public void onBlockBreak(BlockBreakEvent event) {
         if (!Mines.get().getMines().allowedToMine(event.getPlayer(), event.getBlockLocation())) {
             event.getPlayer().sendMessage("&c&lHey!&r &bYou're not allowed to mine at this mine!");
