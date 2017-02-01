@@ -7,6 +7,7 @@ import tech.mcprison.prison.events.BlockBreakEvent;
 import tech.mcprison.prison.internal.ItemStack;
 import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.util.BlockType;
+import tech.mcprison.prison.util.Gamemode;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class MinesListener {
             event.setCanceled(true);
             return;
         }
-        if (Mines.get().getMines().isInMine(event.getBlockLocation())) {
+        if (Mines.get().getMines().isInMine(event.getBlockLocation()) && event.getPlayer().getGamemode() == Gamemode.SURVIVAL) {
             event.setCanceled(true);
             Block block = event.getBlockLocation().getBlockAt();
             List<ItemStack> drops = block.getDrops();
