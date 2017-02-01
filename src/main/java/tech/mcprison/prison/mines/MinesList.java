@@ -462,6 +462,12 @@ public class MinesList implements List<Mine> {
         return false;
     }
 
+    public void clearCache(Mine m){
+        randomizedBlocks.remove(m);
+    }
+    public void clearCache(){
+        randomizedBlocks.clear();
+    }
     public GUI createGUI(Player player) {
         GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
             9 :

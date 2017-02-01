@@ -104,6 +104,8 @@ public class MinesCommands {
         sender.sendMessage(
             "&aAdded block &6" + blockType.getId().replaceAll("_", " ").replaceAll("minecraft:", "")
                 .toLowerCase() + "&a to mine &6" + mine);
+        Mines.get().getMines().clearCache(Mines.get().getMines().get(mine));
+
     }
 
     @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock",
@@ -126,6 +128,7 @@ public class MinesCommands {
         Mines.get().getMines().get(mine).getBlocks().removeIf(x -> x.type == blockType);
         sender.sendMessage("&aDeleted block &6" + blockType.getId().replaceAll("_", " ")
             .replaceAll("minecraft:", "").toLowerCase() + "&a from mine &6" + mine);
+        Mines.get().getMines().clearCache(Mines.get().getMines().get(mine));
     }
 
 
@@ -188,7 +191,7 @@ public class MinesCommands {
             sender.sendMessage("&cCouldn't reset mine. Check the log for details.");
             Output.get().logError("Couldn't reset mine " + name, e);
         }
-        sender.sendMessage("&aMine reset!");
+        sender.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().mineReset));
     }
 
 
@@ -221,5 +224,6 @@ public class MinesCommands {
         }
         Mines.get().getMines().get(name).setBounds(selection.asBounds());
         sender.sendMessage("&aMine redefined successfully!");
+        Mines.get().getMines().clearCache();
     }
 }

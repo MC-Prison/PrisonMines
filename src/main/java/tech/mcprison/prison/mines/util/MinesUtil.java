@@ -9,6 +9,9 @@ import java.util.Optional;
  * Created by DMP9 on 29/01/2017.
  */
 public class MinesUtil {
+    public static String addPrefix(String message){
+        return String.join(Mines.get().getMinesMessages().prefix + message);
+    }
     public static Optional<Miner> getMiner(Player player) {
         for (Miner miner : Mines.get().getPlayers()) {
             if (miner.getPlayer().get().getUUID().toString()

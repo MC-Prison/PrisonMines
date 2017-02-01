@@ -28,7 +28,7 @@ public class MinesListener {
      */
     @Subscribe public void onBlockBreak(BlockBreakEvent event) {
         if (!Mines.get().getMines().allowedToMine(event.getPlayer(), event.getBlockLocation())) {
-            event.getPlayer().sendMessage("&c&lHey!&r &bYou're not allowed to mine at this mine!");
+            event.getPlayer().sendMessage(Mines.get().getMinesMessages().notAllowed);
             event.setCanceled(true);
             return;
         }

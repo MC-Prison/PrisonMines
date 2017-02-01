@@ -26,6 +26,7 @@ public class Mines extends Module {
     private MinesConfig config;
     private List<String> worlds;
     private List<Miner> players;
+    private MinesMessages messages;
 
     public MinesConfig getConfig() {
         return config;
@@ -52,6 +53,8 @@ public class Mines extends Module {
     public MinesList getMines() {
         return mines;
     }
+
+    public MinesMessages getMinesMessages() {return messages;}
 
     public Mines(String version) {
         super("Mines", version, 1);

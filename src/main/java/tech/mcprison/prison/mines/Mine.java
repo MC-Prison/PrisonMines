@@ -4,6 +4,7 @@ import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.mines.util.Block;
+import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.store.Jsonable;
 import tech.mcprison.prison.util.BlockType;
@@ -118,7 +119,7 @@ public class Mine implements Jsonable<Mine> {
     public void teleport(Player... players) {
         for (Player p : players) {
             p.teleport(getSpawn().get());
-            p.sendMessage("&bTeleported to mine '&7" + name + "&b'");
+            p.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().teleported.replaceAll("%name%",name)));
         }
     }
 
