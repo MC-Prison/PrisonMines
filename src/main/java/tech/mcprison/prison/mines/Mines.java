@@ -79,6 +79,7 @@ public class Mines extends Module {
         }
         getLogger().logInfo("Loading config...");
         config = new MinesConfig();
+        messages = new MinesMessages();
         players = new ArrayList<>();
         File configFile = new File(getDataFolder(), "config.json");
         if (!configFile.exists()) {
@@ -92,6 +93,20 @@ public class Mines extends Module {
                 config = config.fromFile(configFile);
             } catch (IOException e) {
                 Output.get().logError("Failed to load config", e);
+            }
+        }
+        File msgFile = new File(getDataFolder(), "messages.json");
+        if (!msgFile.exists()) {
+            try {
+                config.toFile(msgFile);
+            } catch (IOException e) {
+                Output.get().logError("Failed to create messages", e);
+            }
+        } else {
+            try {
+                config = config.fromFile(msgFile);
+            } catch (IOException e) {
+                Output.get().logError("Failed to load messages", e);
             }
         }
         ListIterator<String> iterator = config.worlds.listIterator();
