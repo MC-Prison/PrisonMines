@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 public class MinesUtil {
     public static String addPrefix(String message){
-        return String.join(Mines.get().getMinesMessages().prefix + message);
+        return Mines.get().getMinesMessages().prefix + message;
     }
     public static Optional<Miner> getMiner(Player player) {
         for (Miner miner : Mines.get().getPlayers()) {

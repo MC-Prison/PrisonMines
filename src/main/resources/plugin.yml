@@ -2,6 +2,6 @@ name: PrisonMines
 version: "${version}"
 main: tech.mcprison.prison.mines.plugins.MinesSpigot
 depend: [Prison]
-description: A ranks module for Prison.
+description: A mines module for Prison.
 author: The MC-Prison Team
 website: https://mc-prison.tech
