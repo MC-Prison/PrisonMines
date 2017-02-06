@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d220a92-d53e-4725-9098-65d2ac8c2140" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/Prison-API.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -65,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="542">
-              <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
+              <caret line="141" column="34" lean-forward="false" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,10 +90,10 @@
       <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="489" column="32" lean-forward="true" selection-start-line="489" selection-start-column="32" selection-end-line="489" selection-end-column="32" />
+            <state relative-caret-position="236">
+              <caret line="477" column="62" lean-forward="false" selection-start-line="477" selection-start-column="62" selection-end-line="477" selection-end-column="62" />
               <folding>
-                <element signature="e#0#15451#0" expanded="true" />
+                <element signature="e#0#15380#0" expanded="true" />
                 <element signature="imports" expanded="true" />
                 <element signature="e#14234#14235#0" expanded="true" />
                 <element signature="e#14274#14275#0" expanded="true" />
@@ -98,11 +102,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mine.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="120" column="37" lean-forward="false" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
+            <state relative-caret-position="273">
+              <caret line="119" column="34" lean-forward="false" selection-start-line="119" selection-start-column="34" selection-end-line="119" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -112,7 +126,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesMessages.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="46" lean-forward="true" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+              <caret line="8" column="46" lean-forward="false" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -606,9 +620,9 @@
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/MinesUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
@@ -1113,12 +1127,12 @@
       <workItem from="1485721494768" duration="4225000" />
       <workItem from="1485893225678" duration="6858000" />
       <workItem from="1486064562912" duration="4999000" />
-      <workItem from="1486406757708" duration="380000" />
+      <workItem from="1486406757708" duration="1681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94792000" />
+    <option name="totallyTimeSpent" value="96093000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1238,7 +1252,7 @@
         <state relative-caret-position="2448">
           <caret line="214" column="58" lean-forward="false" selection-start-line="214" selection-start-column="58" selection-end-line="214" selection-end-column="58" />
           <folding>
-            <element signature="e#0#15451#0" expanded="true" />
+            <element signature="e#0#15380#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#14234#14235#0" expanded="true" />
             <element signature="e#14274#14275#0" expanded="true" />
@@ -1279,7 +1293,7 @@
         <state relative-caret-position="2108">
           <caret line="192" column="5" lean-forward="false" selection-start-line="192" selection-start-column="5" selection-end-line="192" selection-end-column="5" />
           <folding>
-            <element signature="e#0#15451#0" expanded="true" />
+            <element signature="e#0#15380#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#14234#14235#0" expanded="true" />
             <element signature="e#14274#14275#0" expanded="true" />
@@ -1292,7 +1306,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1338,7 +1352,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15451#0" expanded="true" />
+            <element signature="e#0#15380#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#14234#14235#0" expanded="true" />
             <element signature="e#14274#14275#0" expanded="true" />
@@ -1387,7 +1401,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15451#0" expanded="true" />
+            <element signature="e#0#15380#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#14234#14235#0" expanded="true" />
             <element signature="e#14274#14275#0" expanded="true" />
@@ -1436,7 +1450,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15451#0" expanded="true" />
+            <element signature="e#0#15380#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#14234#14235#0" expanded="true" />
             <element signature="e#14274#14275#0" expanded="true" />
@@ -1485,7 +1499,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15451#0" expanded="true" />
+            <element signature="e#0#15380#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#14234#14235#0" expanded="true" />
             <element signature="e#14274#14275#0" expanded="true" />
@@ -1609,18 +1623,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesMessages.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="46" lean-forward="true" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+          <caret line="8" column="46" lean-forward="false" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1648,7 +1654,7 @@
         <state relative-caret-position="168">
           <caret line="30" column="83" lean-forward="false" selection-start-line="30" selection-start-column="83" selection-end-line="30" selection-end-column="83" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1656,19 +1662,27 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="542">
-          <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
+          <caret line="141" column="34" lean-forward="false" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="119" column="34" lean-forward="false" selection-start-line="119" selection-start-column="34" selection-end-line="119" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="489" column="32" lean-forward="true" selection-start-line="489" selection-start-column="32" selection-end-line="489" selection-end-column="32" />
+        <state relative-caret-position="236">
+          <caret line="477" column="62" lean-forward="false" selection-start-line="477" selection-start-column="62" selection-end-line="477" selection-end-column="62" />
           <folding>
-            <element signature="e#0#15451#0" expanded="true" />
+            <element signature="e#0#15380#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#14234#14235#0" expanded="true" />
             <element signature="e#14274#14275#0" expanded="true" />
@@ -1676,10 +1690,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="120" column="37" lean-forward="false" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
+        <state relative-caret-position="238">
+          <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
           <folding />
         </state>
       </provider>

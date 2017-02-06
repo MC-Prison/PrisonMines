@@ -490,7 +490,6 @@ public class MinesList implements List<Mine> {
                 if (i[0] < 55) {
                     g.addButton(i[0]++, new Button(BlockType.GRASS, new Action() {
                         @Override public void run(ClickedButton btn) {
-                            btn.getPlayer().sendMessage("0x00000001");
                             c.teleport(btn.getPlayer());
                         }
                     }, "&6" + c.getName(), true));

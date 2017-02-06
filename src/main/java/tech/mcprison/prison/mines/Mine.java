@@ -118,7 +118,6 @@ public class Mine implements Jsonable<Mine> {
 
     public void teleport(Player... players) {
         for (Player p : players) {
-            p.sendMessage("0x00000002");
             p.teleport(getSpawn().get());
             p.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().teleported.replaceAll("%name%",name)));
         }
