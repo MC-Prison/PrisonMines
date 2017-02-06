@@ -1,5 +1,6 @@
 package tech.mcprison.prison.mines;
 
+import tech.mcprison.prison.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.commands.Arg;
 import tech.mcprison.prison.commands.Command;
@@ -7,7 +8,6 @@ import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.mines.util.MinesUtil;
-import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.selection.Selection;
 import tech.mcprison.prison.util.BlockType;
 

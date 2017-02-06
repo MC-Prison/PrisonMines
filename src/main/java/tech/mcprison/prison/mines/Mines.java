@@ -1,10 +1,10 @@
 package tech.mcprison.prison.mines;
 
+import tech.mcprison.prison.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.mines.events.StateChangeEvent;
 import tech.mcprison.prison.mines.util.Miner;
 import tech.mcprison.prison.modules.Module;
-import tech.mcprison.prison.output.Output;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -54,7 +54,9 @@ public class Mines extends Module {
         return mines;
     }
 
-    public MinesMessages getMinesMessages() {return messages;}
+    public MinesMessages getMinesMessages() {
+        return messages;
+    }
 
     public Mines(String version) {
         super("Mines", version, 1);

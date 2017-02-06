@@ -1,11 +1,11 @@
 package tech.mcprison.prison.mines;
 
+import tech.mcprison.prison.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.mines.util.MinesUtil;
-import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.store.Jsonable;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
@@ -37,6 +37,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Loads a mine from a {@link File}
+     *
      * @param path
      * @return a mine loaded from the specified file
      * @throws IOException An I/O error occurred
@@ -119,7 +120,8 @@ public class Mine implements Jsonable<Mine> {
     public void teleport(Player... players) {
         for (Player p : players) {
             p.teleport(getSpawn().get());
-            p.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().teleported.replaceAll("%name%",name)));
+            p.sendMessage(MinesUtil
+                .addPrefix(Mines.get().getMinesMessages().teleported.replaceAll("%name%", name)));
         }
     }
 
@@ -213,13 +215,15 @@ public class Mine implements Jsonable<Mine> {
             int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
                 getBounds().getMax().getBlockZ() :
                 getBounds().getMin().getBlockZ());
-            for (Player player : Prison.get().getPlatform().getOnlinePlayers()){
-                if (getBounds().within(player.getLocation())){
-                    if (hasSpawn){
+            for (Player player : Prison.get().getPlatform().getOnlinePlayers()) {
+                if (getBounds().within(player.getLocation())) {
+                    if (hasSpawn) {
                         teleport(player);
-                    }else{
+                    } else {
                         Location l = player.getLocation();
-                        player.teleport(new Location(l.getWorld(),l.getX(),maxY+1,l.getZ(),l.getPitch(),l.getYaw()));
+                        player.teleport(
+                            new Location(l.getWorld(), l.getX(), maxY + 1, l.getZ(), l.getPitch(),
+                                l.getYaw()));
                     }
                 }
             }

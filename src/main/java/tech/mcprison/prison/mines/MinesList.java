@@ -17,6 +17,7 @@
 
 package tech.mcprison.prison.mines;
 
+import tech.mcprison.prison.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.gui.Action;
 import tech.mcprison.prison.gui.Button;
@@ -25,7 +26,6 @@ import tech.mcprison.prison.gui.GUI;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.mines.util.Block;
-import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
 import tech.mcprison.prison.util.Location;
@@ -56,6 +56,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Gets the amount of mines in this {@link MinesList}
+     *
      * @return the amount of loaded mines
      */
     public int size() {
@@ -64,6 +65,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Returns true if there are no mines in this {@link MinesList}, false otherwise
+     *
      * @return true if size() is equal to 0
      */
     public boolean isEmpty() {
@@ -72,6 +74,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Check if there is an exact match of the specified {@link Mine} in this {@link MinesList}
+     *
      * @param o the mine to check for
      * @return
      */
@@ -81,6 +84,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Gets the iterator of this {@link MinesList}
+     *
      * @return the iterator
      */
     public Iterator<Mine> iterator() {
@@ -89,6 +93,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Converts this {@link MinesList} to an array
+     *
      * @return a Mine[] with all the mines contained in this instance
      */
     public Mine[] toArray() {
@@ -101,6 +106,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Adds a {@link Mine} to this {@link MinesList} instance
+     *
      * @param c the mine instance
      * @return if the add was successful
      */
@@ -114,6 +120,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Removes an {@link Mine} from this {@link MinesList} instance (if the object is present)
+     *
      * @param c
      * @return false if the mine was not found in this instance OR if the remove operation wasn't successful
      */
@@ -127,6 +134,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Checks if this {@link MinesList} contains all of the objects in the specified colleciton
+     *
      * @param c the collection
      * @return true if all of the objects are contained in this mine, false otherwise
      */
@@ -136,6 +144,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Adds all of the specified {@link Mine}s to this {@link MinesList}
+     *
      * @param c the collection to merge with this instance
      * @return true if the add operation succeeded
      */
@@ -145,6 +154,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Adds all of the specified {@link Mine}s to this {@link MinesList} starting at the specified index
+     *
      * @param c the collection to merge with this instance
      * @return true if the add operation succeeded
      */
@@ -154,6 +164,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Removes all of the objects contained within the given collection (if they are present)
+     *
      * @param c the collection to remove from this instance
      * @return if the removal was successful
      */
@@ -462,12 +473,14 @@ public class MinesList implements List<Mine> {
         return false;
     }
 
-    public void clearCache(Mine m){
+    public void clearCache(Mine m) {
         randomizedBlocks.remove(m);
     }
-    public void clearCache(){
+
+    public void clearCache() {
         randomizedBlocks.clear();
     }
+
     public GUI createGUI(Player player) {
         GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
             9 :

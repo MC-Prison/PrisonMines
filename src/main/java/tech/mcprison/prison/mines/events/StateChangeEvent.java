@@ -7,18 +7,9 @@ import tech.mcprison.prison.mines.MinesState;
  */
 public class StateChangeEvent {
 
-    public boolean canceled;
     public MinesState state;
 
     public StateChangeEvent(MinesState state) {
         this.state = state;
-    }
-
-    public boolean isCanceled() {
-        return canceled;
-    }
-
-    public void setCanceled(boolean canceled) {
-        this.canceled = canceled;
     }
 }

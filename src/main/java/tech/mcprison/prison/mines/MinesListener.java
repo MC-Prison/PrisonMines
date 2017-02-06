@@ -2,9 +2,9 @@ package tech.mcprison.prison.mines;
 
 import com.google.common.eventbus.Subscribe;
 import tech.mcprison.prison.Prison;
-import tech.mcprison.prison.block.Block;
-import tech.mcprison.prison.events.BlockBreakEvent;
 import tech.mcprison.prison.internal.ItemStack;
+import tech.mcprison.prison.internal.block.Block;
+import tech.mcprison.prison.internal.events.BlockBreakEvent;
 import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Gamemode;
@@ -24,6 +24,7 @@ public class MinesListener {
 
     /**
      * Called when a block is broken.
+     *
      * @param event the event passed by prison-core
      */
     @Subscribe public void onBlockBreak(BlockBreakEvent event) {
@@ -32,7 +33,8 @@ public class MinesListener {
             event.setCanceled(true);
             return;
         }
-        if (Mines.get().getMines().isInMine(event.getBlockLocation()) && event.getPlayer().getGamemode() == Gamemode.SURVIVAL) {
+        if (Mines.get().getMines().isInMine(event.getBlockLocation())
+            && event.getPlayer().getGamemode() == Gamemode.SURVIVAL) {
             event.setCanceled(true);
             Block block = event.getBlockLocation().getBlockAt();
             List<ItemStack> drops = block.getDrops();
