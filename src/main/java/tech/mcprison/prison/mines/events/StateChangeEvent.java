@@ -15,9 +15,10 @@ public class StateChangeEvent {
 
     /**
      * Gets the state of the mines module
+     *
      * @return the state of the mines module
      */
-    public MinesState getState(){
+    public MinesState getState() {
         return state;
     }
 }

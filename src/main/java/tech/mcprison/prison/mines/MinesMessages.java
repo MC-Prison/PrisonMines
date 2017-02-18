@@ -35,7 +35,7 @@ public class MinesMessages extends AbstractJsonable<MinesMessages> {
     /**
      * The message sent to the player when they teleport to a mine
      * <ul>
-     *     <li><b>%name%</b> is replaced with the name of the mine</li>
+     * <li><b>%name%</b> is replaced with the name of the mine</li>
      * </ul>
      */
     public String teleported = "&bTeleported to mine '&7%name%&b'";
@@ -91,7 +91,7 @@ public class MinesMessages extends AbstractJsonable<MinesMessages> {
      * The message sent to the player when a block name they are referencing
      * can't be found in the {@link tech.mcprison.prison.util.ItemManager}
      * <ul>
-     *     <li><b>%block%</b> is replaced with the block in question</li>
+     * <li><b>%block%</b> is replaced with the block in question</li>
      * </ul>
      */
     public String notABlock = "&6%block%&c is not a block!";
@@ -103,8 +103,8 @@ public class MinesMessages extends AbstractJsonable<MinesMessages> {
     /**
      * The message sent to the player when they have added a block to a mine
      * <ul>
-     *     <li><b>%block%</b> is replaced with the block added</li>
-     *     <li><b>%mine%</b> is replaced with the name of the mine</li>
+     * <li><b>%block%</b> is replaced with the block added</li>
+     * <li><b>%mine%</b> is replaced with the name of the mine</li>
      * </ul>
      */
     public String blockAdded = "&aAdded block &6%block%&a to mine &6%mine%";
@@ -116,8 +116,8 @@ public class MinesMessages extends AbstractJsonable<MinesMessages> {
     /**
      * The message sent to the player when they have removed a block from a mine
      * <ul>
-     *     <li><b>%block%</b> is replaced with the block added</li>
-     *     <li><b>%mine%</b> is replaced with the name of the mine</li>
+     * <li><b>%block%</b> is replaced with the block added</li>
+     * <li><b>%mine%</b> is replaced with the name of the mine</li>
      * </ul>
      */
     public String blockDeleted = "&aRemoved block &6%block%&a from mine &6%mine%";

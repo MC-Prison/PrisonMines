@@ -17,6 +17,7 @@ public class MineResetEvent implements Cancelable {
 
     /**
      * Gets the mine associated with this event
+     *
      * @return the mine associated with this event
      */
     public Mine getMine() {
@@ -25,6 +26,7 @@ public class MineResetEvent implements Cancelable {
 
     /**
      * Checks to see if this event has been canceled
+     *
      * @return true if this event has been canceled, false otherwise
      */
     public boolean isCanceled() {
@@ -33,6 +35,7 @@ public class MineResetEvent implements Cancelable {
 
     /**
      * Sets the canceled status of this event
+     *
      * @param canceled the new canceled status of this event
      */
     public void setCanceled(boolean canceled) {

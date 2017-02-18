@@ -17,6 +17,7 @@ public class Block {
 
     /**
      * Assigns the type and chance
+     *
      * @param block
      * @param chance
      * @return

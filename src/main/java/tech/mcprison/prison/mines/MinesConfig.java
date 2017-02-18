@@ -24,6 +24,7 @@ public class MinesConfig extends AbstractJsonable<MinesConfig> {
     /**
      * True if broadcasts should only be enabled in the worlds specified in the <i>worlds</i> list.
      * False otherwise.
+     *
      * @see MinesConfig#worlds
      */
     public boolean multiworld = false;
@@ -43,12 +44,14 @@ public class MinesConfig extends AbstractJsonable<MinesConfig> {
     public int aliveTime = 600;
     /**
      * The title of the Mines GUI
+     *
      * @see MinesList#createGUI(Player)
      */
     public String guiName = "&4Prison";
     /**
      * The worlds that reset messages should be broadcasted to.
      * Ignored if multiworld is disabled.
+     *
      * @see MinesConfig#multiworld
      */
     public ArrayList<String> worlds =
@@ -56,6 +59,7 @@ public class MinesConfig extends AbstractJsonable<MinesConfig> {
     /**
      * The time between mine reset warnings.
      * Ignored if resetMessages is disabled.
+     *
      * @see MinesConfig#resetMessages
      */
     public ArrayList<Integer> resetWarningTimes =
@@ -63,12 +67,14 @@ public class MinesConfig extends AbstractJsonable<MinesConfig> {
     /**
      * The message broadcasted when all mines have been reset.
      * Ignored if resetMessages is disabled.
+     *
      * @see MinesConfig#resetMessages
      */
     public String resetMessage = "&b[&5Prison&b] &2Mines have been reset!";
     /**
      * The message broadcasted at the specified times.
      * Ignored if resetMessages is disabled.
+     *
      * @see MinesConfig#resetMessages
      * @see MinesConfig#resetWarningTimes
      */

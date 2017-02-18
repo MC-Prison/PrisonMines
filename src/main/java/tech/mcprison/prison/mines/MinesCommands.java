@@ -78,7 +78,7 @@ public class MinesCommands {
             sender.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().mineDoesntExist));
             return;
         }
-        if (!Mines.get().getMines().get(name).getWorld().isPresent()){
+        if (!Mines.get().getMines().get(name).getWorld().isPresent()) {
             sender.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().worldMissing));
             return;
         }

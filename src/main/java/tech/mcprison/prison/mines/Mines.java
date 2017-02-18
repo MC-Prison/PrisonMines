@@ -42,6 +42,7 @@ public class Mines extends Module {
 
     /**
      * Gets the Mines configuration
+     *
      * @return the config
      */
     public MinesConfig getConfig() {

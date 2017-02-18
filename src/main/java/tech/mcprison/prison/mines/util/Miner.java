@@ -17,6 +17,7 @@ public class Miner {
 
     /**
      * Gets the player associated with this {@link Miner}
+     *
      * @return the player associated with this instance
      */
     public Optional<Player> getPlayer() {
@@ -25,6 +26,7 @@ public class Miner {
 
     /**
      * Gets the miners autosmelt status
+     *
      * @return true if this miner is using autosmelt, false otherwise
      */
     public boolean isUsingAutosmelt() {
@@ -33,6 +35,7 @@ public class Miner {
 
     /**
      * Gets the miners autoblock status
+     *
      * @return true if this miner is using autoblock, false otherwise
      */
     public boolean isUsingAutoblock() {
@@ -41,6 +44,7 @@ public class Miner {
 
     /**
      * Creates a {@link Miner} instance from a {@link Player}
+     *
      * @param player the player to create an instance for
      * @return the new instance
      */

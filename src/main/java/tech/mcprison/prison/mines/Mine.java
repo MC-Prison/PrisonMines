@@ -49,6 +49,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Checks for a spawn for this mine.
+     *
      * @return true if a spawn is present, false otherwise
      * @see Mine#hasSpawn()
      */
@@ -58,6 +59,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Gets the spawn for this mine
+     *
      * @return the location of the spawn. {@link Optional#empty()} if no spawn is present OR the world can't be found
      */
     public Optional<Location> getSpawn() {
@@ -65,8 +67,9 @@ public class Mine implements Jsonable<Mine> {
             return Optional.empty();
         } else {
             if (getWorld().isPresent()) {
-                return Optional.of(new Location(getWorld().get(), spawnX, spawnY, spawnZ, pitch, yaw));
-            }else{
+                return Optional
+                    .of(new Location(getWorld().get(), spawnX, spawnY, spawnZ, pitch, yaw));
+            } else {
                 return Optional.empty();
             }
         }
@@ -74,6 +77,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * (Re)defines the boundaries for this mine
+     *
      * @param bounds the new boundaries
      * @return this instance for chaining
      */
@@ -90,6 +94,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Sets the spawn for this mine.
+     *
      * @param location the new spawn
      * @return this instance for chaining
      */
@@ -105,6 +110,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Sets the name of this mine
+     *
      * @param name the new name
      * @return this instance for chaining
      */
@@ -115,6 +121,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Sets the blocks for this mine
+     *
      * @param blockMap the new blockmap with the {@link BlockType} as the key, and the chance of the block appearing as the value.
      * @return this instance for chaining
      */
@@ -140,6 +147,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Loads a mine from a JSON string.
+     *
      * @param json a JSON string containing mine data
      * @return the loaded mine
      * @throws IOException An I/O error occurred
@@ -157,6 +165,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Gets the name of this mine
+     *
      * @return the name of this mine
      */
     public String getName() {
@@ -165,6 +174,7 @@ public class Mine implements Jsonable<Mine> {
 
     /**
      * Gets the world
+     *
      * @return
      */
     public Optional<World> getWorld() {
@@ -250,7 +260,7 @@ public class Mine implements Jsonable<Mine> {
     public boolean reset() {
         MineResetEvent event = new MineResetEvent(this);
         Prison.get().getEventBus().post(event);
-        if (event.isCanceled()){
+        if (event.isCanceled()) {
             return true;
         }
         try {

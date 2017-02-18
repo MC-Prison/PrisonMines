@@ -11,6 +11,7 @@ import java.util.Optional;
 public class MinesUtil {
     /**
      * Adds the mines prefix to a message
+     *
      * @param message the message to add the prefix to
      * @return the new message
      */
@@ -20,6 +21,7 @@ public class MinesUtil {
 
     /**
      * Gets a {@link Miner} for a player
+     *
      * @param player the player to get a miner for
      * @return an optional of the miner if a miner has been created for a player, {@link Optional#empty()} otherwise
      */
@@ -35,6 +37,7 @@ public class MinesUtil {
 
     /**
      * Checks to see if a {@link Miner} is present for the given {@link Player}
+     *
      * @param player the player in question
      * @return {@link Optional#isPresent()} on the miner optional
      */
@@ -44,6 +47,7 @@ public class MinesUtil {
 
     /**
      * Checks to see if a {@link Player} is using autosmelt
+     *
      * @param player the player in question
      * @return true if the player is using autosmelt
      */
@@ -59,8 +63,10 @@ public class MinesUtil {
         }
         return false;
     }
+
     /**
      * Checks to see if a {@link Player} is using autoblock
+     *
      * @param player the player in question
      * @return true if the player is using autoblock
      */
@@ -79,6 +85,7 @@ public class MinesUtil {
 
     /**
      * Enables autosmelt for a player
+     *
      * @param player the player to enable autosmelt for
      * @throws Exception if, for whatever reason, even after creation of the associated {@link Miner} the optional is still empty
      */
@@ -95,6 +102,7 @@ public class MinesUtil {
 
     /**
      * Enables autoblock for a player
+     *
      * @param player the player to enable autoblock for
      * @throws Exception if, for whatever reason, even after creation of the associated {@link Miner} the optional is still empty
      */
@@ -111,6 +119,7 @@ public class MinesUtil {
 
     /**
      * Disables autosmelt for a player
+     *
      * @param player the player to disable autosmelt for
      * @throws Exception if, for whatever reason, even after creation of the associated {@link Miner} the optional is still empty
      */
@@ -127,6 +136,7 @@ public class MinesUtil {
 
     /**
      * Disables autoblock for a player
+     *
      * @param player the player to disable autoblock for
      * @throws Exception if, for whatever reason, even after creation of the associated {@link Miner} the optional is still empty
      */
