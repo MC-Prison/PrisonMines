@@ -23,7 +23,7 @@ public class Mines extends Module {
     /**
      * The Jenkins build associated with this commit/release
      */
-    public static final String JENKINS_BUILD = "78";
+    public static final String JENKINS_BUILD = "111";
     /**
      * If this version is a release or a Development Build
      */
