@@ -10,6 +10,7 @@ import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.selection.Selection;
 import tech.mcprison.prison.util.BlockType;
+import tech.mcprison.prison.util.Text;
 
 import java.util.Objects;
 
@@ -77,10 +78,15 @@ public class MinesCommands {
             sender.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().mineDoesntExist));
             return;
         }
+        if (!Mines.get().getMines().get(name).getWorld().isPresent()){
+            sender.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().worldMissing));
+            return;
+        }
         if (!((Player) sender).getLocation().getWorld().getName()
-            .equalsIgnoreCase(Mines.get().getMines().get(name).getWorld().getName())) {
+            .equalsIgnoreCase(Mines.get().getMines().get(name).getWorld().get().getName())) {
             sender.sendMessage(
                 MinesUtil.addPrefix(Mines.get().getMinesMessages().spawnpointSameWorldMine));
+            return;
         }
         Mines.get().getMines().get(name).setSpawn(((Player) sender).getLocation());
         sender.sendMessage(MinesUtil.addPrefix(Mines.get().getMinesMessages().spawnpoint));
@@ -162,12 +168,11 @@ public class MinesCommands {
             return;
         }
         Mine m = Mines.get().getMines().get(name);
-        String title = "&b============ &d" + m.getName() + "&b ============";
-        sender.sendMessage(title);
-        if (m.getWorld() == null) {
+        sender.sendMessage(Text.titleize(m.getName()));
+        if (!m.getWorld().isPresent()) {
             sender.sendMessage("&bWorld: &cis no longer present");
         } else {
-            sender.sendMessage("&bWorld: &7" + m.getWorld().getName());
+            sender.sendMessage("&bWorld: &7" + m.getWorld().get().getName());
         }
         sender.sendMessage(
             "&bX1: &7" + m.getBounds().getMin().getBlockX() + " &bY1: &7" + m.getBounds().getMin()
@@ -184,7 +189,6 @@ public class MinesCommands {
         } else {
             sender.sendMessage("&bSpawnpoint: &cnot set");
         }
-        sender.sendMessage(String.format("%0" + (title.length() - 7) + "d", 0).replace("0", "="));
     }
 
     @Command(identifier = "mines reset", permissions = {"prison.mines.reset", "prison.admin"})
@@ -206,11 +210,10 @@ public class MinesCommands {
 
     @Command(identifier = "mines list", permissions = {"prison.mines.list",
         "prison.admin"}, onlyPlayers = false) public void listCommand(CommandSender sender) {
-        sender.sendMessage("&b============ &d/mines list&b ============");
+        sender.sendMessage(Text.titleize("/mines list"));
         for (Mine m : Mines.get().getMines()) {
             sender.sendMessage("&8" + m.getName());
         }
-        sender.sendMessage("&b============ &d/mines list&b ============");
     }
 
 

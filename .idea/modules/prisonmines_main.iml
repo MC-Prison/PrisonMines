@@ -9,7 +9,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.spigotmc:spigot-api:1.9.4-R0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Gradle: tech.mcprison.prison:prison-core:3.1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: tech.mcprison.prison:prison-core:0.1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.spongepowered:spongeapi:5.0.0" level="project" />
     <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Gradle: com.googlecode.json-simple:json-simple:1.1.1" level="project" />

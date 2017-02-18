@@ -8,12 +8,12 @@ import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.mines.Mines;
 
 /**
- * Created by DMP9 on 22/01/2017.
+ * A loadable sponge implementation of mines
  */
 @Plugin( //
     id = "prison-mines", //
     name = "PrisonMines", //
-    version = MinesSponge.Version, //
+    version = Mines.VERSION, //
     dependencies = { //
         @Dependency(id = "prison-sponge") //
     }, //
@@ -22,10 +22,8 @@ import tech.mcprison.prison.mines.Mines;
     authors = {"The MC-Prison Team"} //
 ) public class MinesSponge {
 
-    static final String Version = "3.0.0-RC2";
-
     @Listener public void onEnable(GameStartedServerEvent event) {
-        Prison.get().getModuleManager().registerModule(new Mines(Version));
+        Prison.get().getModuleManager().registerModule(new Mines(Mines.VERSION));
     }
 
 }

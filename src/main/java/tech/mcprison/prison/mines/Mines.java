@@ -15,11 +15,23 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Created by DMP9 on 08/01/2017.
+ * The Prison 3 Mines Module
+ *
+ * @author The MC-Prison Team
  */
 public class Mines extends Module {
+    /**
+     * The Jenkins build associated with this commit/release
+     */
     public static final String JENKINS_BUILD = "78";
-    public static boolean DEVELOPMENT_BUILD = false;
+    /**
+     * If this version is a release or a Development Build
+     */
+    public static final boolean DEVELOPMENT_BUILD = false;
+    /**
+     * The version of Mines
+     */
+    public static final String VERSION = "3.0.0";
 
     private static Mines i = null;
     private static MinesState state;
@@ -28,6 +40,10 @@ public class Mines extends Module {
     private List<Miner> players;
     private MinesMessages messages;
 
+    /**
+     * Gets the Mines configuration
+     * @return the config
+     */
     public MinesConfig getConfig() {
         return config;
     }
@@ -68,8 +84,8 @@ public class Mines extends Module {
 
     public void enable() {
         getLogger().logInfo("&b========================");
-        getLogger().logInfo("&7      Prison Mines      ");
-        getLogger().logInfo("&7 (C) The MC-Prison Team ");
+        getLogger().logInfo("&d      Prison Mines      ");
+        getLogger().logInfo("&d (C) The MC-Prison Team ");
         getLogger().logInfo("&b========================");
         i = this;
         if (DEVELOPMENT_BUILD) {

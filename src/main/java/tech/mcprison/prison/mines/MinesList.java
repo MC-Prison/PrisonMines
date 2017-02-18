@@ -33,9 +33,10 @@ import tech.mcprison.prison.util.Location;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Predicate;
 
 /**
- * Represents a collection of mines which can be iterated through in a normal for loop
+ * Represents a collection of mines which can be iterated through in a normal <i>for</i> loop
  */
 public class MinesList implements List<Mine> {
     // Base list
@@ -46,6 +47,10 @@ public class MinesList implements List<Mine> {
     int resetCount = 0;
 
     // NPE
+
+    /**
+     * Initializes a new instance of {@link MinesList}
+     */
     public MinesList() {
         mines = new ArrayList<>();
         randomizedBlocks = new HashMap<>();
@@ -172,50 +177,121 @@ public class MinesList implements List<Mine> {
         return mines.removeAll(c);
     }
 
+    /**
+     * Removes all the mines from this {@link MinesList} except the ones contained
+     * in the given collection
+     *
+     * @param c the items to keep in this instance
+     * @return if the operation was successful
+     */
     public boolean retainAll(Collection c) {
         return mines.retainAll(c);
     }
 
+    /**
+     * Removes all the mines contained within this {@link MinesList}
+     */
     public void clear() {
         mines.clear();
     }
 
+    /**
+     * Gets a mine at the specified index
+     *
+     * @param index the index
+     * @return the mine at the specified index
+     */
     public Mine get(int index) {
         return mines.get(index);
     }
 
+    /**
+     * Replaces the mine at the specified index
+     *
+     * @param index   the index
+     * @param element the mine to replace the old one with
+     * @return the old mine
+     */
     public Mine set(int index, Mine element) {
         return mines.set(index, element);
     }
 
+    /**
+     * Adds a mine at the specified index, incrementing the mine previously
+     * occupying the index and all other mines after it (if any)
+     *
+     * @param index the index in which to insert the mine
+     * @param c     the mine to insert
+     */
     public void add(int index, Mine c) {
         mines.add(index, c);
     }
 
+    /**
+     * Removes the mine at the specified index
+     *
+     * @param index the index
+     * @return the old mine
+     */
     public Mine remove(int index) {
         return mines.remove(index);
     }
 
+    /**
+     * Gets the index of an element in this {@link MinesList}
+     *
+     * @param c the element to get the index of
+     * @return the index of the element
+     */
     public int indexOf(Object c) {
         return mines.indexOf(c);
     }
 
+    /**
+     * Gets the last index of an element in this {@link MinesList}
+     *
+     * @param c the element to get the last index of
+     * @return the last index of the element
+     */
     public int lastIndexOf(Object c) {
         return mines.lastIndexOf(c);
     }
 
+    /**
+     * Gets a {@link ListIterator} for this {@link MinesList}
+     *
+     * @return the iterator
+     */
     public ListIterator<Mine> listIterator() {
         return mines.listIterator();
     }
 
+    /**
+     * Gets a {@link ListIterator} for this {@link MinesList} from the specified index
+     *
+     * @return the iterator
+     */
     public ListIterator<Mine> listIterator(int index) {
         return mines.listIterator(index);
     }
 
+    /**
+     * Gets a section of this list (sublist) from the specified min and max indexes
+     *
+     * @param fromIndex the min index (start of the sublist)
+     * @param toIndex   the max index (upper bound of the sublist)
+     * @return
+     */
     public MinesList subList(int fromIndex, int toIndex) {
         return (MinesList) mines.subList(fromIndex, toIndex);
     }
 
+    /**
+     * Checks for a mine with the specified name
+     *
+     * @param name the name to check for
+     * @return true if this instance contains a mine with the specified name, false otherwise
+     */
     public boolean contains(String name) {
         return select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
@@ -228,7 +304,14 @@ public class MinesList implements List<Mine> {
         }).size() > 0;
     }
 
-    // Chain LINQ-style methods
+    /**
+     * Creates a new list from this {@link MinesList}, but only with the elements accepted
+     * by the specified {@link MinesFilter}
+     *
+     * @param filter the filter to use to create the new list
+     * @return the new list
+     * @see MinesFilter#accept(Mine)
+     */
     public MinesList select(MinesFilter filter) {
         MinesList out = new MinesList();
         for (Mine c : this) {
@@ -239,14 +322,32 @@ public class MinesList implements List<Mine> {
         return out;
     }
 
+    /**
+     * Creates a new list from this {@link MinesList}, but only with the elements accepted
+     * by the specified filter.
+     *
+     * @param filter the filter that should return true for items to keep, false otherwise.
+     * @return the new list
+     */
+    public MinesList select(Predicate<? super Mine> filter) {
+        MinesList out = new MinesList();
+        out.addAll(this);
+        out.removeIf(x -> !filter.test(x));
+        return out;
+    }
+
+    /**
+     * Loops through this {@link MinesList}, executing the action specified within the given
+     * {@link MinesFilter}
+     *
+     * @param filter the filter that contains the loop action
+     * @return this instance for chaining
+     */
     public MinesList forEach(MinesFilter filter) {
         for (Mine c : this) {
             filter.action(c);
         }
         return this;
-    }
-
-    private void uselessVoid() {
     }
 
     private void selectiveSend(Player x) {
@@ -263,7 +364,11 @@ public class MinesList implements List<Mine> {
         }
     }
 
-    // Mine methods
+    /**
+     * Gets the {@link TimerTask} for the reset timer of this {@link MinesList}
+     *
+     * @return
+     */
     public TimerTask getTimerTask() {
         return new TimerTask() {
             @Override public void run() {
@@ -306,6 +411,12 @@ public class MinesList implements List<Mine> {
         };
     }
 
+    /**
+     * Gets the mine with the specified name
+     *
+     * @param name the name to test for
+     * @return the mine with the specified name or false if there is no mine with the name
+     */
     public Mine get(String name) {
         MinesList sublist = select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
@@ -322,6 +433,12 @@ public class MinesList implements List<Mine> {
         return sublist.get(0);
     }
 
+    /**
+     * Initializes this {@link MinesList}. This should only be used for the instance created by
+     * {@link Mines}
+     *
+     * @return the initialized list
+     */
     public MinesList initialize() {
         Mines.get().setState(MinesState.INITIALIZING);
         mines = new ArrayList<>();
@@ -334,6 +451,9 @@ public class MinesList implements List<Mine> {
             try {
                 Mine m = Mine.load(f);
                 add(m);
+                if (Mines.get().getConfig().asyncReset) {
+                    generateBlockList(m);
+                }
                 Output.get().logInfo("&aLoaded mine " + m.getName());
             } catch (IOException e) {
                 Output.get().logError("&cFailed to load mine " + f.getName(), e);
@@ -345,12 +465,19 @@ public class MinesList implements List<Mine> {
         return this;
     }
 
+    /**
+     * Saves all the mines in this list. This should only be used for the instance created by
+     * {@link Mines}
+     */
     public void save() {
         for (Mine mine : this) {
             mine.save();
         }
     }
 
+    /**
+     * Resets all the mines in this list.
+     */
     public void reset() {
         MinesFilter resetFilter = new MinesFilter() {
             @Override public boolean accept(Mine c) {
@@ -364,10 +491,22 @@ public class MinesList implements List<Mine> {
         forEach(resetFilter);
     }
 
+    /**
+     * Selects the mines accepted by the given filter, and resets them.
+     *
+     * @param resetFilter the filter
+     * @see MinesFilter#accept(Mine)
+     */
     public void reset(MinesFilter resetFilter) {
-        forEach(resetFilter);
+        select(resetFilter).forEach(Mine::reset);
     }
 
+    /**
+     * Checks the specified location to see if it is within a mine in this list.
+     *
+     * @param location the location to test
+     * @return true if the location is within a mine in this list, false otherwise
+     */
     public boolean isInMine(Location location) {
         return select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
@@ -380,13 +519,26 @@ public class MinesList implements List<Mine> {
         }).size() > 0;
     }
 
+    /**
+     * Gets randomized blocks for the specified mine
+     *
+     * @param m the mine to randomize
+     * @return randomized blocks
+     */
     public List<BlockType> getRandomizedBlocks(Mine m) {
         if (!randomizedBlocks.containsKey(m)) {
             generateBlockList(m);
         }
-        return randomizedBlocks.get(m);
+        List<BlockType> out = randomizedBlocks.get(m);
+        randomizedBlocks.remove(m, out);
+        return out;
     }
 
+    /**
+     * Generates blocks for the specified mine and caches the result
+     *
+     * @param m the mine to randomize
+     */
     public void generateBlockList(Mine m) {
         Bounds bounds = m.getBounds();
         Random random = new Random();
@@ -412,28 +564,58 @@ public class MinesList implements List<Mine> {
         randomizedBlocks.put(m, blocks);
     }
 
+    /**
+     * Gets the randomized blocks cache
+     *
+     * @return a hashmap with all the randomized blocks
+     */
     public HashMap<Mine, List<BlockType>> getRandomizedBlocks() {
         return randomizedBlocks;
     }
 
     private HashMap<Player, MinesList> players;
 
+    /**
+     * Adds a teleport rule. Teleport rules allow players only to teleport to/mine in certain mines.
+     *
+     * @param player  the player to add a teleport rule for
+     * @param sublist
+     */
     public void addTeleportRule(Player player, MinesList sublist) {
-        removeTeleportRule(player);
         if (players == null) {
             players = new HashMap<>();
         }
         players.put(player, sublist);
     }
 
+    /**
+     * Removed all teleport rules for the specified player
+     *
+     * @param player
+     */
     public void removeTeleportRule(Player player) {
         players.remove(player);
     }
 
+    /**
+     * Gets all the mines that the specified player is allowed to teleport to/mine in
+     *
+     * @param player the player
+     * @return the teleport rule
+     */
     public MinesList getTeleportRule(Player player) {
         return players.get(player);
     }
 
+    /**
+     * Checks if the specified player can mine in/teleport to the specified mine
+     *
+     * @param player the player to test
+     * @param mine   the mine to test
+     * @return true if there are no teleport rules created for the player OR
+     * the teleport rule allows the player to mine in/teleport to the mine, false
+     * if the teleport rule exists and doesn't contain the specified mine.
+     */
     public boolean canTeleport(Player player, Mine mine) {
         if (getTeleportRule(player) == null) {
             return true;
@@ -442,6 +624,14 @@ public class MinesList implements List<Mine> {
         }
     }
 
+    /**
+     * Checks if a player can mine in the location. Always true if the location isn't within
+     * any mines, otherwise it checks teleport rules.
+     *
+     * @param player   the player to test
+     * @param location the location to test
+     * @return true if the player is allowed to mine in this mine, false otherwise.
+     */
     public boolean allowedToMine(Player player, Location location) {
         MinesList sublist = select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
@@ -473,14 +663,29 @@ public class MinesList implements List<Mine> {
         return false;
     }
 
-    public void clearCache(Mine m) {
-        randomizedBlocks.remove(m);
+    /**
+     * Clears cached randomized blocks for this mine
+     *
+     * @param mineName the name of the mine
+     */
+    public void clearCache(String mineName) {
+        randomizedBlocks.entrySet().removeIf(x -> x.getKey().getName().equalsIgnoreCase(mineName));
     }
 
+    /**
+     * Clears all of the cached randomized blocks
+     */
     public void clearCache() {
         randomizedBlocks.clear();
     }
 
+    /**
+     * Creates a GUI with all the mines the specified player can teleport to. If the mine has no spawn,
+     * it is ignored. {@link GUI#build()} is called, but not shown for the player.
+     *
+     * @param player the player to create the GUI for
+     * @return a built GUI
+     */
     public GUI createGUI(Player player) {
         GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
             9 :

@@ -4,6 +4,7 @@ import tech.mcprison.prison.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
+import tech.mcprison.prison.mines.events.MineResetEvent;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.store.Jsonable;
@@ -46,18 +47,36 @@ public class Mine implements Jsonable<Mine> {
         return new Mine().fromFile(path);
     }
 
+    /**
+     * Checks for a spawn for this mine.
+     * @return true if a spawn is present, false otherwise
+     * @see Mine#hasSpawn()
+     */
     public boolean hasSpawn() {
         return hasSpawn;
     }
 
+    /**
+     * Gets the spawn for this mine
+     * @return the location of the spawn. {@link Optional#empty()} if no spawn is present OR the world can't be found
+     */
     public Optional<Location> getSpawn() {
         if (!hasSpawn) {
             return Optional.empty();
         } else {
-            return Optional.of(new Location(getWorld(), spawnX, spawnY, spawnZ, pitch, yaw));
+            if (getWorld().isPresent()) {
+                return Optional.of(new Location(getWorld().get(), spawnX, spawnY, spawnZ, pitch, yaw));
+            }else{
+                return Optional.empty();
+            }
         }
     }
 
+    /**
+     * (Re)defines the boundaries for this mine
+     * @param bounds the new boundaries
+     * @return this instance for chaining
+     */
     public Mine setBounds(Bounds bounds) {
         minX = bounds.getMin().getBlockX();
         minY = bounds.getMin().getBlockY();
@@ -69,6 +88,11 @@ public class Mine implements Jsonable<Mine> {
         return this;
     }
 
+    /**
+     * Sets the spawn for this mine.
+     * @param location the new spawn
+     * @return this instance for chaining
+     */
     public Mine setSpawn(Location location) {
         hasSpawn = true;
         spawnX = location.getX();
@@ -79,11 +103,21 @@ public class Mine implements Jsonable<Mine> {
         return this;
     }
 
+    /**
+     * Sets the name of this mine
+     * @param name the new name
+     * @return this instance for chaining
+     */
     public Mine setName(String name) {
         this.name = name;
         return this;
     }
 
+    /**
+     * Sets the blocks for this mine
+     * @param blockMap the new blockmap with the {@link BlockType} as the key, and the chance of the block appearing as the value.
+     * @return this instance for chaining
+     */
     public Mine setBlocks(HashMap<BlockType, Integer> blockMap) {
         blocks = new ArrayList<>();
         for (Map.Entry<BlockType, Integer> entry : blockMap.entrySet()) {
@@ -92,6 +126,9 @@ public class Mine implements Jsonable<Mine> {
         return this;
     }
 
+    /**
+     * Saves this mine to a file.
+     */
     public void save() {
         try {
             toFile(new File(Mines.get().getDataFolder(), "/mines/" + name + ".json"));
@@ -101,20 +138,37 @@ public class Mine implements Jsonable<Mine> {
         }
     }
 
+    /**
+     * Loads a mine from a JSON string.
+     * @param json a JSON string containing mine data
+     * @return the loaded mine
+     * @throws IOException An I/O error occurred
+     */
     public static Mine load(String json) throws IOException {
         return new Mine().fromJson(json);
     }
 
+    /**
+     * @see Mine#load(String)
+     */
     public Mine fromJson(String json) {
         return Prison.get().getGson().fromJson(json, getClass());
     }
 
+    /**
+     * Gets the name of this mine
+     * @return the name of this mine
+     */
     public String getName() {
         return name;
     }
 
-    public World getWorld() {
-        return Prison.get().getPlatform().getWorld(worldName).get();
+    /**
+     * Gets the world
+     * @return
+     */
+    public Optional<World> getWorld() {
+        return Prison.get().getPlatform().getWorld(worldName);
     }
 
     public void teleport(Player... players) {
@@ -194,6 +248,11 @@ public class Mine implements Jsonable<Mine> {
     }
 
     public boolean reset() {
+        MineResetEvent event = new MineResetEvent(this);
+        Prison.get().getEventBus().post(event);
+        if (event.isCanceled()){
+            return true;
+        }
         try {
             int i = 0;
             List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
@@ -230,13 +289,18 @@ public class Mine implements Jsonable<Mine> {
             for (int y = _minY; y <= _maxY; y++) {
                 for (int x = _minX; x <= _maxX; x++) {
                     for (int z = _minZ; z <= _maxZ; z++) {
+                        if (Mines.get().getConfig().fillMode && !Prison.get().getPlatform()
+                            .getWorld(worldName).get().getBlockAt(
+                                new Location(Prison.get().getPlatform().getWorld(worldName).get(),
+                                    x, y, z)).isEmpty()) {
+                            continue; // Skip this block because it is not air
+                        }
                         new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
                             .getBlockAt().setType(blockTypes.get(i));
                         i++;
                     }
                 }
             }
-
             Output.get().logInfo("&aReset mine " + name);
             if (Mines.get().getConfig().asyncReset) {
                 try {
