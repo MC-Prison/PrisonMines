@@ -1,6 +1,10 @@
 package tech.mcprison.prison.mines;
 
+import tech.mcprison.prison.Output;
+import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.store.AbstractJsonable;
+
+import java.lang.reflect.Field;
 
 /**
  * Represents the messages sent to the players, customizable by the end-user.
@@ -32,6 +36,24 @@ public class MinesMessages extends AbstractJsonable<MinesMessages> {
      */
     public String autosmeltDisable_fail =
         "&cCouldn't disable autosmelt. Contact a server operator for details.";
+    /**
+     * The messag sent to the player when they enable autoblock
+     */
+    public String autoblockEnable = "&aAutoblock enabled!";
+    /**
+     * The message sent to the player when enabling autoblock fails
+     */
+    public String autoblockEnable_fail =
+        "&cCouldn't enable autoblock. Contact a server operator for details.";
+    /**
+     * The message sent to the player when they disable autoblock
+     */
+    public String autoblockDisable = "&aAutoblock disabled!";
+    /**
+     * The message sent to the player when disabling autoblock fails
+     */
+    public String autoblockDisable_fail =
+        "&cCouldn't disable autoblock. Contact a server operator for details.";
     /**
      * The message sent to the player when they teleport to a mine
      * <ul>

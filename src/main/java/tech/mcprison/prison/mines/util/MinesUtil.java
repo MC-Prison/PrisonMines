@@ -1,5 +1,7 @@
 package tech.mcprison.prison.mines.util;
 
+import tech.mcprison.prison.Output;
+import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.mines.Mines;
 
@@ -15,8 +17,17 @@ public class MinesUtil {
      * @param message the message to add the prefix to
      * @return the new message
      */
+    @Deprecated
     public static String addPrefix(String message) {
         return Mines.get().getMinesMessages().prefix + message;
+    }
+
+    /**
+     * Send a message to a {@link CommandSender}
+     */
+    public void sendMessage(CommandSender sender, String message, LogLevel level, Object... args){
+        String prefix = level == LogLevel.INFO ? Output.get().INFO_PREFIX : level == LogLevel.WARNING ? Output.get().WARNING_PREFIX : Output.get().ERROR_PREFIX;
+        sender.sendMessage(prefix + String.format(message, args));
     }
 
     /**
