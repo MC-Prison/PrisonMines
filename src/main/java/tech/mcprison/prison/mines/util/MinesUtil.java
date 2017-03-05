@@ -1,3 +1,21 @@
+/*
+ * Prison is a Minecraft plugin for the prison game mode.
+ * Copyright (C) 2017 The Prison Team
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package tech.mcprison.prison.mines.util;
 
 import tech.mcprison.prison.Output;
@@ -12,21 +30,43 @@ import java.util.Optional;
  */
 public class MinesUtil {
     /**
+     * Represents the different levels of severity in logging.
+     * <p>
+     * <b>Copied from API 0.2-SNAPSHOT</b>
+     * </p>
+     * @author Dylan M. Perks
+     * @since API 0.2/Mines ALPHA
+     */
+    public enum LogLevel {
+        /**
+         * Information severity.
+         */
+        INFO, /**
+         * Warning severity.
+         */
+        WARNING, /**
+         * Error severity.
+         */
+        ERROR;
+    }
+
+    /**
      * Adds the mines prefix to a message
      *
      * @param message the message to add the prefix to
      * @return the new message
      */
-    @Deprecated
-    public static String addPrefix(String message) {
+    @Deprecated public static String addPrefix(String message) {
         return Mines.get().getMinesMessages().prefix + message;
     }
 
     /**
      * Send a message to a {@link CommandSender}
      */
-    public void sendMessage(CommandSender sender, String message, LogLevel level, Object... args){
-        String prefix = level == LogLevel.INFO ? Output.get().INFO_PREFIX : level == LogLevel.WARNING ? Output.get().WARNING_PREFIX : Output.get().ERROR_PREFIX;
+    public void sendMessage(CommandSender sender, String message, LogLevel level, Object... args) {
+        String prefix = level == LogLevel.INFO ?
+            Output.get().INFO_PREFIX :
+            level == LogLevel.WARNING ? Output.get().WARNING_PREFIX : Output.get().ERROR_PREFIX;
         sender.sendMessage(prefix + String.format(message, args));
     }
 
