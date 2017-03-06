@@ -135,13 +135,13 @@ public class Mines extends Module {
         File msgFile = new File(getDataFolder(), "messages.json");
         if (!msgFile.exists()) {
             try {
-                config.toFile(msgFile);
+                messages.toFile(msgFile);
             } catch (IOException e) {
                 Output.get().logError("Failed to create messages", e);
             }
         } else {
             try {
-                config = config.fromFile(msgFile);
+                messages = messages.fromFile(msgFile);
             } catch (IOException e) {
                 Output.get().logError("Failed to load messages", e);
             }

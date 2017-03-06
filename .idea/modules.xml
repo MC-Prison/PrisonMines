@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/prisonmines.iml" filepath="$PROJECT_DIR$/.idea/modules/prisonmines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/prisonmines_main.iml" filepath="$PROJECT_DIR$/.idea/modules/prisonmines_main.iml" group="prisonmines" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/prisonmines_test.iml" filepath="$PROJECT_DIR$/.idea/modules/prisonmines_test.iml" group="prisonmines" />
+    </modules>
+  </component>
+</project>
