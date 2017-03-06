@@ -127,7 +127,7 @@ public class Mines extends Module {
             }
         } else {
             try {
-                config = config.fromFile(configFile);
+                messages = messages.fromFile(configFile);
             } catch (IOException e) {
                 Output.get().logError("Failed to load config", e);
             }
@@ -135,7 +135,7 @@ public class Mines extends Module {
         File msgFile = new File(getDataFolder(), "messages.json");
         if (!msgFile.exists()) {
             try {
-                config.toFile(msgFile);
+                messages.toFile(msgFile);
             } catch (IOException e) {
                 Output.get().logError("Failed to create messages", e);
             }

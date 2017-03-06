@@ -23,10 +23,13 @@ import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.ItemStack;
 import tech.mcprison.prison.internal.block.Block;
 import tech.mcprison.prison.internal.events.BlockBreakEvent;
+import tech.mcprison.prison.internal.events.PlayerPickUpItemEvent;
 import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Gamemode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -72,6 +75,11 @@ public class MinesListener {
             }
             drops.forEach(x -> event.getPlayer().give(x));
             block.setType(BlockType.AIR);
+        }
+    }
+
+    @Subscribe public void onPlayerPickUpItem(PlayerPickUpItemEvent event) {
+        if (MinesUtil.usingAutoblock(event.getPlayer())) {
         }
     }
 }
