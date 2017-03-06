@@ -44,9 +44,8 @@ public class MinesCommands {
             } catch (Exception e) {
                 Output.get()
                     .logError("Couldn't disable autosmelt for player " + sender.getName(), e);
-                MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autosmeltDisable_fail,
-                    MinesUtil.LogLevel.ERROR);
-                return;
+                sender.sendMessage(
+                    MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltDisable_fail));
             }
         } else {
             try {
@@ -54,19 +53,13 @@ public class MinesCommands {
             } catch (Exception e) {
                 Output.get()
                     .logError("Couldn't enable autosmelt for player " + sender.getName(), e);
-                MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autosmeltEnable_fail,
-                    MinesUtil.LogLevel.ERROR);
-                return;
+                sender.sendMessage(
+                    MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltEnable_fail));
             }
         }
-        if (MinesUtil.usingAutosmelt((Player)sender)){
-            MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autosmeltEnable,
-                MinesUtil.LogLevel.INFO);
-        }
-        else{
-            MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autosmeltDisable,
-                MinesUtil.LogLevel.INFO);
-        }
+        sender.sendMessage(MinesUtil.usingAutosmelt((Player) sender) ?
+            MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltEnable) :
+            MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltDisable));
     }
 
     @Command(identifier = "autoblock", permissions = "prison.mines.autoblock")
@@ -77,29 +70,21 @@ public class MinesCommands {
             } catch (Exception e) {
                 Output.get()
                     .logError("Couldn't disable autoblock for player " + sender.getName(), e);
-                MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autoblockDisable_fail,
-                    MinesUtil.LogLevel.ERROR);
-                return;
+                sender.sendMessage(
+                    MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltDisable_fail));
             }
         } else {
             try {
-                MinesUtil.disableAutoblock((Player) sender);
+                MinesUtil.enableAutosmelt((Player) sender);
             } catch (Exception e) {
-                Output.get()
-                    .logError("Couldn't enable autoblock for player " + sender.getName(), e);
-                MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autoblockEnable_fail,
-                    MinesUtil.LogLevel.ERROR);
-                return;
+                Output.get().logError("Couldn't enable autosmelt for player " + sender.getName());
+                sender.sendMessage(
+                    MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltEnable_fail));
             }
         }
-        if (MinesUtil.usingAutoblock((Player)sender)){
-            MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autoblockEnable,
-                MinesUtil.LogLevel.INFO);
-        }
-        else{
-            MinesUtil.sendMessage(sender,Mines.get().getMinesMessages().autoblockDisable,
-                MinesUtil.LogLevel.INFO);
-        }
+        sender.sendMessage(MinesUtil.usingAutosmelt((Player) sender) ?
+            MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltEnable) :
+            MinesUtil.addPrefix(Mines.get().getMinesMessages().autosmeltDisable));
     }
 
     @Command(identifier = "mines", permissions = "prison.mines.gui")

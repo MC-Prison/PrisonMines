@@ -20,13 +20,9 @@ package tech.mcprison.prison.mines.util;
 
 import tech.mcprison.prison.Output;
 import tech.mcprison.prison.internal.CommandSender;
-import tech.mcprison.prison.internal.ItemStack;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.mines.Mines;
-import tech.mcprison.prison.util.BlockType;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -38,7 +34,6 @@ public class MinesUtil {
      * <p>
      * <b>Copied from API 0.2-SNAPSHOT</b>
      * </p>
-     *
      * @author Dylan M. Perks
      * @since API 0.2/Mines ALPHA
      */
@@ -68,8 +63,7 @@ public class MinesUtil {
     /**
      * Send a message to a {@link CommandSender}
      */
-    public static void sendMessage(CommandSender sender, String message, LogLevel level,
-        Object... args) {
+    public void sendMessage(CommandSender sender, String message, LogLevel level, Object... args) {
         String prefix = level == LogLevel.INFO ?
             Output.get().INFO_PREFIX :
             level == LogLevel.WARNING ? Output.get().WARNING_PREFIX : Output.get().ERROR_PREFIX;
@@ -206,127 +200,5 @@ public class MinesUtil {
             throw new Exception("Couldn't register the player as a miner");
         }
         miner.get().disableAutoblock();
-    }
-
-    public static void block(Player player) {
-        try {
-            int amountOfDiamonds = 0;
-            int amountOfEmeralds = 0;
-            int amountOfIron = 0;
-            int amountOfGold = 0;
-            int amountOfGlowstone = 0;
-            int coal = 0;
-            int redstone = 0;
-
-            int itemsChanged;
-
-            for (ItemStack is : player.getInventory().getItems()) {
-                if (is != null) {
-                    if (is.getMaterial() == BlockType.DIAMOND) {
-                        player.getInventory().removeItem(is);
-                        amountOfDiamonds += is.getAmount();
-                    }
-                    if (is.getMaterial() == BlockType.EMERALD) {
-                        amountOfEmeralds += is.getAmount();
-                        player.getInventory().removeItem(is);
-                        if (is.getMaterial() == BlockType.IRON_INGOT) {
-                            player.getInventory().removeItem(is);
-                            amountOfIron += is.getAmount();
-                        }
-                        if (is.getMaterial() == BlockType.GLOWSTONE_DUST) {
-                            amountOfGlowstone += is.getAmount();
-                            player.getInventory().removeItem(is);
-                        }
-                        if (is.getMaterial() == BlockType.GOLD_INGOT) {
-                            player.getInventory().removeItem(is);
-                            amountOfGold += is.getAmount();
-                        }
-                        if (is.getMaterial() == BlockType.COAL) {
-                            player.getInventory().removeItem(is);
-                            coal += is.getAmount();
-                        }
-                        if (is.getMaterial() == BlockType.REDSTONE) {
-                            redstone += is.getAmount();
-                            player.getInventory().removeItem(is);
-                        }
-                    }
-                }
-                player.updateInventory();
-
-                itemsChanged =
-                    amountOfDiamonds + amountOfEmeralds + amountOfGlowstone + amountOfGold
-                        + amountOfIron + coal + redstone;
-
-                int diamondsToTransform = amountOfDiamonds / 9;
-                int diamondOverflow = amountOfDiamonds % 9;
-                int emeraldsToTransform = amountOfEmeralds / 9;
-                int emeraldsOverflow = amountOfEmeralds % 9;
-                int ironToTransform = amountOfIron / 9;
-                int ironOverflow = amountOfIron % 9;
-                int goldToTransform = amountOfGold / 9;
-                int goldOverflow = amountOfGold % 9;
-                int glowstoneToTransform = amountOfGlowstone / 4;
-                int glowstoneOverflow = amountOfGlowstone % 4;
-
-                int rT = redstone / 9;
-                int rO = redstone % 9;
-                int cT = coal / 9;
-                int cO = coal % 9;
-
-                itemsChanged =
-                    itemsChanged - (diamondOverflow + emeraldsOverflow + ironOverflow + goldOverflow
-                        + glowstoneOverflow + rO + cO);
-
-                List<ItemStack> itemsToAdd = new ArrayList<>();
-                // Transformations
-                if (diamondsToTransform > 0) {
-                    itemsToAdd.add(new ItemStack("Diamond Block", diamondsToTransform,
-                        BlockType.DIAMOND_BLOCK));
-                }
-                if (emeraldsToTransform > 0) {
-                    itemsToAdd.add(new ItemStack("Emerald Block", emeraldsToTransform,
-                        BlockType.EMERALD_BLOCK));
-                }
-                if (ironToTransform > 0) {
-                    itemsToAdd
-                        .add(new ItemStack("Iron Block", ironToTransform, BlockType.IRON_BLOCK));
-                }
-                if (goldToTransform > 0) {
-                    itemsToAdd
-                        .add(new ItemStack("Gold Block", goldToTransform, BlockType.GOLD_BLOCK));
-                }
-                if (glowstoneToTransform > 0) {
-                    itemsToAdd
-                        .add(new ItemStack("Glowstone", glowstoneToTransform, BlockType.GLOWSTONE));
-                }
-                // Remainders
-                if (diamondOverflow > 0) {
-                    itemsToAdd.add(new ItemStack("Diamond", diamondOverflow,
-                        BlockType.DIAMOND));
-                }
-                if (emeraldsOverflow > 0) {
-                    itemsToAdd.add(new ItemStack("Emerald", emeraldsOverflow,
-                        BlockType.EMERALD));
-                }
-                if (ironOverflow > 0) {
-                    itemsToAdd
-                        .add(new ItemStack("Iron Ingot", ironOverflow, BlockType.IRON_INGOT));
-                }
-                if (goldOverflow > 0) {
-                    itemsToAdd
-                        .add(new ItemStack("Gold Ingot", goldToTransform, BlockType.GOLD_BLOCK));
-                }
-                if (glowstoneToTransform > 0) {
-                    itemsToAdd
-                        .add(new ItemStack("Glowstone", glowstoneToTransform, BlockType.GLOWSTONE));
-                }
-                player.sendMessage(MessageUtil.get("general.blocksCompacted", itemsChanged + "",
-                    "" + (diamondsToTransform + emeraldsToTransform + glowstoneToTransform
-                        + goldToTransform + ironToTransform + lT + rT + cT)));
-                player.updateInventory();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
