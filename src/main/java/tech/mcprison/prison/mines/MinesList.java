@@ -17,7 +17,7 @@
 
 package tech.mcprison.prison.mines;
 
-import tech.mcprison.prison.Output;
+import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.gui.Action;
 import tech.mcprison.prison.gui.Button;
@@ -26,6 +26,7 @@ import tech.mcprison.prison.gui.GUI;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.mines.util.Block;
+import tech.mcprison.prison.store.*;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
 import tech.mcprison.prison.util.Location;
@@ -33,6 +34,7 @@ import tech.mcprison.prison.util.Location;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 /**
@@ -41,6 +43,8 @@ import java.util.function.Predicate;
 public class MinesList implements List<Mine> {
     // Base list
     List<Mine> mines;
+
+    tech.mcprison.prison.store.Collection coll;
 
     // Declarations
     HashMap<Mine, List<BlockType>> randomizedBlocks;
@@ -442,21 +446,34 @@ public class MinesList implements List<Mine> {
     public MinesList initialize() {
         Mines.get().setState(MinesState.INITIALIZING);
         mines = new ArrayList<>();
-        if (!new File(Mines.get().getDataFolder(), "/mines/").exists()) {
-            new File(Mines.get().getDataFolder(), "/mines/").mkdir();
+
+        Optional<Database> dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
+        if(!dbOptional.isPresent()) {
+            Prison.get().getPlatform().getStorage().createDatabase("Mines");
+            dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
         }
-        File[] files = new File(Mines.get().getDataFolder(), "/mines/")
-            .listFiles(pathname -> pathname.getName().endsWith(".json"));
-        for (File f : files) {
+        Database database = dbOptional.get();
+
+        Optional<tech.mcprison.prison.store.Collection> collOptional = database.getCollection("mines");
+        if(!collOptional.isPresent()) {
+            database.createCollection("mines");
+            collOptional = database.getCollection("mines");
+        }
+        coll = collOptional.get();
+
+        List<Document> mineDocuments = coll.getAll();
+
+        for (Document document : mineDocuments) {
             try {
-                Mine m = Mine.load(f);
+
+                Mine m = new Mine(document);
                 add(m);
                 if (Mines.get().getConfig().asyncReset) {
                     generateBlockList(m);
                 }
                 Output.get().logInfo("&aLoaded mine " + m.getName());
-            } catch (IOException e) {
-                Output.get().logError("&cFailed to load mine " + f.getName(), e);
+            } catch (Exception e) {
+                Output.get().logError("&cFailed to load mine " + document.getOrDefault("name", "null"), e);
             }
         }
         Mines.get().setState(MinesState.INITIALIZED);
@@ -471,7 +488,7 @@ public class MinesList implements List<Mine> {
      */
     public void save() {
         for (Mine mine : this) {
-            mine.save();
+            coll.insert(mine.getName(), mine.toDocument());
         }
     }
 
@@ -544,7 +561,7 @@ public class MinesList implements List<Mine> {
         Random random = new Random();
         ArrayList<BlockType> blocks = new ArrayList<>();
         World world = bounds.getMin().getWorld();
-        int target = m.area();
+        double target = m.area();
         for (int i = 0; i < target; i++) {
             int chance = random.nextInt(101);
             boolean set = false;

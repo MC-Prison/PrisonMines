@@ -18,34 +18,38 @@
 
 package tech.mcprison.prison.mines;
 
-import tech.mcprison.prison.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.mines.events.MineResetEvent;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.mines.util.MinesUtil;
-import tech.mcprison.prison.store.Jsonable;
+import tech.mcprison.prison.output.Output;
+import tech.mcprison.prison.store.Document;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
 import tech.mcprison.prison.util.Location;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
 
 /**
- * Created by DMP9 on 08/01/2017.
+ * @author Dylan M. Perks
  */
-public class Mine implements Jsonable<Mine> {
-    private int minX, minY, minZ, maxX, maxY, maxZ;
-    private double spawnX, spawnY, spawnZ;
-    private float pitch, yaw;
+public class Mine {
+
+    /*
+     * Fields & Constants
+     */
+
+    private Location min, max, spawn;
     private String worldName, name;
     private boolean hasSpawn = false;
 
     private List<Block> blocks;
+
+    /*
+     * Constructors
+     */
 
     /**
      * Creates a new, empty mine instance
@@ -55,15 +59,152 @@ public class Mine implements Jsonable<Mine> {
     }
 
     /**
-     * Loads a mine from a {@link File}
+     * Loads a mine from a document.
      *
-     * @param path
-     * @return a mine loaded from the specified file
-     * @throws IOException An I/O error occurred
+     * @param document The document to load from.
+     * @throws Exception If the mine couldn't be loaded from the document.
      */
-    public static Mine load(File path) throws IOException {
-        return new Mine().fromFile(path);
+    public Mine(Document document) throws Exception {
+        Optional<World> worldOptional =
+            Prison.get().getPlatform().getWorld((String) document.get("world"));
+        if (!worldOptional.isPresent()) {
+            throw new Exception("world doesn't exist");
+        }
+
+        min = new Location(worldOptional.get(), (double) document.get("minX"),
+            (double) document.get("minY"), (double) document.get("minZ"));
+        max = new Location(worldOptional.get(), (double) document.get("maxX"),
+            (double) document.get("maxY"), (double) document.get("maxZ"));
+
+        hasSpawn = (boolean) document.get("hasSpawn");
+        if (hasSpawn) {
+            spawn = new Location(worldOptional.get(), (double) document.get("spawnX"),
+                (double) document.get("spawnY"), (double) document.get("spawnZ"),
+                (float) document.get("spawnPitch"), (float) document.get("spawnYaw"));
+        }
+
+        worldName = worldOptional.get().getName();
+        name = (String) document.get("name");
+
+        blocks = new ArrayList<>();
+        List<String> docBlocks = (List<String>) document.get("blocks");
+        for (String docBlock : docBlocks) {
+            String[] split = docBlock.split("-");
+            String id = split[0];
+            int chance = Integer.parseInt(split[1]);
+
+            Block block = new Block();
+            block.create(BlockType.getBlock(id), chance);
+            blocks.add(block);
+        }
     }
+
+    /*
+     * Methods
+     */
+
+    public Document toDocument() {
+        Document ret = new Document();
+        ret.put("world", worldName);
+        ret.put("name", name);
+        ret.put("minX", min.getX());
+        ret.put("minY", min.getY());
+        ret.put("minZ", min.getZ());
+        ret.put("maxX", max.getX());
+        ret.put("maxY", max.getY());
+        ret.put("maxZ", max.getZ());
+        ret.put("hasSpawn", hasSpawn);
+
+        if (hasSpawn) {
+            ret.put("spawnX", spawn.getX());
+            ret.put("spawnY", spawn.getY());
+            ret.put("spawnZ", spawn.getZ());
+            ret.put("spawnPitch", spawn.getPitch());
+            ret.put("spawnYaw", spawn.getYaw());
+        }
+
+        List<String> blockStrings = new ArrayList<>();
+        for(Block block : blocks) {
+            blockStrings.add(block.type.getId() + "-" + block.chance);
+        }
+        ret.put("blocks", blockStrings);
+
+        return ret;
+    }
+
+    public void teleport(Player... players) {
+        for (Player p : players) {
+            p.teleport(getSpawn().get());
+            p.sendMessage(MinesUtil
+                .addPrefix(Mines.get().getMinesMessages().teleported.replaceAll("%name%", name)));
+        }
+    }
+
+    public boolean reset() {
+        MineResetEvent event = new MineResetEvent(this);
+        Prison.get().getEventBus().post(event);
+        if (event.isCanceled()) {
+            return true;
+        }
+
+        try {
+            int i = 0;
+            List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
+            int _maxX = Math.max(min.getBlockX(), max.getBlockX());
+            int _minX = Math.min(min.getBlockX(), max.getBlockX());
+            int _maxY = Math.max(min.getBlockY(), max.getBlockY());
+            int _minY = Math.min(min.getBlockY(), max.getBlockY());
+            int _maxZ = Math.max(min.getBlockZ(), max.getBlockZ());
+            int _minZ = Math.min(min.getBlockZ(), max.getBlockZ());
+
+            for (Player player : Prison.get().getPlatform().getOnlinePlayers()) {
+                if (getBounds().within(player.getLocation())) {
+                    if (hasSpawn) {
+                        teleport(player);
+                    } else {
+                        Location l = player.getLocation();
+                        player.teleport(
+                            new Location(l.getWorld(), l.getX(), _maxY + 1, l.getZ(), l.getPitch(),
+                                l.getYaw()));
+                    }
+                }
+            }
+            for (int y = _minY; y <= _maxY; y++) {
+                for (int x = _minX; x <= _maxX; x++) {
+                    for (int z = _minZ; z <= _maxZ; z++) {
+                        if (Mines.get().getConfig().fillMode && !Prison.get().getPlatform()
+                            .getWorld(worldName).get().getBlockAt(
+                                new Location(Prison.get().getPlatform().getWorld(worldName).get(),
+                                    x, y, z)).isEmpty()) {
+                            continue; // Skip this block because it is not air
+                        }
+                        new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
+                            .getBlockAt().setType(blockTypes.get(i));
+                        i++;
+                    }
+                }
+            }
+            Output.get().logInfo("&aReset mine " + name);
+            if (Mines.get().getConfig().asyncReset) {
+                try {
+                    Prison.get().getPlatform().getScheduler()
+                        .runTaskLaterAsync(() -> Mines.get().getMines().generateBlockList(this),
+                            0L);
+                } catch (Exception e) {
+                    Output.get().logWarn("Couldn't generate blocks for mine " + name
+                        + " prior to next reset, async reset will be ignored", e);
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            Output.get().logError("&cFailed to reset mine " + name, e);
+            return false;
+        }
+    }
+
+    /*
+     * Getters & Setters
+     */
 
     /**
      * Checks for a spawn for this mine.
@@ -85,8 +226,7 @@ public class Mine implements Jsonable<Mine> {
             return Optional.empty();
         } else {
             if (getWorld().isPresent()) {
-                return Optional
-                    .of(new Location(getWorld().get(), spawnX, spawnY, spawnZ, pitch, yaw));
+                return Optional.ofNullable(spawn);
             } else {
                 return Optional.empty();
             }
@@ -100,12 +240,8 @@ public class Mine implements Jsonable<Mine> {
      * @return this instance for chaining
      */
     public Mine setBounds(Bounds bounds) {
-        minX = bounds.getMin().getBlockX();
-        minY = bounds.getMin().getBlockY();
-        minZ = bounds.getMin().getBlockZ();
-        maxX = bounds.getMax().getBlockX();
-        maxY = bounds.getMax().getBlockY();
-        maxZ = bounds.getMax().getBlockZ();
+        min = bounds.getMin();
+        max = bounds.getMax();
         worldName = bounds.getMin().getWorld().getName();
         return this;
     }
@@ -118,11 +254,7 @@ public class Mine implements Jsonable<Mine> {
      */
     public Mine setSpawn(Location location) {
         hasSpawn = true;
-        spawnX = location.getX();
-        spawnY = location.getY();
-        spawnZ = location.getZ();
-        pitch = location.getPitch();
-        yaw = location.getYaw();
+        spawn = location;
         return this;
     }
 
@@ -152,36 +284,6 @@ public class Mine implements Jsonable<Mine> {
     }
 
     /**
-     * Saves this mine to a file.
-     */
-    public void save() {
-        try {
-            toFile(new File(Mines.get().getDataFolder(), "/mines/" + name + ".json"));
-            Output.get().logInfo("&aSaved mine " + name);
-        } catch (IOException e) {
-            Output.get().logError("&cFailed to save mine " + name, e);
-        }
-    }
-
-    /**
-     * Loads a mine from a JSON string.
-     *
-     * @param json a JSON string containing mine data
-     * @return the loaded mine
-     * @throws IOException An I/O error occurred
-     */
-    public static Mine load(String json) throws IOException {
-        return new Mine().fromJson(json);
-    }
-
-    /**
-     * @see Mine#load(String)
-     */
-    public Mine fromJson(String json) {
-        return Prison.get().getGson().fromJson(json, getClass());
-    }
-
-    /**
      * Gets the name of this mine
      *
      * @return the name of this mine
@@ -199,37 +301,12 @@ public class Mine implements Jsonable<Mine> {
         return Prison.get().getPlatform().getWorld(worldName);
     }
 
-    public void teleport(Player... players) {
-        for (Player p : players) {
-            p.teleport(getSpawn().get());
-            p.sendMessage(MinesUtil
-                .addPrefix(Mines.get().getMinesMessages().teleported.replaceAll("%name%", name)));
-        }
-    }
-
     public Bounds getBounds() {
-        return new Bounds(
-            new Location(Prison.get().getPlatform().getWorld(worldName).get(), (double) minX,
-                (double) minY, (double) minZ),
-            new Location(Prison.get().getPlatform().getWorld(worldName).get(), (double) maxX,
-                (double) maxY, (double) maxZ));
+        return new Bounds(min, max);
     }
 
     public List<Block> getBlocks() {
         return blocks;
-    }
-
-    public Mine fromFile(File file) throws IOException {
-        String json = new String(Files.readAllBytes(file.toPath()));
-        return fromJson(json);
-    }
-
-    public String toJson() {
-        return Prison.get().getGson().toJson(this, getClass());
-    }
-
-    public void toFile(File file) throws IOException {
-        Files.write(file.toPath(), toJson().getBytes());
     }
 
     public boolean isInMine(Location location) {
@@ -245,103 +322,8 @@ public class Mine implements Jsonable<Mine> {
         return false;
     }
 
-    public int area() {
-        int out = 0;
-        int _maxX = (getBounds().getMin().getBlockX() < getBounds().getMax().getBlockX() ?
-            getBounds().getMax().getBlockX() :
-            getBounds().getMin().getBlockX());
-        int _minX = (getBounds().getMin().getBlockX() > getBounds().getMax().getBlockX() ?
-            getBounds().getMax().getBlockX() :
-            getBounds().getMin().getBlockX());
-        int _maxY = (getBounds().getMin().getBlockY() < getBounds().getMax().getBlockY() ?
-            getBounds().getMax().getBlockY() :
-            getBounds().getMin().getBlockY());
-        int _minY = (getBounds().getMin().getBlockY() > getBounds().getMax().getBlockY() ?
-            getBounds().getMax().getBlockY() :
-            getBounds().getMin().getBlockY());
-        int _maxZ = (getBounds().getMin().getBlockZ() < getBounds().getMax().getBlockZ() ?
-            getBounds().getMax().getBlockZ() :
-            getBounds().getMin().getBlockZ());
-        int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
-            getBounds().getMax().getBlockZ() :
-            getBounds().getMin().getBlockZ());
-        for (int y = _minY; y <= _maxY; y++) {
-            for (int x = _minX; x <= _maxX; x++) {
-                for (int z = _minZ; z <= _maxZ; z++) {
-                    out++;
-                }
-            }
-        }
-        return out;
+    public double area() {
+        return getBounds().getArea();
     }
 
-    public boolean reset() {
-        MineResetEvent event = new MineResetEvent(this);
-        Prison.get().getEventBus().post(event);
-        if (event.isCanceled()) {
-            return true;
-        }
-        try {
-            int i = 0;
-            List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
-            int _maxX = (getBounds().getMin().getBlockX() < getBounds().getMax().getBlockX() ?
-                getBounds().getMax().getBlockX() :
-                getBounds().getMin().getBlockX());
-            int _minX = (getBounds().getMin().getBlockX() > getBounds().getMax().getBlockX() ?
-                getBounds().getMax().getBlockX() :
-                getBounds().getMin().getBlockX());
-            int _maxY = (getBounds().getMin().getBlockY() < getBounds().getMax().getBlockY() ?
-                getBounds().getMax().getBlockY() :
-                getBounds().getMin().getBlockY());
-            int _minY = (getBounds().getMin().getBlockY() > getBounds().getMax().getBlockY() ?
-                getBounds().getMax().getBlockY() :
-                getBounds().getMin().getBlockY());
-            int _maxZ = (getBounds().getMin().getBlockZ() < getBounds().getMax().getBlockZ() ?
-                getBounds().getMax().getBlockZ() :
-                getBounds().getMin().getBlockZ());
-            int _minZ = (getBounds().getMin().getBlockZ() > getBounds().getMax().getBlockZ() ?
-                getBounds().getMax().getBlockZ() :
-                getBounds().getMin().getBlockZ());
-            for (Player player : Prison.get().getPlatform().getOnlinePlayers()) {
-                if (getBounds().within(player.getLocation())) {
-                    if (hasSpawn) {
-                        teleport(player);
-                    } else {
-                        Location l = player.getLocation();
-                        player.teleport(
-                            new Location(l.getWorld(), l.getX(), maxY + 1, l.getZ(), l.getPitch(),
-                                l.getYaw()));
-                    }
-                }
-            }
-            for (int y = _minY; y <= _maxY; y++) {
-                for (int x = _minX; x <= _maxX; x++) {
-                    for (int z = _minZ; z <= _maxZ; z++) {
-                        if (Mines.get().getConfig().fillMode && !Prison.get().getPlatform()
-                            .getWorld(worldName).get().getBlockAt(
-                                new Location(Prison.get().getPlatform().getWorld(worldName).get(),
-                                    x, y, z)).isEmpty()) {
-                            continue; // Skip this block because it is not air
-                        }
-                        new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
-                            .getBlockAt().setType(blockTypes.get(i));
-                        i++;
-                    }
-                }
-            }
-            Output.get().logInfo("&aReset mine " + name);
-            if (Mines.get().getConfig().asyncReset) {
-                try {
-                    Mines.get().getMines().generateBlockList(this);
-                } catch (Exception e) {
-                    Output.get().logWarn("Couldn't generate blocks for mine " + name
-                        + " prior to next reset, async reset will be ignored", e);
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            Output.get().logError("&cFailed to reset mine " + name, e);
-            return false;
-        }
-    }
 }

@@ -18,7 +18,7 @@
 
 package tech.mcprison.prison.mines;
 
-import tech.mcprison.prison.Output;
+import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.commands.Arg;
 import tech.mcprison.prison.commands.Command;

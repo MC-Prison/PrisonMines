@@ -22,7 +22,7 @@ import com.google.common.eventbus.Subscribe;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.ItemStack;
 import tech.mcprison.prison.internal.block.Block;
-import tech.mcprison.prison.internal.events.BlockBreakEvent;
+import tech.mcprison.prison.internal.events.block.BlockBreakEvent;
 import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Gamemode;
