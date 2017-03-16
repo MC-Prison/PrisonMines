@@ -47,7 +47,7 @@ public class MinesListener {
      */
     @Subscribe public void onBlockBreak(BlockBreakEvent event) {
         if (!Mines.get().getMines().allowedToMine(event.getPlayer(), event.getBlockLocation())) {
-            event.getPlayer().sendMessage(Mines.get().getMinesMessages().notAllowed);
+            Mines.get().getMinesMessages().getLocalizable("not_allowed").sendTo(event.getPlayer());
             event.setCanceled(true);
             return;
         }

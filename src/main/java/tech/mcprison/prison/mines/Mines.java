@@ -18,14 +18,16 @@
 
 package tech.mcprison.prison.mines;
 
-import tech.mcprison.prison.Output;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import tech.mcprison.prison.Prison;
+import tech.mcprison.prison.localization.LocaleManager;
 import tech.mcprison.prison.mines.events.StateChangeEvent;
 import tech.mcprison.prison.mines.util.Miner;
 import tech.mcprison.prison.modules.Module;
+import tech.mcprison.prison.output.Output;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -38,10 +40,6 @@ import java.util.ListIterator;
  * @author The MC-Prison Team
  */
 public class Mines extends Module {
-    /**
-     * The Jenkins build associated with this commit/release
-     */
-    public static final String JENKINS_BUILD = "111";
     /**
      * If this version is a release or a Development Build
      */
@@ -56,7 +54,8 @@ public class Mines extends Module {
     private MinesConfig config;
     private List<String> worlds;
     private List<Miner> players;
-    private MinesMessages messages;
+    private LocaleManager localeManager;
+    private Gson gson;
 
     /**
      * Gets the Mines configuration
@@ -89,8 +88,8 @@ public class Mines extends Module {
         return mines;
     }
 
-    public MinesMessages getMinesMessages() {
-        return messages;
+    public LocaleManager getMinesMessages() {
+        return localeManager;
     }
 
     public Mines(String version) {
@@ -102,50 +101,45 @@ public class Mines extends Module {
     }
 
     public void enable() {
-        getLogger().logInfo("&b========================");
-        getLogger().logInfo("&d      Prison Mines      ");
-        getLogger().logInfo("&d (C) The MC-Prison Team ");
-        getLogger().logInfo("&b========================");
+        // Let the core handle introduction messages.
+//        getLogger().logInfo("&b========================");
+//        getLogger().logInfo("&d      Prison Mines      ");
+//        getLogger().logInfo("&d (C) The MC-Prison Team ");
+//        getLogger().logInfo("&b========================");
         i = this;
-        if (DEVELOPMENT_BUILD) {
-            getLogger().logInfo(
-                "You are using a Mines development build (Jenkins Build #" + JENKINS_BUILD + ")");
-        } else {
-            getLogger()
-                .logInfo("You are using Mines v" + getVersion() + " (#" + JENKINS_BUILD + ")");
-        }
+//        if (DEVELOPMENT_BUILD) {
+//            getLogger().logInfo(
+//                "You are using a Mines development build (Jenkins Build #" + JENKINS_BUILD + ")");
+//        } else {
+//            getLogger()
+//                .logInfo("You are using Mines v" + getVersion() + " (#" + JENKINS_BUILD + ")");
+//        }
+
+        gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+
         getLogger().logInfo("Loading config...");
         config = new MinesConfig();
-        messages = new MinesMessages();
         players = new ArrayList<>();
         File configFile = new File(getDataFolder(), "config.json");
         if (!configFile.exists()) {
             try {
-                config.toFile(configFile);
+                configFile.createNewFile();
+                String json = gson.toJson(config);
+                Files.write(configFile.toPath(), json.getBytes());
             } catch (IOException e) {
                 Output.get().logError("Failed to create config", e);
             }
         } else {
             try {
-                config = config.fromFile(configFile);
+                String json = new String(Files.readAllBytes(configFile.toPath()));
+                config = gson.fromJson(json, MinesConfig.class);
             } catch (IOException e) {
                 Output.get().logError("Failed to load config", e);
             }
         }
-        File msgFile = new File(getDataFolder(), "messages.json");
-        if (!msgFile.exists()) {
-            try {
-                messages.toFile(msgFile);
-            } catch (IOException e) {
-                Output.get().logError("Failed to create messages", e);
-            }
-        } else {
-            try {
-                messages = messages.fromFile(msgFile);
-            } catch (IOException e) {
-                Output.get().logError("Failed to load messages", e);
-            }
-        }
+
+        localeManager = new LocaleManager(this);
+
         ListIterator<String> iterator = config.worlds.listIterator();
         worlds = new ArrayList<>();
         while (iterator.hasNext()) {
@@ -157,7 +151,7 @@ public class Mines extends Module {
             try {
                 String json = new String(
                     Files.readAllBytes(new File(getDataFolder(), "/players.json").toPath()));
-                players = Prison.get().getGson().fromJson(json, players.getClass());
+                players = gson.fromJson(json, players.getClass());
             } catch (IOException e) {
                 getLogger().logError("Couldn't load players", e);
             }
@@ -176,12 +170,11 @@ public class Mines extends Module {
 
     public void disable() {
         setState(MinesState.DISPOSED);
-        mines.forEach(Mine::save);
+        mines.save();
         if (config.savePlayers) {
             try {
-                FileWriter fileWriter = new FileWriter(new File(getDataFolder(), "/players.json"));
-                Prison.get().getGson().toJson(players, fileWriter);
-                fileWriter.close();
+                String json = gson.toJson(players);
+                Files.write(new File(getDataFolder(), "players.json").toPath(), json.getBytes());
             } catch (IOException e) {
                 Output.get().logError("Couldn't save players.", e);
             }

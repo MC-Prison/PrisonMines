@@ -21,6 +21,7 @@ package tech.mcprison.prison.mines;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
+import tech.mcprison.prison.localization.Localizable;
 import tech.mcprison.prison.mines.events.MineResetEvent;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.mines.util.MinesUtil;
@@ -135,8 +136,7 @@ public class Mine {
     public void teleport(Player... players) {
         for (Player p : players) {
             p.teleport(getSpawn().get());
-            p.sendMessage(MinesUtil
-                .addPrefix(Mines.get().getMinesMessages().teleported.replaceAll("%name%", name)));
+            Mines.get().getMinesMessages().getLocalizable("teleported").withReplacements(name).sendTo(p);
         }
     }
 

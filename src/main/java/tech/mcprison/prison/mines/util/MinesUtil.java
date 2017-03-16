@@ -18,8 +18,6 @@
 
 package tech.mcprison.prison.mines.util;
 
-import tech.mcprison.prison.Output;
-import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.mines.Mines;
 
@@ -29,46 +27,6 @@ import java.util.Optional;
  * A class full of handy static methods
  */
 public class MinesUtil {
-    /**
-     * Represents the different levels of severity in logging.
-     * <p>
-     * <b>Copied from API 0.2-SNAPSHOT</b>
-     * </p>
-     * @author Dylan M. Perks
-     * @since API 0.2/Mines ALPHA
-     */
-    public enum LogLevel {
-        /**
-         * Information severity.
-         */
-        INFO, /**
-         * Warning severity.
-         */
-        WARNING, /**
-         * Error severity.
-         */
-        ERROR;
-    }
-
-    /**
-     * Adds the mines prefix to a message
-     *
-     * @param message the message to add the prefix to
-     * @return the new message
-     */
-    @Deprecated public static String addPrefix(String message) {
-        return Mines.get().getMinesMessages().prefix + message;
-    }
-
-    /**
-     * Send a message to a {@link CommandSender}
-     */
-    public void sendMessage(CommandSender sender, String message, LogLevel level, Object... args) {
-        String prefix = level == LogLevel.INFO ?
-            Output.get().INFO_PREFIX :
-            level == LogLevel.WARNING ? Output.get().WARNING_PREFIX : Output.get().ERROR_PREFIX;
-        sender.sendMessage(prefix + String.format(message, args));
-    }
 
     /**
      * Gets a {@link Miner} for a player

@@ -20,7 +20,6 @@ package tech.mcprison.prison.mines;
 
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.mines.util.Miner;
-import tech.mcprison.prison.store.AbstractJsonable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +27,7 @@ import java.util.Arrays;
 /**
  * Represents the Mines configuration file.
  */
-public class MinesConfig extends AbstractJsonable<MinesConfig> {
+public class MinesConfig {
     /**
      * True if randomized blocks for mines should be cached for faster resets.
      * False otherwise
