@@ -31,7 +31,7 @@ import tech.mcprison.prison.mines.Mines;
 @Plugin( //
     id = "prison-mines", //
     name = "PrisonMines", //
-    version = Mines.VERSION, //
+    version = MinesSponge.VERSION, //
     dependencies = { //
         @Dependency(id = "prison-sponge") //
     }, //
@@ -40,8 +40,10 @@ import tech.mcprison.prison.mines.Mines;
     authors = {"The MC-Prison Team"} //
 ) public class MinesSponge {
 
+    static final String VERSION = "3.0.0-SNAPSHOT";
+
     @Listener public void onEnable(GameStartedServerEvent event) {
-        Prison.get().getModuleManager().registerModule(new Mines(Mines.VERSION));
+        Prison.get().getModuleManager().registerModule(new Mines(VERSION));
     }
 
 }

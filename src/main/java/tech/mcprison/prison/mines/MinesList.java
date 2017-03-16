@@ -17,7 +17,6 @@
 
 package tech.mcprison.prison.mines;
 
-import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.gui.Action;
 import tech.mcprison.prison.gui.Button;
@@ -25,16 +24,16 @@ import tech.mcprison.prison.gui.ClickedButton;
 import tech.mcprison.prison.gui.GUI;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
+import tech.mcprison.prison.localization.Localizable;
 import tech.mcprison.prison.mines.util.Block;
-import tech.mcprison.prison.store.*;
+import tech.mcprison.prison.output.Output;
+import tech.mcprison.prison.store.Database;
+import tech.mcprison.prison.store.Document;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
 import tech.mcprison.prison.util.Location;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
-import java.util.Collection;
 import java.util.function.Predicate;
 
 /**
@@ -354,17 +353,9 @@ public class MinesList implements List<Mine> {
         return this;
     }
 
-    private void selectiveSend(Player x) {
+    private void selectiveSend(Player x, Localizable localizable) {
         if (Mines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
-            x.sendMessage(Mines.get().getConfig().resetMessage);
-        }
-    }
-
-    private void selectiveSend2(Player x) {
-        if (Mines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
-            x.sendMessage(
-                Mines.get().getConfig().resetWarning.replaceAll("%mins%", "" + (resetCount / 60))
-                    .replaceAll("%seconds%", "" + resetCount));
+            localizable.sendTo(x);
         }
     }
 
@@ -386,11 +377,13 @@ public class MinesList implements List<Mine> {
                     reset();
                     if (Mines.get().getConfig().resetMessages) {
                         if (!Mines.get().getConfig().multiworld) {
-                            Prison.get().getPlatform().getOnlinePlayers()
-                                .forEach(x -> x.sendMessage(Mines.get().getConfig().resetMessage));
+                            Prison.get().getPlatform().getOnlinePlayers().forEach(
+                                x -> Mines.get().getMinesMessages().getLocalizable("reset_message")
+                                    .sendTo(x));
                         } else {
-                            Prison.get().getPlatform().getOnlinePlayers()
-                                .forEach(x -> selectiveSend(x));
+                            Prison.get().getPlatform().getOnlinePlayers().forEach(
+                                x -> selectiveSend(x, Mines.get().getMinesMessages()
+                                    .getLocalizable("reset_message")));
                         }
                     }
                     resetCount = Mines.get().getConfig().aliveTime;
@@ -398,13 +391,15 @@ public class MinesList implements List<Mine> {
                 for (int i : Mines.get().getConfig().resetWarningTimes) {
                     if (resetCount == i && Mines.get().getConfig().resetMessages) {
                         if (!Mines.get().getConfig().multiworld) {
-                            Prison.get().getPlatform().getOnlinePlayers().forEach(x -> x
-                                .sendMessage(Mines.get().getConfig().resetWarning
-                                    .replaceAll("%mins%", "" + (resetCount / 60))
-                                    .replaceAll("%seconds%", "" + resetCount)));
+
+                            Prison.get().getPlatform().getOnlinePlayers().forEach(
+                                x -> Mines.get().getMinesMessages().getLocalizable("reset_warning")
+                                    .withReplacements(String.valueOf(resetCount)).sendTo(x));
                         } else {
-                            Prison.get().getPlatform().getOnlinePlayers()
-                                .forEach(x -> selectiveSend2(x));
+                            Prison.get().getPlatform().getOnlinePlayers().forEach(
+                                x -> selectiveSend(x,
+                                    Mines.get().getMinesMessages().getLocalizable("reset_warning")
+                                        .withReplacements(String.valueOf(resetCount))));
                         }
                     }
                 }
@@ -447,15 +442,17 @@ public class MinesList implements List<Mine> {
         Mines.get().setState(MinesState.INITIALIZING);
         mines = new ArrayList<>();
 
-        Optional<Database> dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
-        if(!dbOptional.isPresent()) {
+        Optional<Database> dbOptional =
+            Prison.get().getPlatform().getStorage().getDatabase("Mines");
+        if (!dbOptional.isPresent()) {
             Prison.get().getPlatform().getStorage().createDatabase("Mines");
             dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
         }
         Database database = dbOptional.get();
 
-        Optional<tech.mcprison.prison.store.Collection> collOptional = database.getCollection("mines");
-        if(!collOptional.isPresent()) {
+        Optional<tech.mcprison.prison.store.Collection> collOptional =
+            database.getCollection("mines");
+        if (!collOptional.isPresent()) {
             database.createCollection("mines");
             collOptional = database.getCollection("mines");
         }
@@ -473,7 +470,8 @@ public class MinesList implements List<Mine> {
                 }
                 Output.get().logInfo("&aLoaded mine " + m.getName());
             } catch (Exception e) {
-                Output.get().logError("&cFailed to load mine " + document.getOrDefault("name", "null"), e);
+                Output.get()
+                    .logError("&cFailed to load mine " + document.getOrDefault("name", "null"), e);
             }
         }
         Mines.get().setState(MinesState.INITIALIZED);
