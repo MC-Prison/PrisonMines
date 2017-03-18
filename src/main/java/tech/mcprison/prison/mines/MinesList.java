@@ -27,13 +27,13 @@ import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.localization.Localizable;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.output.Output;
-import tech.mcprison.prison.store.Database;
-import tech.mcprison.prison.store.Document;
+import tech.mcprison.prison.store.*;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Bounds;
 import tech.mcprison.prison.util.Location;
 
 import java.util.*;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 /**
@@ -367,47 +367,65 @@ public class MinesList implements List<Mine> {
     public TimerTask getTimerTask() {
         return new TimerTask() {
             @Override public void run() {
+                // Perform initial checks
                 if (Mines.get().getConfig().aliveTime == 0) {
                     return;
                 }
                 if (size() == 0) {
                     return;
                 }
-                if (resetCount == 0) {
-                    reset();
-                    if (Mines.get().getConfig().resetMessages) {
-                        if (!Mines.get().getConfig().multiworld) {
-                            Prison.get().getPlatform().getOnlinePlayers().forEach(
-                                x -> Mines.get().getMinesMessages().getLocalizable("reset_message")
-                                    .sendTo(x));
-                        } else {
-                            Prison.get().getPlatform().getOnlinePlayers().forEach(
-                                x -> selectiveSend(x, Mines.get().getMinesMessages()
-                                    .getLocalizable("reset_message")));
-                        }
-                    }
-                    resetCount = Mines.get().getConfig().aliveTime;
-                }
-                for (int i : Mines.get().getConfig().resetWarningTimes) {
-                    if (resetCount == i && Mines.get().getConfig().resetMessages) {
-                        if (!Mines.get().getConfig().multiworld) {
 
-                            Prison.get().getPlatform().getOnlinePlayers().forEach(
-                                x -> Mines.get().getMinesMessages().getLocalizable("reset_warning")
-                                    .withReplacements(String.valueOf(resetCount)).sendTo(x));
-                        } else {
-                            Prison.get().getPlatform().getOnlinePlayers().forEach(
-                                x -> selectiveSend(x,
-                                    Mines.get().getMinesMessages().getLocalizable("reset_warning")
-                                        .withReplacements(String.valueOf(resetCount))));
-                        }
-                    }
+                // It's time to reset
+                if (resetCount == 0) {
+                    resetMines();
+                } else {
+                    broadcastResetWarnings();
                 }
+
                 if (resetCount > 0) {
                     resetCount--;
                 }
             }
         };
+    }
+
+    private void resetMines() {
+        reset();
+
+        if (Mines.get().getConfig().resetMessages) {
+            // Send it to everyone if it's not multi-world
+            if (!Mines.get().getConfig().multiworld) {
+                Prison.get().getPlatform().getOnlinePlayers().forEach(
+                    x -> Mines.get().getMinesMessages().getLocalizable("reset_message").sendTo(x));
+            } else { // Or those affected if it's multi-world
+                Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x,
+                    Mines.get().getMinesMessages().getLocalizable("reset_message")));
+            }
+        }
+
+        // And reset the count
+        resetCount = Mines.get().getConfig().aliveTime;
+    }
+
+    private void broadcastResetWarnings() {
+        if (!Mines.get().getConfig().resetMessages) {
+            return;
+        }
+
+        for (int i : Mines.get().getConfig().resetWarningTimes) {
+            if (resetCount == i) {
+                if (!Mines.get().getConfig().multiworld) {
+
+                    Prison.get().getPlatform().getOnlinePlayers().forEach(
+                        x -> Mines.get().getMinesMessages().getLocalizable("reset_warning")
+                            .withReplacements(String.valueOf(resetCount)).sendTo(x));
+                } else {
+                    Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x,
+                        Mines.get().getMinesMessages().getLocalizable("reset_warning")
+                            .withReplacements(String.valueOf(resetCount))));
+                }
+            }
+        }
     }
 
     /**
@@ -436,33 +454,46 @@ public class MinesList implements List<Mine> {
      * Initializes this {@link MinesList}. This should only be used for the instance created by
      * {@link Mines}
      *
-     * @return the initialized list
+     * @return the initialized list or null if it couldn't initialize
      */
     public MinesList initialize() {
-        Mines.get().setState(MinesState.INITIALIZING);
         mines = new ArrayList<>();
 
-        Optional<Database> dbOptional =
-            Prison.get().getPlatform().getStorage().getDatabase("Mines");
-        if (!dbOptional.isPresent()) {
-            Prison.get().getPlatform().getStorage().createDatabase("Mines");
-            dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
+        if (!initColl()) {
+            return null;
         }
-        Database database = dbOptional.get();
 
+        loadAll();
+
+        Output.get().logInfo("&bLoaded " + size() + " mines");
+        resetCount = Mines.get().getConfig().aliveTime;
+        return this;
+    }
+
+    private boolean initColl() {
         Optional<tech.mcprison.prison.store.Collection> collOptional =
-            database.getCollection("mines");
-        if (!collOptional.isPresent()) {
-            database.createCollection("mines");
-            collOptional = database.getCollection("mines");
-        }
-        coll = collOptional.get();
+            Mines.get().getDb().getCollection("mines");
 
+        if (!collOptional.isPresent()) {
+            Mines.get().getDb().createCollection("mines");
+            collOptional = Mines.get().getDb().getCollection("mines");
+
+            if (!collOptional.isPresent()) {
+                Output.get().logError("Could not create 'mines' collection.");
+                Mines.get().getStatus().toFailed("Could not create mines collection in storage.");
+                return false;
+            }
+        }
+
+        coll = collOptional.get();
+        return true;
+    }
+
+    private void loadAll() {
         List<Document> mineDocuments = coll.getAll();
 
         for (Document document : mineDocuments) {
             try {
-
                 Mine m = new Mine(document);
                 add(m);
                 if (Mines.get().getConfig().asyncReset) {
@@ -474,10 +505,6 @@ public class MinesList implements List<Mine> {
                     .logError("&cFailed to load mine " + document.getOrDefault("name", "null"), e);
             }
         }
-        Mines.get().setState(MinesState.INITIALIZED);
-        Output.get().logInfo("&bLoaded " + size() + " mines");
-        resetCount = Mines.get().getConfig().aliveTime;
-        return this;
     }
 
     /**
@@ -555,11 +582,10 @@ public class MinesList implements List<Mine> {
      * @param m the mine to randomize
      */
     public void generateBlockList(Mine m) {
-        Bounds bounds = m.getBounds();
         Random random = new Random();
         ArrayList<BlockType> blocks = new ArrayList<>();
-        World world = bounds.getMin().getWorld();
         double target = m.area();
+
         for (int i = 0; i < target; i++) {
             int chance = random.nextInt(101);
             boolean set = false;
@@ -702,7 +728,7 @@ public class MinesList implements List<Mine> {
      * @return a built GUI
      */
     public GUI createGUI(Player player) {
-        GUI g = Prison.get().getPlatform().createGUI(Mines.get().getConfig().guiName, size() <= 9 ?
+        GUI g = Prison.get().getPlatform().createGUI("Teleport to a mine", size() <= 9 ?
             9 :
             size() <= 18 ? 18 : size() <= 27 ? 27 : size() <= 36 ? 36 : size() <= 45 ? 45 : 54);
         final int[] i = {0};

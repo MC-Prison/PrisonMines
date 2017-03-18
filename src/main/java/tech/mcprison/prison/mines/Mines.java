@@ -26,6 +26,7 @@ import tech.mcprison.prison.mines.events.StateChangeEvent;
 import tech.mcprison.prison.mines.util.Miner;
 import tech.mcprison.prison.modules.Module;
 import tech.mcprison.prison.output.Output;
+import tech.mcprison.prison.store.Database;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +34,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 
 /**
  * The Prison 3 Mines Module
@@ -52,6 +54,7 @@ public class Mines extends Module {
     private List<Miner> players;
     private LocaleManager localeManager;
     private Gson gson;
+    private Database db;
 
     /*
      * Constructor
@@ -69,6 +72,7 @@ public class Mines extends Module {
         i = this;
 
         initGson();
+        initDb();
         initConfig();
         localeManager = new LocaleManager(this);
 
@@ -82,6 +86,25 @@ public class Mines extends Module {
 
     private void initGson() {
         gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+    }
+
+    private void initDb() {
+        Optional<Database> dbOptional =
+            Prison.get().getPlatform().getStorage().getDatabase("Mines");
+
+        if (!dbOptional.isPresent()) {
+
+            Prison.get().getPlatform().getStorage().createDatabase("Mines");
+            dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
+
+            if(!dbOptional.isPresent()) {
+                Output.get().logError("Could not load the Mines database.");
+                getStatus().toFailed("Could not load storage database.");
+                return;
+            }
+        }
+
+        this.db = dbOptional.get();
     }
 
     private void initConfig() {
@@ -140,7 +163,6 @@ public class Mines extends Module {
 
 
     public void disable() {
-        setState(MinesState.DISPOSED);
         mines.save();
         if (config.savePlayers) {
             try {
@@ -162,8 +184,8 @@ public class Mines extends Module {
         return config;
     }
 
-    public MinesState getState() {
-        return state;
+    public Database getDb() {
+        return db;
     }
 
     public List<Miner> getPlayers() {
@@ -190,11 +212,6 @@ public class Mines extends Module {
 
     public List<String> getWorlds() {
         return worlds;
-    }
-
-    public void setState(MinesState state) {
-        Mines.state = state;
-        Prison.get().getEventBus().post(new StateChangeEvent(state));
     }
 
 }

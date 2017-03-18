@@ -40,22 +40,22 @@ public class MinesListener {
         Prison.get().getEventBus().register(this);
     }
 
-    /**
-     * Called when a block is broken.
-     *
-     * @param event the event passed by prison-core
-     */
-    @Subscribe public void onBlockBreak(BlockBreakEvent event) {
+    @Subscribe public void checkIsPlayerAllowed(BlockBreakEvent event) {
+
         if (!Mines.get().getMines().allowedToMine(event.getPlayer(), event.getBlockLocation())) {
             Mines.get().getMinesMessages().getLocalizable("not_allowed").sendTo(event.getPlayer());
             event.setCanceled(true);
-            return;
         }
+    }
+
+    @Subscribe public void doAutosmelt(BlockBreakEvent event) {
         if (Mines.get().getMines().isInMine(event.getBlockLocation())
             && event.getPlayer().getGamemode() == Gamemode.SURVIVAL) {
+
             event.setCanceled(true);
             Block block = event.getBlockLocation().getBlockAt();
             List<ItemStack> drops = block.getDrops();
+
             if (MinesUtil.usingAutosmelt(event.getPlayer())) {
                 for (ItemStack drop : drops) {
                     if (drop.getMaterial() == BlockType.GOLD_ORE) {
@@ -69,9 +69,13 @@ public class MinesListener {
                                 drop.getLore().toArray(new String[drop.getLore().size()])));
                     }
                 }
+
             }
+
             drops.forEach(x -> event.getPlayer().give(x));
             block.setType(BlockType.AIR);
+
         }
     }
+
 }

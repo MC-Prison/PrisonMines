@@ -22,6 +22,7 @@ package tech.mcprison.prison.mines;
  * Represents a state of the Mines module
  */
 public enum MinesState {
+
     /**
      * The mines module has been disabled.
      */
@@ -32,4 +33,5 @@ public enum MinesState {
      * The mines module is loading.
      */
     INITIALIZING
+
 }

@@ -28,7 +28,6 @@ import java.util.UUID;
  * Represents a player capable of using autosmelt and autoblock
  */
 public class Miner {
-    private String username = "";
     private String uuid = "";
     private boolean autosmelt = false;
     private boolean autoblock = false;
@@ -68,7 +67,7 @@ public class Miner {
      */
     public static Miner fromPlayer(Player player) {
         Miner miner = new Miner();
-        miner.username = player.getName();
+        player.getName();
         miner.uuid = player.getUUID().toString();
         return miner;
     }

@@ -22,6 +22,7 @@ package tech.mcprison.prison.mines;
  * A filter usable with certain methods in {@link MinesList}
  */
 public interface MinesFilter {
+
     /**
      * Used in {@link MinesList#select(MinesFilter)}
      * <p>
@@ -40,4 +41,5 @@ public interface MinesFilter {
      * @param c the mine to execute on
      */
     void action(Mine c);
+
 }
