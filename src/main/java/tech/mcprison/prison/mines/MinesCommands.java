@@ -26,6 +26,8 @@ import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.localization.Localizable;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.mines.util.MinesUtil;
+import tech.mcprison.prison.output.BulletedListComponent;
+import tech.mcprison.prison.output.ChatDisplay;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.selection.Selection;
 import tech.mcprison.prison.selection.SelectionManager;
@@ -203,25 +205,23 @@ public class MinesCommands {
             return;
         }
 
-        // TODO This whole thing is a darn mess anyways
-
         Mine m = Mines.get().getMines().get(name);
-        sender.sendMessage(Text.titleize(m.getName()));
-        if (!m.getWorld().isPresent()) {
-            sender.sendMessage("&bWorld: &c&lmissing");
-        } else {
-            sender.sendMessage("&bWorld: &7" + m.getWorld().get().getName());
-        }
-        sender.sendMessage(m.getBounds().getMin().toCoordinates() + " to " + m.getBounds().getMax()
-            .toCoordinates());
-        sender.sendMessage(
-            "&bSize: &7" + m.getBounds().getWidth() + "&8x&b" + m.getBounds().getLength() + " &8(&7"
-                + m.getBounds().getHeight() + " &bblocks deep&8)");
-        if (m.hasSpawn()) {
-            sender.sendMessage("&bSpawnpoint: " + m.getSpawn().get().toCoordinates());
-        } else {
-            sender.sendMessage("&bSpawnpoint: &cnot set");
-        }
+
+        ChatDisplay chatDisplay = new ChatDisplay(m.getName());
+
+        String worldName = m.getWorld().isPresent() ? m.getWorld().get().getName() : "&cmissing";
+        chatDisplay.text("&3World: &7%s", worldName);
+
+        String minCoords = m.getBounds().getMin().toCoordinates();
+        String maxCoords = m.getBounds().getMax().toCoordinates();
+        chatDisplay.text("&3Bounds: &7%s &8to &7%s", minCoords, maxCoords);
+
+        chatDisplay.text("&3Size: &7%d&8x&7%d&8x&7%d", m.getBounds().getWidth(), m.getBounds().getHeight(), m.getBounds().getLength());
+
+        String spawnPoint = m.getSpawn().isPresent() ? m.getSpawn().get().toCoordinates() : "&cnot set";
+        chatDisplay.text("&3Spawnpoint: &7%s", spawnPoint);
+
+        chatDisplay.send(sender);
     }
 
     @Command(identifier = "mines reset", permissions = {"prison.mines.reset", "prison.mines.admin"})
@@ -244,11 +244,14 @@ public class MinesCommands {
 
     @Command(identifier = "mines list", permissions = {"prison.mines.list",
         "prison.mines.admin"}, onlyPlayers = false) public void listCommand(CommandSender sender) {
-        // TODO redo this
-        sender.sendMessage(Text.titleize("/mines list"));
-        for (Mine m : Mines.get().getMines()) {
-            sender.sendMessage("&8" + m.getName());
+        ChatDisplay display = new ChatDisplay("Mines");
+        BulletedListComponent.BulletedListBuilder builder = new BulletedListComponent.BulletedListBuilder();
+
+        for(Mine m : Mines.get().getMines()) {
+            builder.add("&7" + m.getName());
         }
+
+        display.send(sender);
     }
 
 
