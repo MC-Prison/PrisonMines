@@ -22,7 +22,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.localization.LocaleManager;
-import tech.mcprison.prison.mines.events.StateChangeEvent;
 import tech.mcprison.prison.mines.util.Miner;
 import tech.mcprison.prison.modules.Module;
 import tech.mcprison.prison.output.Output;
@@ -48,7 +47,6 @@ public class Mines extends Module {
      */
 
     private static Mines i = null;
-    private static MinesState state;
     private MinesConfig config;
     private List<String> worlds;
     private List<Miner> players;
@@ -97,7 +95,7 @@ public class Mines extends Module {
             Prison.get().getPlatform().getStorage().createDatabase("Mines");
             dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
 
-            if(!dbOptional.isPresent()) {
+            if (!dbOptional.isPresent()) {
                 Output.get().logError("Could not load the Mines database.");
                 getStatus().toFailed("Could not load storage database.");
                 return;

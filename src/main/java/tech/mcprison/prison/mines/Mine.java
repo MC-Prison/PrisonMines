@@ -133,7 +133,8 @@ public class Mine {
 
     public void teleport(Player... players) {
         for (Player p : players) {
-            p.teleport(getSpawn().get());
+            p.teleport(getSpawn().orElse(
+                null)); // Should probably fail with an exception, but an NPE is as good as any..
             Mines.get().getMinesMessages().getLocalizable("teleported").withReplacements(name)
                 .sendTo(p);
         }
@@ -241,11 +242,7 @@ public class Mine {
         if (!hasSpawn) {
             return Optional.empty();
         } else {
-            if (getWorld().isPresent()) {
-                return Optional.ofNullable(spawn);
-            } else {
-                return Optional.empty();
-            }
+            return getWorld().isPresent() ? Optional.ofNullable(spawn) : Optional.empty();
         }
     }
 
