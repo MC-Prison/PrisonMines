@@ -70,13 +70,18 @@ public class MinesCommands {
         }
     }
 
-    @Command(identifier = "mines", permissions = {"prison.mines.user", "prison.mines.gui"})
-    public void minesCommand(Player sender) {
+    @Command(identifier = "mines", onlyPlayers = false)
+    public void minesCommand(CommandSender sender) {
         if (sender.hasPermission("prison.mines.admin")) {
             sender.dispatchCommand("mines help");
         } else {
-            Mines.get().getMines().createGUI(sender).show(sender);
+            sender.dispatchCommand("mines gui");
         }
+    }
+
+    @Command(identifier = "mines gui", permissions = {"prison.mines.user", "prison.mines.gui"})
+    public void minesGuiCommand(Player sender) {
+        Mines.get().getMines().createGUI(sender).show(sender);
     }
 
     @Command(identifier = "mines create", permissions = {"prison.mines.create",
