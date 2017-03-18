@@ -21,10 +21,8 @@ package tech.mcprison.prison.mines;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.internal.World;
-import tech.mcprison.prison.localization.Localizable;
 import tech.mcprison.prison.mines.events.MineResetEvent;
 import tech.mcprison.prison.mines.util.Block;
-import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.store.Document;
 import tech.mcprison.prison.util.BlockType;
@@ -125,7 +123,7 @@ public class Mine {
         }
 
         List<String> blockStrings = new ArrayList<>();
-        for(Block block : blocks) {
+        for (Block block : blocks) {
             blockStrings.add(block.type.getId() + "-" + block.chance);
         }
         ret.put("blocks", blockStrings);
@@ -136,11 +134,13 @@ public class Mine {
     public void teleport(Player... players) {
         for (Player p : players) {
             p.teleport(getSpawn().get());
-            Mines.get().getMinesMessages().getLocalizable("teleported").withReplacements(name).sendTo(p);
+            Mines.get().getMinesMessages().getLocalizable("teleported").withReplacements(name)
+                .sendTo(p);
         }
     }
 
     public boolean reset() {
+        // The all-important event
         MineResetEvent event = new MineResetEvent(this);
         Prison.get().getEventBus().post(event);
         if (event.isCanceled()) {
@@ -149,56 +149,72 @@ public class Mine {
 
         try {
             int i = 0;
-            List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
-            int _maxX = Math.max(min.getBlockX(), max.getBlockX());
-            int _minX = Math.min(min.getBlockX(), max.getBlockX());
-            int _maxY = Math.max(min.getBlockY(), max.getBlockY());
-            int _minY = Math.min(min.getBlockY(), max.getBlockY());
-            int _maxZ = Math.max(min.getBlockZ(), max.getBlockZ());
-            int _minZ = Math.min(min.getBlockZ(), max.getBlockZ());
 
-            for (Player player : Prison.get().getPlatform().getOnlinePlayers()) {
-                if (getBounds().within(player.getLocation())) {
-                    if (hasSpawn) {
-                        teleport(player);
-                    } else {
-                        Location l = player.getLocation();
-                        player.teleport(
-                            new Location(l.getWorld(), l.getX(), _maxY + 1, l.getZ(), l.getPitch(),
-                                l.getYaw()));
-                    }
-                }
+            Optional<World> worldOptional = getWorld();
+            if (!worldOptional.isPresent()) {
+                Output.get().logError("Could not reset mine " + name
+                    + " because the world it was created in does not exist.");
+                return false;
             }
-            for (int y = _minY; y <= _maxY; y++) {
-                for (int x = _minX; x <= _maxX; x++) {
-                    for (int z = _minZ; z <= _maxZ; z++) {
-                        if (Mines.get().getConfig().fillMode && !Prison.get().getPlatform()
-                            .getWorld(worldName).get().getBlockAt(
-                                new Location(Prison.get().getPlatform().getWorld(worldName).get(),
-                                    x, y, z)).isEmpty()) {
+            World world = worldOptional.get();
+
+            List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
+            int maxX = Math.max(min.getBlockX(), max.getBlockX());
+            int minX = Math.min(min.getBlockX(), max.getBlockX());
+            int maxY = Math.max(min.getBlockY(), max.getBlockY());
+            int minY = Math.min(min.getBlockY(), max.getBlockY());
+            int maxZ = Math.max(min.getBlockZ(), max.getBlockZ());
+            int minZ = Math.min(min.getBlockZ(), max.getBlockZ());
+
+            teleportOutPlayers(maxY);
+
+            for (int y = minY; y <= maxY; y++) {
+                for (int x = minX; x <= maxX; x++) {
+                    for (int z = minZ; z <= maxZ; z++) {
+                        if (Mines.get().getConfig().fillMode && !world
+                            .getBlockAt(new Location(world, x, y, z)).isEmpty()) {
                             continue; // Skip this block because it is not air
                         }
-                        new Location(Prison.get().getPlatform().getWorld(worldName).get(), x, y, z)
-                            .getBlockAt().setType(blockTypes.get(i));
+
+                        new Location(world, x, y, z).getBlockAt().setType(blockTypes.get(i));
                         i++;
                     }
                 }
             }
-            Output.get().logInfo("&aReset mine " + name);
+            Output.get().logInfo("Reset mine " + name);
             if (Mines.get().getConfig().asyncReset) {
-                try {
-                    Prison.get().getPlatform().getScheduler()
-                        .runTaskLaterAsync(() -> Mines.get().getMines().generateBlockList(this),
-                            0L);
-                } catch (Exception e) {
-                    Output.get().logWarn("Couldn't generate blocks for mine " + name
-                        + " prior to next reset, async reset will be ignored", e);
-                }
+                asyncGen();
             }
+
             return true;
         } catch (Exception e) {
             Output.get().logError("&cFailed to reset mine " + name, e);
             return false;
+        }
+    }
+
+    private void teleportOutPlayers(int maxY) {
+        for (Player player : Prison.get().getPlatform().getOnlinePlayers()) {
+            if (getBounds().within(player.getLocation())) {
+                if (hasSpawn) {
+                    teleport(player);
+                } else {
+                    Location l = player.getLocation();
+                    player.teleport(
+                        new Location(l.getWorld(), l.getX(), maxY + 3, l.getZ(), l.getPitch(),
+                            l.getYaw()));
+                }
+            }
+        }
+    }
+
+    private void asyncGen() {
+        try {
+            Prison.get().getPlatform().getScheduler()
+                .runTaskLaterAsync(() -> Mines.get().getMines().generateBlockList(this), 0L);
+        } catch (Exception e) {
+            Output.get().logWarn("Couldn't generate blocks for mine " + name
+                + " asynchronously. The blocks will be generated synchronously later.", e);
         }
     }
 
