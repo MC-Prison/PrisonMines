@@ -57,14 +57,19 @@ public class Mines extends Module {
     /*
      * Constructor
      */
+    private MinesList mines;
+
+    /*
+     * Methods
+     */
 
     public Mines(String version) {
         super("Mines", version, 1);
     }
 
-    /*
-     * Methods
-     */
+    public static Mines get() {
+        return i;
+    }
 
     public void enable() {
         i = this;
@@ -153,12 +158,16 @@ public class Mines extends Module {
         }
     }
 
+
+    /*
+     * Getters & Setters
+     */
+
     private void initMines() {
         mines = new MinesList().initialize();
         new MinesListener().init();
         Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(), 20, 20);
     }
-
 
     public void disable() {
         mines.save();
@@ -172,11 +181,6 @@ public class Mines extends Module {
             getLogger().logInfo("&aSaved players!");
         }
     }
-
-
-    /*
-     * Getters & Setters
-     */
 
     public MinesConfig getConfig() {
         return config;
@@ -193,12 +197,6 @@ public class Mines extends Module {
     public void addMiner(Miner miner) {
         players.add(miner);
     }
-
-    public static Mines get() {
-        return i;
-    }
-
-    private MinesList mines;
 
     public MinesList getMines() {
         return mines;

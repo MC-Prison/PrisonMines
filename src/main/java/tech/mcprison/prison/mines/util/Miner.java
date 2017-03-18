@@ -33,6 +33,19 @@ public class Miner {
     private boolean autoblock = false;
 
     /**
+     * Creates a {@link Miner} instance from a {@link Player}
+     *
+     * @param player the player to create an instance for
+     * @return the new instance
+     */
+    public static Miner fromPlayer(Player player) {
+        Miner miner = new Miner();
+        player.getName();
+        miner.uuid = player.getUUID().toString();
+        return miner;
+    }
+
+    /**
      * Gets the player associated with this {@link Miner}
      *
      * @return the player associated with this instance
@@ -57,19 +70,6 @@ public class Miner {
      */
     public boolean isUsingAutoblock() {
         return autoblock;
-    }
-
-    /**
-     * Creates a {@link Miner} instance from a {@link Player}
-     *
-     * @param player the player to create an instance for
-     * @return the new instance
-     */
-    public static Miner fromPlayer(Player player) {
-        Miner miner = new Miner();
-        player.getName();
-        miner.uuid = player.getUUID().toString();
-        return miner;
     }
 
     /**

@@ -30,9 +30,7 @@ import tech.mcprison.prison.output.BulletedListComponent;
 import tech.mcprison.prison.output.ChatDisplay;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.selection.Selection;
-import tech.mcprison.prison.selection.SelectionManager;
 import tech.mcprison.prison.util.BlockType;
-import tech.mcprison.prison.util.Text;
 
 import java.util.Objects;
 
@@ -221,9 +219,12 @@ public class MinesCommands {
         String maxCoords = m.getBounds().getMax().toCoordinates();
         chatDisplay.text("&3Bounds: &7%s &8to &7%s", minCoords, maxCoords);
 
-        chatDisplay.text("&3Size: &7%d&8x&7%d&8x&7%d", m.getBounds().getWidth(), m.getBounds().getHeight(), m.getBounds().getLength());
+        chatDisplay
+            .text("&3Size: &7%d&8x&7%d&8x&7%d", m.getBounds().getWidth(), m.getBounds().getHeight(),
+                m.getBounds().getLength());
 
-        String spawnPoint = m.getSpawn().isPresent() ? m.getSpawn().get().toCoordinates() : "&cnot set";
+        String spawnPoint =
+            m.getSpawn().isPresent() ? m.getSpawn().get().toCoordinates() : "&cnot set";
         chatDisplay.text("&3Spawnpoint: &7%s", spawnPoint);
 
         chatDisplay.send(sender);
@@ -250,9 +251,10 @@ public class MinesCommands {
     @Command(identifier = "mines list", permissions = {"prison.mines.list",
         "prison.mines.admin"}, onlyPlayers = false) public void listCommand(CommandSender sender) {
         ChatDisplay display = new ChatDisplay("Mines");
-        BulletedListComponent.BulletedListBuilder builder = new BulletedListComponent.BulletedListBuilder();
+        BulletedListComponent.BulletedListBuilder builder =
+            new BulletedListComponent.BulletedListBuilder();
 
-        for(Mine m : Mines.get().getMines()) {
+        for (Mine m : Mines.get().getMines()) {
             builder.add("&7" + m.getName());
         }
 

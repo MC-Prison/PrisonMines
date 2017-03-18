@@ -247,19 +247,6 @@ public class Mine {
     }
 
     /**
-     * (Re)defines the boundaries for this mine
-     *
-     * @param bounds the new boundaries
-     * @return this instance for chaining
-     */
-    public Mine setBounds(Bounds bounds) {
-        min = bounds.getMin();
-        max = bounds.getMax();
-        worldName = bounds.getMin().getWorld().getName();
-        return this;
-    }
-
-    /**
      * Sets the spawn for this mine.
      *
      * @param location the new spawn
@@ -272,6 +259,15 @@ public class Mine {
     }
 
     /**
+     * Gets the name of this mine
+     *
+     * @return the name of this mine
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * Sets the name of this mine
      *
      * @param name the new name
@@ -280,29 +276,6 @@ public class Mine {
     public Mine setName(String name) {
         this.name = name;
         return this;
-    }
-
-    /**
-     * Sets the blocks for this mine
-     *
-     * @param blockMap the new blockmap with the {@link BlockType} as the key, and the chance of the block appearing as the value.
-     * @return this instance for chaining
-     */
-    public Mine setBlocks(HashMap<BlockType, Integer> blockMap) {
-        blocks = new ArrayList<>();
-        for (Map.Entry<BlockType, Integer> entry : blockMap.entrySet()) {
-            blocks.add(new Block().create(entry.getKey(), entry.getValue()));
-        }
-        return this;
-    }
-
-    /**
-     * Gets the name of this mine
-     *
-     * @return the name of this mine
-     */
-    public String getName() {
-        return name;
     }
 
     /**
@@ -318,8 +291,35 @@ public class Mine {
         return new Bounds(min, max);
     }
 
+    /**
+     * (Re)defines the boundaries for this mine
+     *
+     * @param bounds the new boundaries
+     * @return this instance for chaining
+     */
+    public Mine setBounds(Bounds bounds) {
+        min = bounds.getMin();
+        max = bounds.getMax();
+        worldName = bounds.getMin().getWorld().getName();
+        return this;
+    }
+
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    /**
+     * Sets the blocks for this mine
+     *
+     * @param blockMap the new blockmap with the {@link BlockType} as the key, and the chance of the block appearing as the value.
+     * @return this instance for chaining
+     */
+    public Mine setBlocks(HashMap<BlockType, Integer> blockMap) {
+        blocks = new ArrayList<>();
+        for (Map.Entry<BlockType, Integer> entry : blockMap.entrySet()) {
+            blocks.add(new Block().create(entry.getKey(), entry.getValue()));
+        }
+        return this;
     }
 
     public boolean isInMine(Location location) {

@@ -23,17 +23,14 @@ import tech.mcprison.prison.gui.Button;
 import tech.mcprison.prison.gui.ClickedButton;
 import tech.mcprison.prison.gui.GUI;
 import tech.mcprison.prison.internal.Player;
-import tech.mcprison.prison.internal.World;
 import tech.mcprison.prison.localization.Localizable;
 import tech.mcprison.prison.mines.util.Block;
 import tech.mcprison.prison.output.Output;
-import tech.mcprison.prison.store.*;
+import tech.mcprison.prison.store.Document;
 import tech.mcprison.prison.util.BlockType;
-import tech.mcprison.prison.util.Bounds;
 import tech.mcprison.prison.util.Location;
 
 import java.util.*;
-import java.util.Collection;
 import java.util.function.Predicate;
 
 /**
@@ -50,6 +47,9 @@ public class MinesList implements List<Mine> {
     int resetCount = 0;
 
     // NPE
+    private HashMap<Player, MinesList> players;
+
+    // Inherited methods -- don't know why I make things so difficult
 
     /**
      * Initializes a new instance of {@link MinesList}
@@ -59,8 +59,6 @@ public class MinesList implements List<Mine> {
         randomizedBlocks = new HashMap<>();
         players = new HashMap<>();
     }
-
-    // Inherited methods -- don't know why I make things so difficult
 
     /**
      * Gets the amount of mines in this {@link MinesList}
@@ -613,8 +611,6 @@ public class MinesList implements List<Mine> {
     public HashMap<Mine, List<BlockType>> getRandomizedBlocks() {
         return randomizedBlocks;
     }
-
-    private HashMap<Player, MinesList> players;
 
     /**
      * Adds a teleport rule. Teleport rules allow players only to teleport to/mine in certain mines.
