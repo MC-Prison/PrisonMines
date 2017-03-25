@@ -257,7 +257,7 @@ public class MinesCommands {
         for (Mine m : Mines.get().getMines()) {
             builder.add("&7" + m.getName());
         }
-
+        display.addComponent(builder.build());
         display.send(sender);
     }
 
