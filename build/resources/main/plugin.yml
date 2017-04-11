@@ -1,7 +1,0 @@
-name: PrisonMines
-version: "3.0.0-RC2"
-main: tech.mcprison.prison.mines.plugins.MinesSpigot
-depend: [Prison]
-description: A mines module for Prison.
-author: The MC-Prison Team
-website: https://mc-prison.tech
