@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="prison-mines_main" target="1.8" />
+      <module name="prison-mines_test" target="1.8" />
       <module name="prisonmines_main" target="1.8" />
       <module name="prisonmines_test" target="1.8" />
     </bytecodeTargetLevel>

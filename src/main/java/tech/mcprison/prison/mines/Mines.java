@@ -21,6 +21,8 @@ package tech.mcprison.prison.mines;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import tech.mcprison.prison.Prison;
+import tech.mcprison.prison.error.Error;
+import tech.mcprison.prison.error.ErrorManager;
 import tech.mcprison.prison.localization.LocaleManager;
 import tech.mcprison.prison.mines.util.Miner;
 import tech.mcprison.prison.modules.Module;
@@ -53,6 +55,7 @@ public class Mines extends Module {
     private LocaleManager localeManager;
     private Gson gson;
     private Database db;
+    private ErrorManager errorManager;
 
     /*
      * Constructor
@@ -78,6 +81,7 @@ public class Mines extends Module {
         initDb();
         initConfig();
         localeManager = new LocaleManager(this);
+        errorManager = new ErrorManager(this);
 
         initWorlds();
         initPlayers();
@@ -121,7 +125,7 @@ public class Mines extends Module {
                 String json = gson.toJson(config);
                 Files.write(configFile.toPath(), json.getBytes());
             } catch (IOException e) {
-                Output.get().logError("Failed to create config", e);
+                errorManager.throwError(new Error("Failed to create config").appendStackTrace("while creating", e));
                 getStatus().toFailed("Failed to create config");
             }
         } else {
@@ -129,7 +133,7 @@ public class Mines extends Module {
                 String json = new String(Files.readAllBytes(configFile.toPath()));
                 config = gson.fromJson(json, MinesConfig.class);
             } catch (IOException e) {
-                Output.get().logError("Failed to load config", e);
+                errorManager.throwError(new Error("Failed to load config").appendStackTrace("while loading", e));
                 getStatus().toFailed("Failed to load config");
             }
         }
@@ -152,7 +156,7 @@ public class Mines extends Module {
                     Files.readAllBytes(new File(getDataFolder(), "/players.json").toPath()));
                 players = gson.fromJson(json, players.getClass());
             } catch (IOException e) {
-                getLogger().logError("Couldn't load players", e);
+                errorManager.throwError(new Error("Failed to load players").appendStackTrace("while loading", e));
                 getStatus().toFailed("Failed to load players");
             }
         }
@@ -178,7 +182,6 @@ public class Mines extends Module {
             } catch (IOException e) {
                 Output.get().logError("Couldn't save players.", e);
             }
-            getLogger().logInfo("&aSaved players!");
         }
     }
 
