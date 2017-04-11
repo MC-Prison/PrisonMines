@@ -47,7 +47,7 @@ public class MinesList implements List<Mine> {
     int resetCount = 0;
 
     // NPE
-    private HashMap<Player, MinesList> players;
+    private HashMap<UUID, MinesList> players;
 
     // Inherited methods -- don't know why I make things so difficult
 
@@ -622,7 +622,21 @@ public class MinesList implements List<Mine> {
         if (players == null) {
             players = new HashMap<>();
         }
-        players.put(player, sublist);
+        players.put(player.getUUID(), sublist);
+    }
+
+
+    /**
+     * Adds a teleport rule. Teleport rules allow players only to teleport to/mine in certain mines.
+     *
+     * @param uuid the player's uuid to add a teleport rule for
+     * @param sublist
+     */
+    public void addTeleportRule(UUID uuid, MinesList sublist) {
+        if (players == null) {
+            players = new HashMap<>();
+        }
+        players.put(uuid, sublist);
     }
 
     /**
@@ -631,7 +645,17 @@ public class MinesList implements List<Mine> {
      * @param player
      */
     public void removeTeleportRule(Player player) {
-        players.remove(player);
+        players.remove(player.getUUID());
+    }
+
+
+    /**
+     * Removed all teleport rules for the specified UUID
+     *
+     * @param uuid
+     */
+    public void removeTeleportRule(UUID uuid) {
+        players.remove(uuid);
     }
 
     /**
@@ -641,7 +665,17 @@ public class MinesList implements List<Mine> {
      * @return the teleport rule
      */
     public MinesList getTeleportRule(Player player) {
-        return players.get(player);
+        return players.get(player.getUUID());
+    }
+
+    /**
+     * Gets all the mines that the specified player is allowed to teleport to/mine in
+     *
+     * @param uuid the player's UUID
+     * @return the teleport rule
+     */
+    public MinesList getTeleportRule(UUID uuid) {
+        return players.get(uuid);
     }
 
     /**
@@ -658,6 +692,23 @@ public class MinesList implements List<Mine> {
             return true;
         } else {
             return getTeleportRule(player).contains(mine);
+        }
+    }
+
+    /**
+     * Checks if the specified player can mine in/teleport to the specified mine
+     *
+     * @param uuid the uuid to test
+     * @param mine   the mine to test
+     * @return true if there are no teleport rules created for the player OR
+     * the teleport rule allows the player to mine in/teleport to the mine, false
+     * if the teleport rule exists and doesn't contain the specified mine.
+     */
+    public boolean canTeleport(UUID uuid, Mine mine) {
+        if (getTeleportRule(uuid) == null) {
+            return true;
+        } else {
+            return getTeleportRule(uuid).contains(mine);
         }
     }
 
@@ -689,6 +740,46 @@ public class MinesList implements List<Mine> {
         if (sublist.select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return !canTeleport(player, c);
+            }
+
+            @Override public void action(Mine c) {
+
+            }
+        }).size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Checks if a player can mine in the location. Always true if the location isn't within
+     * any mines, otherwise it checks teleport rules.
+     *
+     * @param uuid     the uuid of a player to test
+     * @param location the location to test
+     * @return true if the player is allowed to mine in this mine, false otherwise.
+     */
+    public boolean allowedToMine(UUID uuid, Location location) {
+        MinesList sublist = select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return c.isInMine(location);
+            }
+
+            @Override public void action(Mine c) {
+
+            }
+        });
+        if (sublist.size() > 1) {
+            Output.get().logWarn(
+                    "Potential overlap in mines -- there are " + sublist.size() + " mines at location "
+                            + location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ()
+                            + " in world " + location.getWorld().getName());
+            forEach(x -> Output.get().logWarn(x.getName()));
+        }
+        if (sublist.select(new MinesFilter() {
+            @Override public boolean accept(Mine c) {
+                return !canTeleport(uuid, c);
             }
 
             @Override public void action(Mine c) {
