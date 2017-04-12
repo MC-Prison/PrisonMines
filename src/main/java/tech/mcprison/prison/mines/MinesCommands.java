@@ -18,6 +18,7 @@
 
 package tech.mcprison.prison.mines;
 
+import org.apache.commons.lang3.StringUtils;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.commands.Arg;
 import tech.mcprison.prison.commands.Command;
@@ -155,6 +156,13 @@ public class MinesCommands {
             return;
         }
 
+        final double[] totalComp = {chance};
+        Mines.get().getMines().get(mine).getBlocks().forEach(block1 -> totalComp[0] += block1.chance);
+        if(totalComp[0] > 100) {
+            Mines.get().getMinesMessages().getLocalizable("mine_full").sendTo(sender);
+            return;
+        }
+
         Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType, chance));
         Mines.get().getMinesMessages().getLocalizable("block_added").withReplacements(block, mine)
             .sendTo(sender);
@@ -226,6 +234,25 @@ public class MinesCommands {
         String spawnPoint =
             m.getSpawn().isPresent() ? m.getSpawn().get().toCoordinates() : "&cnot set";
         chatDisplay.text("&3Spawnpoint: &7%s", spawnPoint);
+
+        chatDisplay.text("&3Blocks:");
+        BulletedListComponent.BulletedListBuilder builder = new BulletedListComponent.BulletedListBuilder();
+
+        int totalChance = 0;
+        for(Block block : m.getBlocks()) {
+            totalChance += Math.round(block.chance);
+
+            String blockName = StringUtils
+                .capitalize(block.type.name().replaceAll("_", " ").toLowerCase());
+            String percent = Math.round(block.chance) + "%%";
+            builder.add("&7%s - %s", percent, blockName);
+        }
+
+        if(totalChance < 100) {
+            builder.add("&e%s - Air", (100 - totalChance) + "%%");
+        }
+
+        chatDisplay.addComponent(builder.build());
 
         chatDisplay.send(sender);
     }
