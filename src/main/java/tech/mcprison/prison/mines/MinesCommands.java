@@ -138,7 +138,7 @@ public class MinesCommands {
     @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock",
         "prison.mines.admin"}, onlyPlayers = false, description = "Adds a block to a mine")
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") int chance) {
+        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") double chance) {
         if (!performCheckMineExists(sender, mine)) {
             return;
         }
@@ -220,7 +220,7 @@ public class MinesCommands {
         chatDisplay.text("&3Bounds: &7%s &8to &7%s", minCoords, maxCoords);
 
         chatDisplay
-            .text("&3Size: &7%d&8x&7%d&8x&7%d", m.getBounds().getWidth(), m.getBounds().getHeight(),
+            .text("&3Size: &7%f&8x&7%f&8x&7%f", m.getBounds().getWidth(), m.getBounds().getHeight(),
                 m.getBounds().getLength());
 
         String spawnPoint =

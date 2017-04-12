@@ -582,7 +582,17 @@ public class MinesList implements List<Mine> {
     public void generateBlockList(Mine m) {
         Random random = new Random();
         ArrayList<BlockType> blocks = new ArrayList<>();
-        double target = m.area();
+
+        Location min = m.getBounds().getMin();
+        Location max = m.getBounds().getMax();
+
+        int maxX = Math.max(min.getBlockX(), max.getBlockX());
+        int minX = Math.min(min.getBlockX(), max.getBlockX());
+        int maxY = Math.max(min.getBlockY(), max.getBlockY());
+        int minY = Math.min(min.getBlockY(), max.getBlockY());
+        int maxZ = Math.max(min.getBlockZ(), max.getBlockZ());
+        int minZ = Math.min(min.getBlockZ(), max.getBlockZ());
+        double target = ((maxY + 1) - minY) * ((maxX + 1) - minX) * ((maxZ + 1) - minZ);
 
         for (int i = 0; i < target; i++) {
             int chance = random.nextInt(101);
@@ -601,6 +611,7 @@ public class MinesList implements List<Mine> {
             }
         }
         randomizedBlocks.put(m, blocks);
+        System.out.println("Generated blocks #: " + blocks.size());
     }
 
     /**

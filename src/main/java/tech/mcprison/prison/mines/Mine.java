@@ -90,7 +90,7 @@ public class Mine {
         for (String docBlock : docBlocks) {
             String[] split = docBlock.split("-");
             String id = split[0];
-            int chance = Integer.parseInt(split[1]);
+            double chance = Double.parseDouble(split[1]);
 
             Block block = new Block();
             block.create(BlockType.getBlock(id), chance);
