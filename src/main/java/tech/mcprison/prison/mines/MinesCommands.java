@@ -136,10 +136,10 @@ public class MinesCommands {
         Mines.get().getMinesMessages().getLocalizable("spawn_set").sendTo(sender);
     }
 
-    @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock",
+    @Command(identifier = "mines block add", permissions = {"prison.mines.addblock",
         "prison.mines.admin"}, onlyPlayers = false, description = "Adds a block to a mine")
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") double chance) {
+        @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
         if (!performCheckMineExists(sender, mine)) {
             return;
         }
@@ -157,9 +157,11 @@ public class MinesCommands {
         }
 
         final double[] totalComp = {chance};
-        Mines.get().getMines().get(mine).getBlocks().forEach(block1 -> totalComp[0] += block1.chance);
-        if(totalComp[0] > 100) {
-            Mines.get().getMinesMessages().getLocalizable("mine_full").sendTo(sender);
+        Mines.get().getMines().get(mine).getBlocks()
+            .forEach(block1 -> totalComp[0] += block1.chance);
+        if (totalComp[0] > 100) {
+            Mines.get().getMinesMessages().getLocalizable("mine_full")
+                .sendTo(sender, Localizable.Level.ERROR);
             return;
         }
 
@@ -167,10 +169,55 @@ public class MinesCommands {
         Mines.get().getMinesMessages().getLocalizable("block_added").withReplacements(block, mine)
             .sendTo(sender);
         Mines.get().getMines().clearCache();
+    }
+
+    @Command(identifier = "mines block set", permissions = {"priosn.mines.setblock",
+        "prison.mines.admin"}, onlyPlayers = false, description = "Changes the percentage of a block in a mine")
+    public void setBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
+        @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
+        if (!performCheckMineExists(sender, mine)) {
+            return;
+        }
+
+        BlockType blockType = BlockType.getBlock(block);
+        if (blockType == null) {
+            Mines.get().getMinesMessages().getLocalizable("not_a_block").withReplacements(block)
+                .sendTo(sender);
+            return;
+        }
+
+        if (!Mines.get().getMines().get(mine).isInMine(blockType)) {
+            Mines.get().getMinesMessages().getLocalizable("block_not_removed").sendTo(sender);
+            return;
+        }
+
+        final double[] totalComp = {chance};
+        Mines.get().getMines().get(mine).getBlocks().forEach(block1 -> {
+            if (block1.type == blockType) {
+                totalComp[0] -= block1.chance;
+            } else {
+                totalComp[0] += block1.chance;
+            }
+        });
+        if (totalComp[0] > 100) {
+            Mines.get().getMinesMessages().getLocalizable("mine_full")
+                .sendTo(sender, Localizable.Level.ERROR);
+            return;
+        }
+
+        for (Block blockObject : Mines.get().getMines().get(mine).getBlocks()) {
+            if (blockObject.type == blockType) {
+                blockObject.chance = chance;
+            }
+        }
+
+        Mines.get().getMinesMessages().getLocalizable("block_set").withReplacements(block, mine)
+            .sendTo(sender);
+        Mines.get().getMines().clearCache();
 
     }
 
-    @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock",
+    @Command(identifier = "mines block remove", permissions = {"prison.mines.delblock",
         "prison.mines.admin"}, onlyPlayers = false, description = "Deletes a block from a mine")
     public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block) {
@@ -236,19 +283,20 @@ public class MinesCommands {
         chatDisplay.text("&3Spawnpoint: &7%s", spawnPoint);
 
         chatDisplay.text("&3Blocks:");
-        BulletedListComponent.BulletedListBuilder builder = new BulletedListComponent.BulletedListBuilder();
+        BulletedListComponent.BulletedListBuilder builder =
+            new BulletedListComponent.BulletedListBuilder();
 
         int totalChance = 0;
-        for(Block block : m.getBlocks()) {
+        for (Block block : m.getBlocks()) {
             totalChance += Math.round(block.chance);
 
-            String blockName = StringUtils
-                .capitalize(block.type.name().replaceAll("_", " ").toLowerCase());
+            String blockName =
+                StringUtils.capitalize(block.type.name().replaceAll("_", " ").toLowerCase());
             String percent = Math.round(block.chance) + "%%";
             builder.add("&7%s - %s", percent, blockName);
         }
 
-        if(totalChance < 100) {
+        if (totalChance < 100) {
             builder.add("&e%s - Air", (100 - totalChance) + "%%");
         }
 
