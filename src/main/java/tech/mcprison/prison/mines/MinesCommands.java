@@ -270,16 +270,15 @@ public class MinesCommands {
         String worldName = m.getWorld().isPresent() ? m.getWorld().get().getName() : "&cmissing";
         chatDisplay.text("&3World: &7%s", worldName);
 
-        String minCoords = m.getBounds().getMin().toCoordinates();
-        String maxCoords = m.getBounds().getMax().toCoordinates();
+        String minCoords = m.getBounds().getMin().toBlockCoordinates();
+        String maxCoords = m.getBounds().getMax().toBlockCoordinates();
         chatDisplay.text("&3Bounds: &7%s &8to &7%s", minCoords, maxCoords);
 
-        chatDisplay
-            .text("&3Size: &7%f&8x&7%f&8x&7%f", m.getBounds().getWidth(), m.getBounds().getHeight(),
-                m.getBounds().getLength());
+        chatDisplay.text("&3Size: &7%d&8x&7%d&8x&7%d", Math.round(m.getBounds().getWidth()),
+            Math.round(m.getBounds().getHeight()), Math.round(m.getBounds().getLength()));
 
         String spawnPoint =
-            m.getSpawn().isPresent() ? m.getSpawn().get().toCoordinates() : "&cnot set";
+            m.getSpawn().isPresent() ? m.getSpawn().get().toBlockCoordinates() : "&cnot set";
         chatDisplay.text("&3Spawnpoint: &7%s", spawnPoint);
 
         chatDisplay.text("&3Blocks:");

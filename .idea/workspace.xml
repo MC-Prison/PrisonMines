@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="322e1846-0d7f-429e-baaf-d3f965d62df6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/lang/en_US.properties" afterPath="$PROJECT_DIR$/src/main/resources/lang/en_US.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -62,8 +61,31 @@
       <file leaf-file-name="MinesCommands.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="162" column="19" lean-forward="false" selection-start-line="162" selection-start-column="19" selection-end-line="162" selection-end-column="19" />
+            <state relative-caret-position="341">
+              <caret line="273" column="71" lean-forward="true" selection-start-line="273" selection-start-column="71" selection-end-line="273" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Location.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.5.0-SNAPSHOT/e6d81803f50810e7acf6cd688ad3ed39240dd7c1/prison-core-0.5.0-SNAPSHOT.jar!/tech/mcprison/prison/util/Location.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="779">
+              <caret line="131" column="18" lean-forward="false" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+              <folding>
+                <element signature="e#3447#3448#0" expanded="true" />
+                <element signature="e#3520#3521#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="816">
+              <caret line="67" column="78" lean-forward="false" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -72,8 +94,8 @@
       <file leaf-file-name="en_US.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/lang/en_US.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="20" column="106" lean-forward="false" selection-start-line="20" selection-start-column="106" selection-end-line="20" selection-end-column="106" />
+            <state relative-caret-position="352">
+              <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -83,7 +105,7 @@
         <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.5.0-SNAPSHOT/e6d81803f50810e7acf6cd688ad3ed39240dd7c1/prison-core-0.5.0-SNAPSHOT.jar!/tech/mcprison/prison/util/BlockType.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
-              <caret line="478" column="5" lean-forward="true" selection-start-line="478" selection-start-column="5" selection-end-line="478" selection-end-column="5" />
+              <caret line="478" column="5" lean-forward="false" selection-start-line="478" selection-start-column="5" selection-end-line="478" selection-end-column="5" />
               <folding>
                 <element signature="e#35548#35549#0" expanded="true" />
                 <element signature="e#35584#35585#0" expanded="true" />
@@ -108,7 +130,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="370">
-              <caret line="595" column="0" lean-forward="true" selection-start-line="595" selection-start-column="0" selection-end-line="595" selection-end-column="0" />
+              <caret line="595" column="0" lean-forward="false" selection-start-line="595" selection-start-column="0" selection-end-line="595" selection-end-column="0" />
               <folding>
                 <marker date="1492037552580" expanded="true" signature="24112:24208" ph="{...}" />
               </folding>
@@ -449,8 +471,8 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5965478299439" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="2489860570" />
+        <entry key="$PROJECT_DIR$" value="5965576818838" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="1996526214" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="1171420429" />
       </map>
     </option>
@@ -653,11 +675,11 @@
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Block.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
         <option value="$PROJECT_DIR$/src/main/resources/lang/en_US.properties" />
+        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
       </list>
     </option>
@@ -671,7 +693,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1924" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -1229,7 +1251,7 @@
       <option name="presentableId" value="Default" />
       <updated>1491944062747</updated>
       <workItem from="1491944109148" duration="1070000" />
-      <workItem from="1492036465884" duration="2339000" />
+      <workItem from="1492036465884" duration="6977000" />
     </task>
     <task id="LOCAL-00001" summary="Switch to 0.5.0">
       <created>1491947201087</created>
@@ -1252,11 +1274,25 @@
       <option name="project" value="LOCAL" />
       <updated>1492037685674</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added mine full check, fixed save issues">
+      <created>1492040134593</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1492040134593</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refine commands">
+      <created>1492045703060</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1492045703060</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6427000" />
+    <option name="totallyTimeSpent" value="11065000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1268,7 +1304,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1285,7 +1321,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1315,7 +1351,9 @@
     <MESSAGE value="This is 0.5.0" />
     <MESSAGE value="Update to 0.5.0" />
     <MESSAGE value="Fixed reset bug, and the info and addblock commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed reset bug, and the info and addblock commands" />
+    <MESSAGE value="Added mine full check, fixed save issues" />
+    <MESSAGE value="Refine commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refine commands" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1326,14 +1364,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="89" column="26" lean-forward="false" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/lang/en_US.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
@@ -1626,6 +1656,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1636,14 +1667,6 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="62" column="64" lean-forward="false" selection-start-line="62" selection-start-column="64" selection-end-line="62" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1658,7 +1681,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
-          <caret line="595" column="0" lean-forward="true" selection-start-line="595" selection-start-column="0" selection-end-line="595" selection-end-column="0" />
+          <caret line="595" column="0" lean-forward="false" selection-start-line="595" selection-start-column="0" selection-end-line="595" selection-end-column="0" />
           <folding>
             <marker date="1492037552580" expanded="true" signature="24112:24208" ph="{...}" />
           </folding>
@@ -1668,7 +1691,7 @@
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.5.0-SNAPSHOT/e6d81803f50810e7acf6cd688ad3ed39240dd7c1/prison-core-0.5.0-SNAPSHOT.jar!/tech/mcprison/prison/util/BlockType.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="478" column="5" lean-forward="true" selection-start-line="478" selection-start-column="5" selection-end-line="478" selection-end-column="5" />
+          <caret line="478" column="5" lean-forward="false" selection-start-line="478" selection-start-column="5" selection-end-line="478" selection-end-column="5" />
           <folding>
             <element signature="e#35548#35549#0" expanded="true" />
             <element signature="e#35584#35585#0" expanded="true" />
@@ -1688,16 +1711,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/lang/en_US.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="106" lean-forward="false" selection-start-line="20" selection-start-column="106" selection-end-line="20" selection-end-column="106" />
+        <state relative-caret-position="352">
+          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.5.0-SNAPSHOT/e6d81803f50810e7acf6cd688ad3ed39240dd7c1/prison-core-0.5.0-SNAPSHOT.jar!/tech/mcprison/prison/util/Location.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="131" column="18" lean-forward="false" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+          <folding>
+            <element signature="e#3447#3448#0" expanded="true" />
+            <element signature="e#3520#3521#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="67" column="78" lean-forward="false" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="162" column="19" lean-forward="false" selection-start-line="162" selection-start-column="19" selection-end-line="162" selection-end-column="19" />
+        <state relative-caret-position="341">
+          <caret line="273" column="71" lean-forward="true" selection-start-line="273" selection-start-column="71" selection-end-line="273" selection-end-column="71" />
           <folding />
         </state>
       </provider>
