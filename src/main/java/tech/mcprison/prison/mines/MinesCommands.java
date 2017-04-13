@@ -244,7 +244,6 @@ public class MinesCommands {
         Mines.get().getMines().clearCache();
     }
 
-
     @Command(identifier = "mines delete", permissions = {"prison.mines.delete",
         "prison.mines.admin"}, onlyPlayers = false, description = "Deletes a mine")
     public void deleteCommand(CommandSender sender, @Arg(name = "mineName") String name) {

@@ -29,6 +29,7 @@ import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.store.Document;
 import tech.mcprison.prison.util.BlockType;
 import tech.mcprison.prison.util.Location;
+import tech.mcprison.prison.util.Text;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -416,11 +417,11 @@ public class MinesList implements List<Mine> {
 
                     Prison.get().getPlatform().getOnlinePlayers().forEach(
                         x -> Mines.get().getMinesMessages().getLocalizable("reset_warning")
-                            .withReplacements(String.valueOf(resetCount)).sendTo(x));
+                            .withReplacements(Text.getTimeUntilString(resetCount * 1000)).sendTo(x));
                 } else {
                     Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x,
                         Mines.get().getMinesMessages().getLocalizable("reset_warning")
-                            .withReplacements(String.valueOf(resetCount))));
+                            .withReplacements(Text.getTimeUntilString(resetCount * 1000))));
                 }
             }
         }
