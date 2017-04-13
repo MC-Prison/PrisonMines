@@ -169,6 +169,13 @@ public class Mine {
 
             teleportOutPlayers(maxY);
 
+            // For debugging -- apparently there's an index bug
+            Output.get().logInfo("ManuCalcArea: "+(2 * (((maxX - minX) * (maxZ - minZ)) + ((maxY - minY) * (maxZ - minZ)) + ((maxY - minY) * (maxX - minX))))); // Loads of brackets just in case BIDMAS matters
+            Output.get().logInfo("PrsnCalcArea: "+area());
+            Output.get().logInfo("PrisonVolume: "+(getBounds().getWidth() * getBounds().getHeight() * getBounds().getLength()));
+            Output.get().logInfo("ManualVolume: "+((maxX - minX) * (maxY - minY) * (maxZ - minZ)));
+            Output.get().logInfo("BlocksLength: "+blockTypes.size());
+
             for (int y = minY; y <= maxY; y++) {
                 for (int x = minX; x <= maxX; x++) {
                     for (int z = minZ; z <= maxZ; z++) {
