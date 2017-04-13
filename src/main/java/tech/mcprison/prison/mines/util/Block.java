@@ -31,7 +31,7 @@ public class Block {
     /**
      * The chance of this block appearing in it's associated mine
      */
-    public int chance = 100;
+    public double chance = 100;
 
     /**
      * Assigns the type and chance
@@ -40,7 +40,7 @@ public class Block {
      * @param chance
      * @return
      */
-    public Block create(BlockType block, int chance) {
+    public Block create(BlockType block, double chance) {
         type = block;
         this.chance = chance;
         return this;

@@ -18,6 +18,7 @@
 
 package tech.mcprison.prison.mines;
 
+import org.apache.commons.lang3.StringUtils;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.commands.Arg;
 import tech.mcprison.prison.commands.Command;
@@ -135,10 +136,10 @@ public class MinesCommands {
         Mines.get().getMinesMessages().getLocalizable("spawn_set").sendTo(sender);
     }
 
-    @Command(identifier = "mines addblock", permissions = {"prison.mines.addblock",
+    @Command(identifier = "mines block add", permissions = {"prison.mines.addblock",
         "prison.mines.admin"}, onlyPlayers = false, description = "Adds a block to a mine")
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block", def = "AIR") String block, @Arg(name = "chance") int chance) {
+        @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
         if (!performCheckMineExists(sender, mine)) {
             return;
         }
@@ -155,14 +156,68 @@ public class MinesCommands {
             return;
         }
 
+        final double[] totalComp = {chance};
+        Mines.get().getMines().get(mine).getBlocks()
+            .forEach(block1 -> totalComp[0] += block1.chance);
+        if (totalComp[0] > 100) {
+            Mines.get().getMinesMessages().getLocalizable("mine_full")
+                .sendTo(sender, Localizable.Level.ERROR);
+            return;
+        }
+
         Mines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType, chance));
         Mines.get().getMinesMessages().getLocalizable("block_added").withReplacements(block, mine)
+            .sendTo(sender);
+        Mines.get().getMines().clearCache();
+    }
+
+    @Command(identifier = "mines block set", permissions = {"priosn.mines.setblock",
+        "prison.mines.admin"}, onlyPlayers = false, description = "Changes the percentage of a block in a mine")
+    public void setBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
+        @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
+        if (!performCheckMineExists(sender, mine)) {
+            return;
+        }
+
+        BlockType blockType = BlockType.getBlock(block);
+        if (blockType == null) {
+            Mines.get().getMinesMessages().getLocalizable("not_a_block").withReplacements(block)
+                .sendTo(sender);
+            return;
+        }
+
+        if (!Mines.get().getMines().get(mine).isInMine(blockType)) {
+            Mines.get().getMinesMessages().getLocalizable("block_not_removed").sendTo(sender);
+            return;
+        }
+
+        final double[] totalComp = {chance};
+        Mines.get().getMines().get(mine).getBlocks().forEach(block1 -> {
+            if (block1.type == blockType) {
+                totalComp[0] -= block1.chance;
+            } else {
+                totalComp[0] += block1.chance;
+            }
+        });
+        if (totalComp[0] > 100) {
+            Mines.get().getMinesMessages().getLocalizable("mine_full")
+                .sendTo(sender, Localizable.Level.ERROR);
+            return;
+        }
+
+        for (Block blockObject : Mines.get().getMines().get(mine).getBlocks()) {
+            if (blockObject.type == blockType) {
+                blockObject.chance = chance;
+            }
+        }
+
+        Mines.get().getMinesMessages().getLocalizable("block_set").withReplacements(block, mine)
             .sendTo(sender);
         Mines.get().getMines().clearCache();
 
     }
 
-    @Command(identifier = "mines delblock", permissions = {"prison.mines.delblock",
+    @Command(identifier = "mines block remove", permissions = {"prison.mines.delblock",
         "prison.mines.admin"}, onlyPlayers = false, description = "Deletes a block from a mine")
     public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block) {
@@ -215,17 +270,36 @@ public class MinesCommands {
         String worldName = m.getWorld().isPresent() ? m.getWorld().get().getName() : "&cmissing";
         chatDisplay.text("&3World: &7%s", worldName);
 
-        String minCoords = m.getBounds().getMin().toCoordinates();
-        String maxCoords = m.getBounds().getMax().toCoordinates();
+        String minCoords = m.getBounds().getMin().toBlockCoordinates();
+        String maxCoords = m.getBounds().getMax().toBlockCoordinates();
         chatDisplay.text("&3Bounds: &7%s &8to &7%s", minCoords, maxCoords);
 
-        chatDisplay
-            .text("&3Size: &7%d&8x&7%d&8x&7%d", m.getBounds().getWidth(), m.getBounds().getHeight(),
-                m.getBounds().getLength());
+        chatDisplay.text("&3Size: &7%d&8x&7%d&8x&7%d", Math.round(m.getBounds().getWidth()),
+            Math.round(m.getBounds().getHeight()), Math.round(m.getBounds().getLength()));
 
         String spawnPoint =
-            m.getSpawn().isPresent() ? m.getSpawn().get().toCoordinates() : "&cnot set";
+            m.getSpawn().isPresent() ? m.getSpawn().get().toBlockCoordinates() : "&cnot set";
         chatDisplay.text("&3Spawnpoint: &7%s", spawnPoint);
+
+        chatDisplay.text("&3Blocks:");
+        BulletedListComponent.BulletedListBuilder builder =
+            new BulletedListComponent.BulletedListBuilder();
+
+        int totalChance = 0;
+        for (Block block : m.getBlocks()) {
+            totalChance += Math.round(block.chance);
+
+            String blockName =
+                StringUtils.capitalize(block.type.name().replaceAll("_", " ").toLowerCase());
+            String percent = Math.round(block.chance) + "%%";
+            builder.add("&7%s - %s", percent, blockName);
+        }
+
+        if (totalChance < 100) {
+            builder.add("&e%s - Air", (100 - totalChance) + "%%");
+        }
+
+        chatDisplay.addComponent(builder.build());
 
         chatDisplay.send(sender);
     }

@@ -79,7 +79,7 @@ public class Mine {
         if (hasSpawn) {
             spawn = new Location(worldOptional.get(), (double) document.get("spawnX"),
                 (double) document.get("spawnY"), (double) document.get("spawnZ"),
-                (float) document.get("spawnPitch"), (float) document.get("spawnYaw"));
+                ((Double) document.get("spawnPitch")).floatValue(), ((Double) document.get("spawnYaw")).floatValue());
         }
 
         worldName = worldOptional.get().getName();
@@ -90,7 +90,7 @@ public class Mine {
         for (String docBlock : docBlocks) {
             String[] split = docBlock.split("-");
             String id = split[0];
-            int chance = Integer.parseInt(split[1]);
+            double chance = Double.parseDouble(split[1]);
 
             Block block = new Block();
             block.create(BlockType.getBlock(id), chance);
