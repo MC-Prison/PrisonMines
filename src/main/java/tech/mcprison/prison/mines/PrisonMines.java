@@ -42,13 +42,13 @@ import java.util.Optional;
  *
  * @author The MC-Prison Team
  */
-public class Mines extends Module {
+public class PrisonMines extends Module {
 
     /*
      * Fields & Constants
      */
 
-    private static Mines i = null;
+    private static PrisonMines i = null;
     private MinesConfig config;
     private List<String> worlds;
     private List<Miner> players;
@@ -66,11 +66,11 @@ public class Mines extends Module {
      * Methods
      */
 
-    public Mines(String version) {
-        super("Mines", version, 1);
+    public PrisonMines(String version) {
+        super("Mines", version, 0);
     }
 
-    public static Mines get() {
+    public static PrisonMines get() {
         return i;
     }
 
@@ -97,15 +97,15 @@ public class Mines extends Module {
 
     private void initDb() {
         Optional<Database> dbOptional =
-            Prison.get().getPlatform().getStorage().getDatabase("Mines");
+            Prison.get().getPlatform().getStorage().getDatabase("mines");
 
         if (!dbOptional.isPresent()) {
 
-            Prison.get().getPlatform().getStorage().createDatabase("Mines");
-            dbOptional = Prison.get().getPlatform().getStorage().getDatabase("Mines");
+            Prison.get().getPlatform().getStorage().createDatabase("mines");
+            dbOptional = Prison.get().getPlatform().getStorage().getDatabase("mines");
 
             if (!dbOptional.isPresent()) {
-                Output.get().logError("Could not load the Mines database.");
+                Output.get().logError("Could not load the mines database.");
                 getStatus().toFailed("Could not load storage database.");
                 return;
             }

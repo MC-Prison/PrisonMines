@@ -42,14 +42,14 @@ public class MinesListener {
 
     @Subscribe public void checkIsPlayerAllowed(BlockBreakEvent event) {
 
-        if (!Mines.get().getMines().allowedToMine(event.getPlayer(), event.getBlockLocation())) {
-            Mines.get().getMinesMessages().getLocalizable("not_allowed").sendTo(event.getPlayer());
+        if (!PrisonMines.get().getMines().allowedToMine(event.getPlayer(), event.getBlockLocation())) {
+            PrisonMines.get().getMinesMessages().getLocalizable("not_allowed").sendTo(event.getPlayer());
             event.setCanceled(true);
         }
     }
 
     @Subscribe public void doAutosmelt(BlockBreakEvent event) {
-        if (Mines.get().getMines().isInMine(event.getBlockLocation())
+        if (PrisonMines.get().getMines().isInMine(event.getBlockLocation())
             && event.getPlayer().getGamemode() == Gamemode.SURVIVAL) {
 
             event.setCanceled(true);

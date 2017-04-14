@@ -23,7 +23,7 @@ import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import tech.mcprison.prison.Prison;
-import tech.mcprison.prison.mines.Mines;
+import tech.mcprison.prison.mines.PrisonMines;
 
 /**
  * A loadable sponge implementation of mines
@@ -43,7 +43,7 @@ import tech.mcprison.prison.mines.Mines;
     static final String VERSION = "3.0.0-SNAPSHOT";
 
     @Listener public void onEnable(GameStartedServerEvent event) {
-        Prison.get().getModuleManager().registerModule(new Mines(VERSION));
+        Prison.get().getModuleManager().registerModule(new PrisonMines(VERSION));
     }
 
 }

@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="322e1846-0d7f-429e-baaf-d3f965d62df6" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/lang/en_US.properties" afterPath="$PROJECT_DIR$/src/main/resources/lang/en_US.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/plugins/MinesSpigot.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/plugins/MinesSpigot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/plugins/MinesSponge.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/plugins/MinesSponge.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/MinesUtil.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/MinesUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -62,19 +63,23 @@
       <file leaf-file-name="MinesCommands.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="251" column="9" lean-forward="true" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="3520">
+              <caret line="254" column="9" lean-forward="false" selection-start-line="254" selection-start-column="9" selection-end-line="254" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#15203#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mines.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
+      <file leaf-file-name="PrisonMines.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2304">
-              <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+            <state relative-caret-position="304">
+              <caret line="107" column="59" lean-forward="false" selection-start-line="107" selection-start-column="59" selection-end-line="107" selection-end-column="59" />
               <folding>
+                <element signature="e#0#6146#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -84,9 +89,14 @@
       <file leaf-file-name="MinesListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
+            <state relative-caret-position="144">
               <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="e#0#3118#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1419#1420#0" expanded="false" />
+                <element signature="e#1476#1477#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -111,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="en_US.properties" pinned="false" current-in-tab="true">
+      <file leaf-file-name="en_US.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/lang/en_US.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="52" lean-forward="false" selection-start-line="0" selection-start-column="52" selection-end-line="0" selection-end-column="52" />
+            <state relative-caret-position="432">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -136,7 +146,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="832">
               <caret line="81" column="116" lean-forward="false" selection-start-line="81" selection-start-column="116" selection-end-line="81" selection-end-column="116" />
-              <folding />
+              <folding>
+                <element signature="e#0#10604#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1610#1611#0" expanded="false" />
+                <element signature="e#1652#1653#0" expanded="false" />
+                <element signature="e#7953#7954#0" expanded="false" />
+                <element signature="e#7984#7985#0" expanded="false" />
+                <element signature="e#8780#8781#0" expanded="false" />
+                <element signature="e#8807#8808#0" expanded="false" />
+                <element signature="e#9132#9133#0" expanded="false" />
+                <element signature="e#9201#9202#0" expanded="false" />
+                <element signature="e#9234#9235#0" expanded="false" />
+                <element signature="e#9277#9278#0" expanded="false" />
+                <element signature="e#9659#9660#0" expanded="false" />
+                <element signature="e#9688#9689#0" expanded="false" />
+                <element signature="e#10263#10264#0" expanded="false" />
+                <element signature="e#10314#10315#0" expanded="false" />
+                <element signature="e#10555#10556#0" expanded="false" />
+                <element signature="e#10599#10600#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,10 +173,84 @@
       <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="424" column="17" lean-forward="true" selection-start-line="424" selection-start-column="17" selection-end-line="424" selection-end-column="17" />
+            <state relative-caret-position="5664">
+              <caret line="424" column="17" lean-forward="false" selection-start-line="424" selection-start-column="17" selection-end-line="424" selection-end-column="17" />
               <folding>
-                <marker date="1492118346784" expanded="true" signature="24183:24279" ph="{...}" />
+                <element signature="e#0#26275#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2187#2188#0" expanded="false" />
+                <element signature="e#2222#2223#0" expanded="false" />
+                <element signature="e#2406#2407#0" expanded="false" />
+                <element signature="e#2444#2445#0" expanded="false" />
+                <element signature="e#2657#2658#0" expanded="false" />
+                <element signature="e#2697#2698#0" expanded="false" />
+                <element signature="e#2839#2840#0" expanded="false" />
+                <element signature="e#2878#2879#0" expanded="false" />
+                <element signature="e#3053#3054#0" expanded="false" />
+                <element signature="e#3100#3101#0" expanded="false" />
+                <element signature="e#3137#3138#0" expanded="false" />
+                <element signature="e#3176#3177#0" expanded="false" />
+                <element signature="e#4178#4179#0" expanded="false" />
+                <element signature="e#4221#4222#0" expanded="false" />
+                <element signature="e#4486#4487#0" expanded="false" />
+                <element signature="e#4524#4525#0" expanded="false" />
+                <element signature="e#5145#5146#0" expanded="false" />
+                <element signature="e#5186#5187#0" expanded="false" />
+                <element signature="e#5467#5468#0" expanded="false" />
+                <element signature="e#5508#5509#0" expanded="false" />
+                <element signature="e#5620#5621#0" expanded="false" />
+                <element signature="e#5649#5650#0" expanded="false" />
+                <element signature="e#5825#5826#0" expanded="false" />
+                <element signature="e#5864#5865#0" expanded="false" />
+                <element signature="e#6102#6103#0" expanded="false" />
+                <element signature="e#6150#6151#0" expanded="false" />
+                <element signature="e#6453#6454#0" expanded="false" />
+                <element signature="e#6488#6489#0" expanded="false" />
+                <element signature="e#6653#6654#0" expanded="false" />
+                <element signature="e#6695#6696#0" expanded="false" />
+                <element signature="e#6904#6905#0" expanded="false" />
+                <element signature="e#6943#6944#0" expanded="false" />
+                <element signature="e#7171#7172#0" expanded="false" />
+                <element signature="e#7214#7215#0" expanded="false" />
+                <element signature="e#7375#7376#0" expanded="false" />
+                <element signature="e#7418#7419#0" expanded="false" />
+                <element signature="e#7613#7614#0" expanded="false" />
+                <element signature="e#7661#7662#0" expanded="false" />
+                <element signature="e#8386#8387#0" expanded="false" />
+                <element signature="e#8459#8460#0" expanded="false" />
+                <element signature="e#13016#13017#0" expanded="false" />
+                <element signature="e#13089#13090#0" expanded="false" />
+                <element signature="e#15573#15574#0" expanded="false" />
+                <element signature="e#15616#15617#0" expanded="false" />
+                <element signature="e#15668#15669#0" expanded="false" />
+                <element signature="e#15709#15710#0" expanded="false" />
+                <element signature="e#15975#15976#0" expanded="false" />
+                <element signature="e#16031#16032#0" expanded="false" />
+                <element signature="e#16408#16409#0" expanded="false" />
+                <element signature="e#16467#16468#0" expanded="false" />
+                <element signature="e#18628#18629#0" expanded="false" />
+                <element signature="e#18667#18668#0" expanded="false" />
+                <element signature="e#19630#19631#0" expanded="false" />
+                <element signature="e#19678#19679#0" expanded="false" />
+                <element signature="e#19827#19828#0" expanded="false" />
+                <element signature="e#19863#19864#0" expanded="false" />
+                <element signature="e#20092#20093#0" expanded="false" />
+                <element signature="e#20144#20145#0" expanded="false" />
+                <element signature="e#20374#20375#0" expanded="false" />
+                <element signature="e#20414#20415#0" expanded="false" />
+                <element signature="e#22201#22202#0" expanded="false" />
+                <element signature="e#22260#22261#0" expanded="false" />
+                <element signature="e#22849#22850#0" expanded="false" />
+                <element signature="e#22911#22912#0" expanded="false" />
+                <element signature="e#23593#23594#0" expanded="false" />
+                <element signature="e#23652#23653#0" expanded="false" />
+                <element signature="e#24261#24262#0" expanded="false" />
+                <element signature="e#24321#24322#0" expanded="false" />
+                <element signature="e#24848#24849#0" expanded="false" />
+                <element signature="e#24888#24889#0" expanded="false" />
+                <element signature="e#25779#25780#0" expanded="false" />
+                <element signature="e#25822#25823#0" expanded="false" />
+                <marker date="1492142963129" expanded="true" signature="24303:24399" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -156,7 +259,7 @@
       <file leaf-file-name="Text.class" pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.6.0-SNAPSHOT/1b36009f282410f5b28adb4aa5435f80290c7c03/prison-core-0.6.0-SNAPSHOT.jar!/tech/mcprison/prison/util/Text.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="1632">
               <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
               <folding />
             </state>
@@ -180,82 +283,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GradleExtensions">
-    <project path="$PROJECT_DIR$">
-      <sub-project>
-        <project path="$PROJECT_DIR$">
-          <extensions>
-            <ext name="ext" type="org.gradle.api.internal.plugins.DefaultExtraPropertiesExtension" />
-            <ext name="defaultArtifacts" type="org.gradle.api.internal.plugins.DefaultArtifactPublicationSet" />
-            <ext name="reporting" type="org.gradle.api.reporting.ReportingExtension" />
-            <ext name="eclipse" type="org.gradle.plugins.ide.eclipse.model.EclipseModel" />
-            <ext name="sponge" type="org.spongepowered.gradle.meta.MetadataExtension" />
-            <ext name="shadow" type="com.github.jengelman.gradle.plugins.shadow.ShadowExtension" />
-            <prop name="keyStorePassword" />
-            <task name="components" type="org.gradle.api.reporting.components.ComponentReport">Displays the components produced by root project 'prison-mines'. [incubating]&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="buildDependents">Assembles and tests this project and all projects that depend on it.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="cleanEclipseClasspath" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="projects" type="org.gradle.api.tasks.diagnostics.ProjectReportTask">Displays the sub-projects of root project 'prison-mines'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="cleanEclipse">Cleans all Eclipse files.&lt;p&gt;&lt;i&gt;Task group: IDE&lt;i&gt;</task>
-            <task name="idea">Generates IDEA project files (IML, IPR, IWS)&lt;p&gt;&lt;i&gt;Task group: IDE&lt;i&gt;</task>
-            <task name="classes">Assembles main classes.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="buildEnvironment" type="org.gradle.api.tasks.diagnostics.BuildEnvironmentReportTask">Displays all buildscript dependencies declared in root project 'prison-mines'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="cleanEclipseProject" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="wrapper" type="org.gradle.api.tasks.wrapper.Wrapper">Generates Gradle wrapper files. [incubating]&lt;p&gt;&lt;i&gt;Task group: Build Setup&lt;i&gt;</task>
-            <task name="cleanIdeaModule" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="testClasses">Assembles test classes.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="javadoc" type="org.gradle.api.tasks.javadoc.Javadoc">Generates Javadoc API documentation for the main source code.&lt;p&gt;&lt;i&gt;Task group: documentation&lt;i&gt;</task>
-            <task name="generateMetadata" type="org.spongepowered.gradle.meta.GenerateMeta">&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="eclipseClasspath" type="org.gradle.plugins.ide.eclipse.GenerateEclipseClasspath">Generates the Eclipse classpath file.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="jar" type="org.gradle.api.tasks.bundling.Jar">Assembles a jar archive containing the main classes.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="model" type="org.gradle.api.reporting.model.ModelReport">Displays the configuration model of root project 'prison-mines'. [incubating]&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="ideaModule" type="org.gradle.plugins.ide.idea.GenerateIdeaModule">Generates IDEA module files (IML)&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="processResources" type="org.gradle.language.jvm.tasks.ProcessResources">Processes main resources.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="tasks" type="org.gradle.api.tasks.diagnostics.TaskReportTask">Displays the tasks runnable from root project 'prison-mines'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="cleanEclipseJdt" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="knows" type="com.github.jengelman.gradle.plugins.shadow.tasks.KnowsTask">Do you know who knows?&lt;p&gt;&lt;i&gt;Task group: Shadow&lt;i&gt;</task>
-            <task name="init" type="org.gradle.buildinit.tasks.InitBuild">Initializes a new Gradle build. [incubating]&lt;p&gt;&lt;i&gt;Task group: Build Setup&lt;i&gt;</task>
-            <task name="cleanIdea">Cleans IDEA project files (IML, IPR)&lt;p&gt;&lt;i&gt;Task group: IDE&lt;i&gt;</task>
-            <task name="ideaWorkspace" type="org.gradle.plugins.ide.idea.GenerateIdeaWorkspace">Generates an IDEA workspace file (IWS)&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="test" type="org.gradle.api.tasks.testing.Test">Runs the unit tests.&lt;p&gt;&lt;i&gt;Task group: verification&lt;i&gt;</task>
-            <task name="compileJava" type="org.gradle.api.tasks.compile.JavaCompile">Compiles main Java source.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="dependencyInsight" type="org.gradle.api.tasks.diagnostics.DependencyInsightReportTask">Displays the insight into a specific dependency in root project 'prison-mines'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="check">Runs all checks.&lt;p&gt;&lt;i&gt;Task group: verification&lt;i&gt;</task>
-            <task name="assemble">Assembles the outputs of this project.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="clean" type="org.gradle.api.tasks.Delete">Deletes the build directory.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="compileTestJava" type="org.gradle.api.tasks.compile.JavaCompile">Compiles test Java source.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="cleanIdeaProject" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="dependencies" type="org.gradle.api.tasks.diagnostics.DependencyReportTask">Displays all dependencies declared in root project 'prison-mines'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="eclipse">Generates all Eclipse files.&lt;p&gt;&lt;i&gt;Task group: IDE&lt;i&gt;</task>
-            <task name="processTestResources" type="org.gradle.language.jvm.tasks.ProcessResources">Processes test resources.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="help" type="org.gradle.configuration.Help">Displays a help message.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="eclipseJdt" type="org.gradle.plugins.ide.eclipse.GenerateEclipseJdt">Generates the Eclipse JDT settings file.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="build">Assembles and tests this project.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="install" type="org.gradle.api.tasks.Upload">Installs the 'archives' artifacts into the local Maven repository.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="buildNeeded">Assembles and tests this project and all projects it depends on.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
-            <task name="shadowJar" type="com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar">Create a combined JAR of project and runtime dependencies&lt;p&gt;&lt;i&gt;Task group: Shadow&lt;i&gt;</task>
-            <task name="eclipseProject" type="org.gradle.plugins.ide.eclipse.GenerateEclipseProject">Generates the Eclipse project file.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="ideaProject" type="org.gradle.plugins.ide.idea.GenerateIdeaProject">Generates IDEA project file (IPR)&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <task name="properties" type="org.gradle.api.tasks.diagnostics.PropertyReportTask">Displays the properties of root project 'prison-mines'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
-            <task name="cleanIdeaWorkspace" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
-            <conf name="archives">Configuration for archive artifacts.</conf>
-            <conf name="compile" visible="false">Dependencies for source set 'main'.</conf>
-            <conf name="compileClasspath" visible="false">Compile classpath for source set 'main'.</conf>
-            <conf name="compileOnly" visible="false">Compile dependencies for source set 'main'.</conf>
-            <conf name="default">Configuration for default artifacts.</conf>
-            <conf name="provided" />
-            <conf name="runtime" visible="false">Runtime dependencies for source set 'main'.</conf>
-            <conf name="shadow" />
-            <conf name="testCompile" visible="false">Dependencies for source set 'test'.</conf>
-            <conf name="testCompileClasspath" visible="false">Compile classpath for source set 'test'.</conf>
-            <conf name="testCompileOnly" visible="false">Compile dependencies for source set 'test'.</conf>
-            <conf name="testRuntime" visible="false">Runtime dependencies for source set 'test'.</conf>
-            <conf name="classpath" scriptClasspath="true" />
-          </extensions>
-        </project>
-      </sub-project>
-    </project>
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -689,13 +716,14 @@
       <list>
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Block.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
         <option value="$PROJECT_DIR$/src/main/resources/lang/en_US.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" />
       </list>
     </option>
   </component>
@@ -766,80 +794,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prison-mines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PrisonMines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prison-mines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PrisonMines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prison-mines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PrisonMines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -873,7 +827,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
-    <property name="SearchEverywhereHistoryKey" value="en_US&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/resources/lang/en_US.properties&#10;Minescomma&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
+    <property name="SearchEverywhereHistoryKey" value="mines&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/java/tech/mcprison/prison/mines/Mines.java&#10;en_US&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/resources/lang/en_US.properties&#10;Minescomma&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1343,7 +1297,8 @@
       <workItem from="1492036465884" duration="7005000" />
       <workItem from="1492115212497" duration="5000" />
       <workItem from="1492115430942" duration="602000" />
-      <workItem from="1492117869688" duration="646000" />
+      <workItem from="1492117869688" duration="1551000" />
+      <workItem from="1492140147092" duration="798000" />
     </task>
     <task id="LOCAL-00001" summary="Switch to 0.5.0">
       <created>1491947201087</created>
@@ -1387,11 +1342,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492049141972</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Now with better time!">
+      <created>1492118533941</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1492118533941</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12346000" />
+    <option name="totallyTimeSpent" value="14049000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1407,28 +1369,29 @@
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24791667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24791667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1436,7 +1399,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1453,7 +1415,8 @@
     <MESSAGE value="Added mine full check, fixed save issues" />
     <MESSAGE value="Refine commands" />
     <MESSAGE value="Fix /mines info display (no decimals)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix /mines info display (no decimals)" />
+    <MESSAGE value="Now with better time!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now with better time!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1468,7 +1431,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2480">
           <caret line="184" column="67" lean-forward="false" selection-start-line="184" selection-start-column="67" selection-end-line="184" selection-end-column="67" />
-          <folding />
+          <folding>
+            <element signature="e#0#15203#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1484,7 +1450,81 @@
         <state relative-caret-position="6096">
           <caret line="381" column="45" lean-forward="false" selection-start-line="381" selection-start-column="45" selection-end-line="381" selection-end-column="45" />
           <folding>
-            <marker date="1492118346784" expanded="true" signature="24183:24279" ph="{...}" />
+            <element signature="e#0#26275#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2187#2188#0" expanded="false" />
+            <element signature="e#2222#2223#0" expanded="false" />
+            <element signature="e#2406#2407#0" expanded="false" />
+            <element signature="e#2444#2445#0" expanded="false" />
+            <element signature="e#2657#2658#0" expanded="false" />
+            <element signature="e#2697#2698#0" expanded="false" />
+            <element signature="e#2839#2840#0" expanded="false" />
+            <element signature="e#2878#2879#0" expanded="false" />
+            <element signature="e#3053#3054#0" expanded="false" />
+            <element signature="e#3100#3101#0" expanded="false" />
+            <element signature="e#3137#3138#0" expanded="false" />
+            <element signature="e#3176#3177#0" expanded="false" />
+            <element signature="e#4178#4179#0" expanded="false" />
+            <element signature="e#4221#4222#0" expanded="false" />
+            <element signature="e#4486#4487#0" expanded="false" />
+            <element signature="e#4524#4525#0" expanded="false" />
+            <element signature="e#5145#5146#0" expanded="false" />
+            <element signature="e#5186#5187#0" expanded="false" />
+            <element signature="e#5467#5468#0" expanded="false" />
+            <element signature="e#5508#5509#0" expanded="false" />
+            <element signature="e#5620#5621#0" expanded="false" />
+            <element signature="e#5649#5650#0" expanded="false" />
+            <element signature="e#5825#5826#0" expanded="false" />
+            <element signature="e#5864#5865#0" expanded="false" />
+            <element signature="e#6102#6103#0" expanded="false" />
+            <element signature="e#6150#6151#0" expanded="false" />
+            <element signature="e#6453#6454#0" expanded="false" />
+            <element signature="e#6488#6489#0" expanded="false" />
+            <element signature="e#6653#6654#0" expanded="false" />
+            <element signature="e#6695#6696#0" expanded="false" />
+            <element signature="e#6904#6905#0" expanded="false" />
+            <element signature="e#6943#6944#0" expanded="false" />
+            <element signature="e#7171#7172#0" expanded="false" />
+            <element signature="e#7214#7215#0" expanded="false" />
+            <element signature="e#7375#7376#0" expanded="false" />
+            <element signature="e#7418#7419#0" expanded="false" />
+            <element signature="e#7613#7614#0" expanded="false" />
+            <element signature="e#7661#7662#0" expanded="false" />
+            <element signature="e#8386#8387#0" expanded="false" />
+            <element signature="e#8459#8460#0" expanded="false" />
+            <element signature="e#13016#13017#0" expanded="false" />
+            <element signature="e#13089#13090#0" expanded="false" />
+            <element signature="e#15573#15574#0" expanded="false" />
+            <element signature="e#15616#15617#0" expanded="false" />
+            <element signature="e#15668#15669#0" expanded="false" />
+            <element signature="e#15709#15710#0" expanded="false" />
+            <element signature="e#15975#15976#0" expanded="false" />
+            <element signature="e#16031#16032#0" expanded="false" />
+            <element signature="e#16408#16409#0" expanded="false" />
+            <element signature="e#16467#16468#0" expanded="false" />
+            <element signature="e#18628#18629#0" expanded="false" />
+            <element signature="e#18667#18668#0" expanded="false" />
+            <element signature="e#19630#19631#0" expanded="false" />
+            <element signature="e#19678#19679#0" expanded="false" />
+            <element signature="e#19827#19828#0" expanded="false" />
+            <element signature="e#19863#19864#0" expanded="false" />
+            <element signature="e#20092#20093#0" expanded="false" />
+            <element signature="e#20144#20145#0" expanded="false" />
+            <element signature="e#20374#20375#0" expanded="false" />
+            <element signature="e#20414#20415#0" expanded="false" />
+            <element signature="e#22201#22202#0" expanded="false" />
+            <element signature="e#22260#22261#0" expanded="false" />
+            <element signature="e#22849#22850#0" expanded="false" />
+            <element signature="e#22911#22912#0" expanded="false" />
+            <element signature="e#23593#23594#0" expanded="false" />
+            <element signature="e#23652#23653#0" expanded="false" />
+            <element signature="e#24261#24262#0" expanded="false" />
+            <element signature="e#24321#24322#0" expanded="false" />
+            <element signature="e#24848#24849#0" expanded="false" />
+            <element signature="e#24888#24889#0" expanded="false" />
+            <element signature="e#25779#25780#0" expanded="false" />
+            <element signature="e#25822#25823#0" expanded="false" />
+            <marker date="1492142963129" expanded="true" signature="24303:24399" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1518,11 +1558,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1440">
           <caret line="90" column="17" lean-forward="true" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
           <folding>
+            <element signature="e#0#6146#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -1539,7 +1580,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15203#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1576,7 +1620,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4512">
           <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#10604#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1610#1611#0" expanded="false" />
+            <element signature="e#1652#1653#0" expanded="false" />
+            <element signature="e#7953#7954#0" expanded="false" />
+            <element signature="e#7984#7985#0" expanded="false" />
+            <element signature="e#8780#8781#0" expanded="false" />
+            <element signature="e#8807#8808#0" expanded="false" />
+            <element signature="e#9132#9133#0" expanded="false" />
+            <element signature="e#9201#9202#0" expanded="false" />
+            <element signature="e#9234#9235#0" expanded="false" />
+            <element signature="e#9277#9278#0" expanded="false" />
+            <element signature="e#9659#9660#0" expanded="false" />
+            <element signature="e#9688#9689#0" expanded="false" />
+            <element signature="e#10263#10264#0" expanded="false" />
+            <element signature="e#10314#10315#0" expanded="false" />
+            <element signature="e#10555#10556#0" expanded="false" />
+            <element signature="e#10599#10600#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1585,7 +1648,81 @@
         <state relative-caret-position="176">
           <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
           <folding>
-            <marker date="1492118346784" expanded="true" signature="24183:24279" ph="{...}" />
+            <element signature="e#0#26275#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2187#2188#0" expanded="false" />
+            <element signature="e#2222#2223#0" expanded="false" />
+            <element signature="e#2406#2407#0" expanded="false" />
+            <element signature="e#2444#2445#0" expanded="false" />
+            <element signature="e#2657#2658#0" expanded="false" />
+            <element signature="e#2697#2698#0" expanded="false" />
+            <element signature="e#2839#2840#0" expanded="false" />
+            <element signature="e#2878#2879#0" expanded="false" />
+            <element signature="e#3053#3054#0" expanded="false" />
+            <element signature="e#3100#3101#0" expanded="false" />
+            <element signature="e#3137#3138#0" expanded="false" />
+            <element signature="e#3176#3177#0" expanded="false" />
+            <element signature="e#4178#4179#0" expanded="false" />
+            <element signature="e#4221#4222#0" expanded="false" />
+            <element signature="e#4486#4487#0" expanded="false" />
+            <element signature="e#4524#4525#0" expanded="false" />
+            <element signature="e#5145#5146#0" expanded="false" />
+            <element signature="e#5186#5187#0" expanded="false" />
+            <element signature="e#5467#5468#0" expanded="false" />
+            <element signature="e#5508#5509#0" expanded="false" />
+            <element signature="e#5620#5621#0" expanded="false" />
+            <element signature="e#5649#5650#0" expanded="false" />
+            <element signature="e#5825#5826#0" expanded="false" />
+            <element signature="e#5864#5865#0" expanded="false" />
+            <element signature="e#6102#6103#0" expanded="false" />
+            <element signature="e#6150#6151#0" expanded="false" />
+            <element signature="e#6453#6454#0" expanded="false" />
+            <element signature="e#6488#6489#0" expanded="false" />
+            <element signature="e#6653#6654#0" expanded="false" />
+            <element signature="e#6695#6696#0" expanded="false" />
+            <element signature="e#6904#6905#0" expanded="false" />
+            <element signature="e#6943#6944#0" expanded="false" />
+            <element signature="e#7171#7172#0" expanded="false" />
+            <element signature="e#7214#7215#0" expanded="false" />
+            <element signature="e#7375#7376#0" expanded="false" />
+            <element signature="e#7418#7419#0" expanded="false" />
+            <element signature="e#7613#7614#0" expanded="false" />
+            <element signature="e#7661#7662#0" expanded="false" />
+            <element signature="e#8386#8387#0" expanded="false" />
+            <element signature="e#8459#8460#0" expanded="false" />
+            <element signature="e#13016#13017#0" expanded="false" />
+            <element signature="e#13089#13090#0" expanded="false" />
+            <element signature="e#15573#15574#0" expanded="false" />
+            <element signature="e#15616#15617#0" expanded="false" />
+            <element signature="e#15668#15669#0" expanded="false" />
+            <element signature="e#15709#15710#0" expanded="false" />
+            <element signature="e#15975#15976#0" expanded="false" />
+            <element signature="e#16031#16032#0" expanded="false" />
+            <element signature="e#16408#16409#0" expanded="false" />
+            <element signature="e#16467#16468#0" expanded="false" />
+            <element signature="e#18628#18629#0" expanded="false" />
+            <element signature="e#18667#18668#0" expanded="false" />
+            <element signature="e#19630#19631#0" expanded="false" />
+            <element signature="e#19678#19679#0" expanded="false" />
+            <element signature="e#19827#19828#0" expanded="false" />
+            <element signature="e#19863#19864#0" expanded="false" />
+            <element signature="e#20092#20093#0" expanded="false" />
+            <element signature="e#20144#20145#0" expanded="false" />
+            <element signature="e#20374#20375#0" expanded="false" />
+            <element signature="e#20414#20415#0" expanded="false" />
+            <element signature="e#22201#22202#0" expanded="false" />
+            <element signature="e#22260#22261#0" expanded="false" />
+            <element signature="e#22849#22850#0" expanded="false" />
+            <element signature="e#22911#22912#0" expanded="false" />
+            <element signature="e#23593#23594#0" expanded="false" />
+            <element signature="e#23652#23653#0" expanded="false" />
+            <element signature="e#24261#24262#0" expanded="false" />
+            <element signature="e#24321#24322#0" expanded="false" />
+            <element signature="e#24848#24849#0" expanded="false" />
+            <element signature="e#24888#24889#0" expanded="false" />
+            <element signature="e#25779#25780#0" expanded="false" />
+            <element signature="e#25822#25823#0" expanded="false" />
+            <marker date="1492142963129" expanded="true" signature="24303:24399" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1703,7 +1840,81 @@
         <state relative-caret-position="8560">
           <caret line="616" column="6" lean-forward="false" selection-start-line="616" selection-start-column="6" selection-end-line="616" selection-end-column="6" />
           <folding>
-            <marker date="1492118346784" expanded="true" signature="24183:24279" ph="{...}" />
+            <element signature="e#0#26275#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2187#2188#0" expanded="false" />
+            <element signature="e#2222#2223#0" expanded="false" />
+            <element signature="e#2406#2407#0" expanded="false" />
+            <element signature="e#2444#2445#0" expanded="false" />
+            <element signature="e#2657#2658#0" expanded="false" />
+            <element signature="e#2697#2698#0" expanded="false" />
+            <element signature="e#2839#2840#0" expanded="false" />
+            <element signature="e#2878#2879#0" expanded="false" />
+            <element signature="e#3053#3054#0" expanded="false" />
+            <element signature="e#3100#3101#0" expanded="false" />
+            <element signature="e#3137#3138#0" expanded="false" />
+            <element signature="e#3176#3177#0" expanded="false" />
+            <element signature="e#4178#4179#0" expanded="false" />
+            <element signature="e#4221#4222#0" expanded="false" />
+            <element signature="e#4486#4487#0" expanded="false" />
+            <element signature="e#4524#4525#0" expanded="false" />
+            <element signature="e#5145#5146#0" expanded="false" />
+            <element signature="e#5186#5187#0" expanded="false" />
+            <element signature="e#5467#5468#0" expanded="false" />
+            <element signature="e#5508#5509#0" expanded="false" />
+            <element signature="e#5620#5621#0" expanded="false" />
+            <element signature="e#5649#5650#0" expanded="false" />
+            <element signature="e#5825#5826#0" expanded="false" />
+            <element signature="e#5864#5865#0" expanded="false" />
+            <element signature="e#6102#6103#0" expanded="false" />
+            <element signature="e#6150#6151#0" expanded="false" />
+            <element signature="e#6453#6454#0" expanded="false" />
+            <element signature="e#6488#6489#0" expanded="false" />
+            <element signature="e#6653#6654#0" expanded="false" />
+            <element signature="e#6695#6696#0" expanded="false" />
+            <element signature="e#6904#6905#0" expanded="false" />
+            <element signature="e#6943#6944#0" expanded="false" />
+            <element signature="e#7171#7172#0" expanded="false" />
+            <element signature="e#7214#7215#0" expanded="false" />
+            <element signature="e#7375#7376#0" expanded="false" />
+            <element signature="e#7418#7419#0" expanded="false" />
+            <element signature="e#7613#7614#0" expanded="false" />
+            <element signature="e#7661#7662#0" expanded="false" />
+            <element signature="e#8386#8387#0" expanded="false" />
+            <element signature="e#8459#8460#0" expanded="false" />
+            <element signature="e#13016#13017#0" expanded="false" />
+            <element signature="e#13089#13090#0" expanded="false" />
+            <element signature="e#15573#15574#0" expanded="false" />
+            <element signature="e#15616#15617#0" expanded="false" />
+            <element signature="e#15668#15669#0" expanded="false" />
+            <element signature="e#15709#15710#0" expanded="false" />
+            <element signature="e#15975#15976#0" expanded="false" />
+            <element signature="e#16031#16032#0" expanded="false" />
+            <element signature="e#16408#16409#0" expanded="false" />
+            <element signature="e#16467#16468#0" expanded="false" />
+            <element signature="e#18628#18629#0" expanded="false" />
+            <element signature="e#18667#18668#0" expanded="false" />
+            <element signature="e#19630#19631#0" expanded="false" />
+            <element signature="e#19678#19679#0" expanded="false" />
+            <element signature="e#19827#19828#0" expanded="false" />
+            <element signature="e#19863#19864#0" expanded="false" />
+            <element signature="e#20092#20093#0" expanded="false" />
+            <element signature="e#20144#20145#0" expanded="false" />
+            <element signature="e#20374#20375#0" expanded="false" />
+            <element signature="e#20414#20415#0" expanded="false" />
+            <element signature="e#22201#22202#0" expanded="false" />
+            <element signature="e#22260#22261#0" expanded="false" />
+            <element signature="e#22849#22850#0" expanded="false" />
+            <element signature="e#22911#22912#0" expanded="false" />
+            <element signature="e#23593#23594#0" expanded="false" />
+            <element signature="e#23652#23653#0" expanded="false" />
+            <element signature="e#24261#24262#0" expanded="false" />
+            <element signature="e#24321#24322#0" expanded="false" />
+            <element signature="e#24848#24849#0" expanded="false" />
+            <element signature="e#24888#24889#0" expanded="false" />
+            <element signature="e#25779#25780#0" expanded="false" />
+            <element signature="e#25822#25823#0" expanded="false" />
+            <marker date="1492142963129" expanded="true" signature="24303:24399" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1742,7 +1953,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="42" column="47" lean-forward="false" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1758,7 +1968,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="832">
           <caret line="81" column="116" lean-forward="false" selection-start-line="81" selection-start-column="116" selection-end-line="81" selection-end-column="116" />
-          <folding />
+          <folding>
+            <element signature="e#0#10604#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1610#1611#0" expanded="false" />
+            <element signature="e#1652#1653#0" expanded="false" />
+            <element signature="e#7953#7954#0" expanded="false" />
+            <element signature="e#7984#7985#0" expanded="false" />
+            <element signature="e#8780#8781#0" expanded="false" />
+            <element signature="e#8807#8808#0" expanded="false" />
+            <element signature="e#9132#9133#0" expanded="false" />
+            <element signature="e#9201#9202#0" expanded="false" />
+            <element signature="e#9234#9235#0" expanded="false" />
+            <element signature="e#9277#9278#0" expanded="false" />
+            <element signature="e#9659#9660#0" expanded="false" />
+            <element signature="e#9688#9689#0" expanded="false" />
+            <element signature="e#10263#10264#0" expanded="false" />
+            <element signature="e#10314#10315#0" expanded="false" />
+            <element signature="e#10555#10556#0" expanded="false" />
+            <element signature="e#10599#10600#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1780,33 +2009,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="251" column="9" lean-forward="true" selection-start-line="251" selection-start-column="9" selection-end-line="251" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2304">
-          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+        <state relative-caret-position="3520">
+          <caret line="254" column="9" lean-forward="false" selection-start-line="254" selection-start-column="9" selection-end-line="254" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#15203#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
+        <state relative-caret-position="144">
           <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#0#3118#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1419#1420#0" expanded="false" />
+            <element signature="e#1476#1477#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.6.0-SNAPSHOT/1b36009f282410f5b28adb4aa5435f80290c7c03/prison-core-0.6.0-SNAPSHOT.jar!/tech/mcprison/prison/util/Text.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="1632">
           <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
           <folding />
         </state>
@@ -1814,19 +2041,104 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="424" column="17" lean-forward="true" selection-start-line="424" selection-start-column="17" selection-end-line="424" selection-end-column="17" />
+        <state relative-caret-position="5664">
+          <caret line="424" column="17" lean-forward="false" selection-start-line="424" selection-start-column="17" selection-end-line="424" selection-end-column="17" />
           <folding>
-            <marker date="1492118346784" expanded="true" signature="24183:24279" ph="{...}" />
+            <element signature="e#0#26275#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2187#2188#0" expanded="false" />
+            <element signature="e#2222#2223#0" expanded="false" />
+            <element signature="e#2406#2407#0" expanded="false" />
+            <element signature="e#2444#2445#0" expanded="false" />
+            <element signature="e#2657#2658#0" expanded="false" />
+            <element signature="e#2697#2698#0" expanded="false" />
+            <element signature="e#2839#2840#0" expanded="false" />
+            <element signature="e#2878#2879#0" expanded="false" />
+            <element signature="e#3053#3054#0" expanded="false" />
+            <element signature="e#3100#3101#0" expanded="false" />
+            <element signature="e#3137#3138#0" expanded="false" />
+            <element signature="e#3176#3177#0" expanded="false" />
+            <element signature="e#4178#4179#0" expanded="false" />
+            <element signature="e#4221#4222#0" expanded="false" />
+            <element signature="e#4486#4487#0" expanded="false" />
+            <element signature="e#4524#4525#0" expanded="false" />
+            <element signature="e#5145#5146#0" expanded="false" />
+            <element signature="e#5186#5187#0" expanded="false" />
+            <element signature="e#5467#5468#0" expanded="false" />
+            <element signature="e#5508#5509#0" expanded="false" />
+            <element signature="e#5620#5621#0" expanded="false" />
+            <element signature="e#5649#5650#0" expanded="false" />
+            <element signature="e#5825#5826#0" expanded="false" />
+            <element signature="e#5864#5865#0" expanded="false" />
+            <element signature="e#6102#6103#0" expanded="false" />
+            <element signature="e#6150#6151#0" expanded="false" />
+            <element signature="e#6453#6454#0" expanded="false" />
+            <element signature="e#6488#6489#0" expanded="false" />
+            <element signature="e#6653#6654#0" expanded="false" />
+            <element signature="e#6695#6696#0" expanded="false" />
+            <element signature="e#6904#6905#0" expanded="false" />
+            <element signature="e#6943#6944#0" expanded="false" />
+            <element signature="e#7171#7172#0" expanded="false" />
+            <element signature="e#7214#7215#0" expanded="false" />
+            <element signature="e#7375#7376#0" expanded="false" />
+            <element signature="e#7418#7419#0" expanded="false" />
+            <element signature="e#7613#7614#0" expanded="false" />
+            <element signature="e#7661#7662#0" expanded="false" />
+            <element signature="e#8386#8387#0" expanded="false" />
+            <element signature="e#8459#8460#0" expanded="false" />
+            <element signature="e#13016#13017#0" expanded="false" />
+            <element signature="e#13089#13090#0" expanded="false" />
+            <element signature="e#15573#15574#0" expanded="false" />
+            <element signature="e#15616#15617#0" expanded="false" />
+            <element signature="e#15668#15669#0" expanded="false" />
+            <element signature="e#15709#15710#0" expanded="false" />
+            <element signature="e#15975#15976#0" expanded="false" />
+            <element signature="e#16031#16032#0" expanded="false" />
+            <element signature="e#16408#16409#0" expanded="false" />
+            <element signature="e#16467#16468#0" expanded="false" />
+            <element signature="e#18628#18629#0" expanded="false" />
+            <element signature="e#18667#18668#0" expanded="false" />
+            <element signature="e#19630#19631#0" expanded="false" />
+            <element signature="e#19678#19679#0" expanded="false" />
+            <element signature="e#19827#19828#0" expanded="false" />
+            <element signature="e#19863#19864#0" expanded="false" />
+            <element signature="e#20092#20093#0" expanded="false" />
+            <element signature="e#20144#20145#0" expanded="false" />
+            <element signature="e#20374#20375#0" expanded="false" />
+            <element signature="e#20414#20415#0" expanded="false" />
+            <element signature="e#22201#22202#0" expanded="false" />
+            <element signature="e#22260#22261#0" expanded="false" />
+            <element signature="e#22849#22850#0" expanded="false" />
+            <element signature="e#22911#22912#0" expanded="false" />
+            <element signature="e#23593#23594#0" expanded="false" />
+            <element signature="e#23652#23653#0" expanded="false" />
+            <element signature="e#24261#24262#0" expanded="false" />
+            <element signature="e#24321#24322#0" expanded="false" />
+            <element signature="e#24848#24849#0" expanded="false" />
+            <element signature="e#24888#24889#0" expanded="false" />
+            <element signature="e#25779#25780#0" expanded="false" />
+            <element signature="e#25822#25823#0" expanded="false" />
+            <marker date="1492142963129" expanded="true" signature="24303:24399" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/lang/en_US.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="52" lean-forward="false" selection-start-line="0" selection-start-column="52" selection-end-line="0" selection-end-column="52" />
+        <state relative-caret-position="432">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="107" column="59" lean-forward="false" selection-start-line="107" selection-start-column="59" selection-end-line="107" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#6146#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

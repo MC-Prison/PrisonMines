@@ -19,7 +19,7 @@
 package tech.mcprison.prison.mines.util;
 
 import tech.mcprison.prison.internal.Player;
-import tech.mcprison.prison.mines.Mines;
+import tech.mcprison.prison.mines.PrisonMines;
 
 import java.util.Optional;
 
@@ -35,7 +35,7 @@ public class MinesUtil {
      * @return an optional of the miner if a miner has been created for a player, {@link Optional#empty()} otherwise
      */
     public static Optional<Miner> getMiner(Player player) {
-        for (Miner miner : Mines.get().getPlayers()) {
+        for (Miner miner : PrisonMines.get().getPlayers()) {
             if (miner.getPlayer().get().getUUID().toString()
                 .equalsIgnoreCase(player.getUUID().toString())) {
                 return Optional.of(miner);
@@ -64,7 +64,7 @@ public class MinesUtil {
         if (!isPlayerMiner(player)) {
             return false;
         }
-        for (Miner miner : Mines.get().getPlayers()) {
+        for (Miner miner : PrisonMines.get().getPlayers()) {
             if (miner.getPlayer().get().getUUID().toString()
                 .equalsIgnoreCase(player.getUUID().toString()) && miner.isUsingAutosmelt()) {
                 return true;
@@ -83,7 +83,7 @@ public class MinesUtil {
         if (!isPlayerMiner(player)) {
             return false;
         }
-        for (Miner miner : Mines.get().getPlayers()) {
+        for (Miner miner : PrisonMines.get().getPlayers()) {
             if (miner.getPlayer().get().getUUID().toString()
                 .equalsIgnoreCase(player.getUUID().toString()) && miner.isUsingAutoblock()) {
                 return true;
@@ -100,7 +100,7 @@ public class MinesUtil {
      */
     public static void enableAutosmelt(Player player) throws Exception {
         if (!isPlayerMiner(player)) {
-            Mines.get().addMiner(Miner.fromPlayer(player));
+            PrisonMines.get().addMiner(Miner.fromPlayer(player));
         }
         Optional<Miner> miner = getMiner(player);
         if (!miner.isPresent()) {
@@ -117,7 +117,7 @@ public class MinesUtil {
      */
     public static void enableAutoblock(Player player) throws Exception {
         if (!isPlayerMiner(player)) {
-            Mines.get().addMiner(Miner.fromPlayer(player));
+            PrisonMines.get().addMiner(Miner.fromPlayer(player));
         }
         Optional<Miner> miner = getMiner(player);
         if (!miner.isPresent()) {
@@ -134,7 +134,7 @@ public class MinesUtil {
      */
     public static void disableAutosmelt(Player player) throws Exception {
         if (!isPlayerMiner(player)) {
-            Mines.get().addMiner(Miner.fromPlayer(player));
+            PrisonMines.get().addMiner(Miner.fromPlayer(player));
         }
         Optional<Miner> miner = getMiner(player);
         if (!miner.isPresent()) {
@@ -151,7 +151,7 @@ public class MinesUtil {
      */
     public static void disableAutoblock(Player player) throws Exception {
         if (!isPlayerMiner(player)) {
-            Mines.get().addMiner(Miner.fromPlayer(player));
+            PrisonMines.get().addMiner(Miner.fromPlayer(player));
         }
         Optional<Miner> miner = getMiner(player);
         if (!miner.isPresent()) {

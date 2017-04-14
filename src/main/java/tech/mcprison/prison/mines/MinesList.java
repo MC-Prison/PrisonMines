@@ -353,7 +353,7 @@ public class MinesList implements List<Mine> {
     }
 
     private void selectiveSend(Player x, Localizable localizable) {
-        if (Mines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
+        if (PrisonMines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
             localizable.sendTo(x);
         }
     }
@@ -367,7 +367,7 @@ public class MinesList implements List<Mine> {
         return new TimerTask() {
             @Override public void run() {
                 // Perform initial checks
-                if (Mines.get().getConfig().aliveTime == 0) {
+                if (PrisonMines.get().getConfig().aliveTime == 0) {
                     return;
                 }
                 if (size() == 0) {
@@ -391,36 +391,36 @@ public class MinesList implements List<Mine> {
     private void resetMines() {
         reset();
 
-        if (Mines.get().getConfig().resetMessages) {
+        if (PrisonMines.get().getConfig().resetMessages) {
             // Send it to everyone if it's not multi-world
-            if (!Mines.get().getConfig().multiworld) {
+            if (!PrisonMines.get().getConfig().multiworld) {
                 Prison.get().getPlatform().getOnlinePlayers().forEach(
-                    x -> Mines.get().getMinesMessages().getLocalizable("reset_message").sendTo(x));
+                    x -> PrisonMines.get().getMinesMessages().getLocalizable("reset_message").sendTo(x));
             } else { // Or those affected if it's multi-world
                 Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x,
-                    Mines.get().getMinesMessages().getLocalizable("reset_message")));
+                    PrisonMines.get().getMinesMessages().getLocalizable("reset_message")));
             }
         }
 
         // And reset the count
-        resetCount = Mines.get().getConfig().aliveTime;
+        resetCount = PrisonMines.get().getConfig().aliveTime;
     }
 
     private void broadcastResetWarnings() {
-        if (!Mines.get().getConfig().resetMessages) {
+        if (!PrisonMines.get().getConfig().resetMessages) {
             return;
         }
 
-        for (int i : Mines.get().getConfig().resetWarningTimes) {
+        for (int i : PrisonMines.get().getConfig().resetWarningTimes) {
             if (resetCount == i) {
-                if (!Mines.get().getConfig().multiworld) {
+                if (!PrisonMines.get().getConfig().multiworld) {
 
                     Prison.get().getPlatform().getOnlinePlayers().forEach(
-                        x -> Mines.get().getMinesMessages().getLocalizable("reset_warning")
+                        x -> PrisonMines.get().getMinesMessages().getLocalizable("reset_warning")
                             .withReplacements(Text.getTimeUntilString(resetCount * 1000)).sendTo(x));
                 } else {
                     Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x,
-                        Mines.get().getMinesMessages().getLocalizable("reset_warning")
+                        PrisonMines.get().getMinesMessages().getLocalizable("reset_warning")
                             .withReplacements(Text.getTimeUntilString(resetCount * 1000))));
                 }
             }
@@ -451,7 +451,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Initializes this {@link MinesList}. This should only be used for the instance created by
-     * {@link Mines}
+     * {@link PrisonMines}
      *
      * @return the initialized list or null if it couldn't initialize
      */
@@ -465,21 +465,21 @@ public class MinesList implements List<Mine> {
         loadAll();
 
         Output.get().logInfo("&bLoaded " + size() + " mines");
-        resetCount = Mines.get().getConfig().aliveTime;
+        resetCount = PrisonMines.get().getConfig().aliveTime;
         return this;
     }
 
     private boolean initColl() {
         Optional<tech.mcprison.prison.store.Collection> collOptional =
-            Mines.get().getDb().getCollection("mines");
+            PrisonMines.get().getDb().getCollection("mines");
 
         if (!collOptional.isPresent()) {
-            Mines.get().getDb().createCollection("mines");
-            collOptional = Mines.get().getDb().getCollection("mines");
+            PrisonMines.get().getDb().createCollection("mines");
+            collOptional = PrisonMines.get().getDb().getCollection("mines");
 
             if (!collOptional.isPresent()) {
                 Output.get().logError("Could not create 'mines' collection.");
-                Mines.get().getStatus().toFailed("Could not create mines collection in storage.");
+                PrisonMines.get().getStatus().toFailed("Could not create mines collection in storage.");
                 return false;
             }
         }
@@ -495,7 +495,7 @@ public class MinesList implements List<Mine> {
             try {
                 Mine m = new Mine(document);
                 add(m);
-                if (Mines.get().getConfig().asyncReset) {
+                if (PrisonMines.get().getConfig().asyncReset) {
                     generateBlockList(m);
                 }
                 Output.get().logInfo("&aLoaded mine " + m.getName());
@@ -508,7 +508,7 @@ public class MinesList implements List<Mine> {
 
     /**
      * Saves all the mines in this list. This should only be used for the instance created by
-     * {@link Mines}
+     * {@link PrisonMines}
      */
     public void save() {
         for (Mine mine : this) {

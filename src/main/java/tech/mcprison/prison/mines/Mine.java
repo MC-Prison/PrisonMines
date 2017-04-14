@@ -135,7 +135,7 @@ public class Mine {
         for (Player p : players) {
             p.teleport(getSpawn().orElse(
                 null)); // Should probably fail with an exception, but an NPE is as good as any..
-            Mines.get().getMinesMessages().getLocalizable("teleported").withReplacements(name)
+            PrisonMines.get().getMinesMessages().getLocalizable("teleported").withReplacements(name)
                 .sendTo(p);
         }
     }
@@ -159,7 +159,7 @@ public class Mine {
             }
             World world = worldOptional.get();
 
-            List<BlockType> blockTypes = Mines.get().getMines().getRandomizedBlocks(this);
+            List<BlockType> blockTypes = PrisonMines.get().getMines().getRandomizedBlocks(this);
             int maxX = Math.max(min.getBlockX(), max.getBlockX());
             int minX = Math.min(min.getBlockX(), max.getBlockX());
             int maxY = Math.max(min.getBlockY(), max.getBlockY());
@@ -172,7 +172,7 @@ public class Mine {
             for (int y = minY; y <= maxY; y++) {
                 for (int x = minX; x <= maxX; x++) {
                     for (int z = minZ; z <= maxZ; z++) {
-                        if (Mines.get().getConfig().fillMode && !world
+                        if (PrisonMines.get().getConfig().fillMode && !world
                             .getBlockAt(new Location(world, x, y, z)).isEmpty()) {
                             continue; // Skip this block because it is not air
                         }
@@ -183,7 +183,7 @@ public class Mine {
                 }
             }
             Output.get().logInfo("Reset mine " + name);
-            if (Mines.get().getConfig().asyncReset) {
+            if (PrisonMines.get().getConfig().asyncReset) {
                 asyncGen();
             }
 
@@ -212,7 +212,7 @@ public class Mine {
     private void asyncGen() {
         try {
             Prison.get().getPlatform().getScheduler()
-                .runTaskLaterAsync(() -> Mines.get().getMines().generateBlockList(this), 0L);
+                .runTaskLaterAsync(() -> PrisonMines.get().getMines().generateBlockList(this), 0L);
         } catch (Exception e) {
             Output.get().logWarn("Couldn't generate blocks for mine " + name
                 + " asynchronously. The blocks will be generated synchronously later.", e);
