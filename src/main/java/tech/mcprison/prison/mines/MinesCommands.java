@@ -48,8 +48,7 @@ public class MinesCommands {
         return true;
     }
 
-    @Command(identifier = "autosmelt", permissions = {"prison.mines.user",
-        "prison.mines.autosmelt"}) public void autosmeltCommand(CommandSender sender) {
+    @Command(identifier = "autosmelt", permissions = "mines.admin") public void autosmeltCommand(CommandSender sender) {
         if (MinesUtil.usingAutosmelt((Player) sender)) {
             try {
                 MinesUtil.disableAutosmelt((Player) sender);
@@ -69,22 +68,7 @@ public class MinesCommands {
         }
     }
 
-    @Command(identifier = "mines", onlyPlayers = false)
-    public void minesCommand(CommandSender sender) {
-        if (sender.hasPermission("prison.mines.admin")) {
-            sender.dispatchCommand("mines help");
-        } else {
-            sender.dispatchCommand("mines gui");
-        }
-    }
-
-    @Command(identifier = "mines gui", permissions = {"prison.mines.user", "prison.mines.gui"})
-    public void minesGuiCommand(Player sender) {
-        PrisonMines.get().getMines().createGUI(sender).show(sender);
-    }
-
-    @Command(identifier = "mines create", permissions = {"prison.mines.create",
-        "prison.mines.admin"})
+    @Command(identifier = "mines create", permissions = "mines.admin")
     public void createCommand(CommandSender sender, @Arg(name = "mineName") String name) {
 
         Selection selection = Prison.get().getSelectionManager().getSelection((Player) sender);
@@ -113,8 +97,7 @@ public class MinesCommands {
         PrisonMines.get().getMinesMessages().getLocalizable("mine_created").sendTo(sender);
     }
 
-    @Command(identifier = "mines spawnpoint", permissions = {"prison.mines.spawnpoint",
-        "prison.mines.admin"})
+    @Command(identifier = "mines set spawn", permissions = "mines.admin")
     public void spawnpointCommand(CommandSender sender, @Arg(name = "mineName") String name) {
 
         if (!performCheckMineExists(sender, name)) {
@@ -136,8 +119,7 @@ public class MinesCommands {
         PrisonMines.get().getMinesMessages().getLocalizable("spawn_set").sendTo(sender);
     }
 
-    @Command(identifier = "mines block add", permissions = {"prison.mines.addblock",
-        "prison.mines.admin"}, onlyPlayers = false, description = "Adds a block to a mine")
+    @Command(identifier = "mines block add", permissions = "mines.admin", onlyPlayers = false, description = "Adds a block to a mine")
     public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
         if (!performCheckMineExists(sender, mine)) {
@@ -172,8 +154,7 @@ public class MinesCommands {
         PrisonMines.get().getMines().clearCache();
     }
 
-    @Command(identifier = "mines block set", permissions = {"priosn.mines.setblock",
-        "prison.mines.admin"}, onlyPlayers = false, description = "Changes the percentage of a block in a mine")
+    @Command(identifier = "mines block set", permissions = "mines.admin", onlyPlayers = false, description = "Changes the percentage of a block in a mine")
     public void setBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
         if (!performCheckMineExists(sender, mine)) {
@@ -219,8 +200,7 @@ public class MinesCommands {
 
     }
 
-    @Command(identifier = "mines block remove", permissions = {"prison.mines.delblock",
-        "prison.mines.admin"}, onlyPlayers = false, description = "Deletes a block from a mine")
+    @Command(identifier = "mines block remove", permissions = "mines.admin", onlyPlayers = false, description = "Deletes a block from a mine")
     public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
         @Arg(name = "block", def = "AIR") String block) {
 
@@ -247,8 +227,7 @@ public class MinesCommands {
         PrisonMines.get().getMines().clearCache();
     }
 
-    @Command(identifier = "mines delete", permissions = {"prison.mines.delete",
-        "prison.mines.admin"}, onlyPlayers = false, description = "Deletes a mine")
+    @Command(identifier = "mines delete", permissions = "mines.admin", onlyPlayers = false, description = "Deletes a mine")
     public void deleteCommand(CommandSender sender, @Arg(name = "mineName") String name) {
         if (!performCheckMineExists(sender, name)) {
             return;
@@ -258,8 +237,7 @@ public class MinesCommands {
         PrisonMines.get().getMinesMessages().getLocalizable("mine_deleted").sendTo(sender);
     }
 
-    @Command(identifier = "mines info", permissions = {"prison.mines.info",
-        "prison.mines.admin"}, onlyPlayers = false, description = "Lists basic information about a mine")
+    @Command(identifier = "mines info", permissions = "mines.admin", onlyPlayers = false, description = "Lists basic information about a mine")
     public void infoCommand(CommandSender sender, @Arg(name = "mineName") String name) {
         if (!performCheckMineExists(sender, name)) {
             return;
@@ -306,7 +284,7 @@ public class MinesCommands {
         chatDisplay.send(sender);
     }
 
-    @Command(identifier = "mines reset", permissions = {"prison.mines.reset", "prison.mines.admin"})
+    @Command(identifier = "mines reset", permissions = "mines.admin")
     public void resetCommand(CommandSender sender, @Arg(name = "mineName") String name) {
 
         if (!performCheckMineExists(sender, name)) {
@@ -338,8 +316,7 @@ public class MinesCommands {
     }
 
 
-    @Command(identifier = "mines redefine", permissions = {"prison.mines.redefine",
-        "prison.mines.admin"})
+    @Command(identifier = "mines redefine", permissions = "mines.admin")
     public void redefineCommand(CommandSender sender, @Arg(name = "mineName") String name) {
 
         Selection selection = Prison.get().getSelectionManager().getSelection((Player) sender);
@@ -363,7 +340,7 @@ public class MinesCommands {
         PrisonMines.get().getMines().clearCache();
     }
 
-    @Command(identifier = "mines wand", permissions = {"prison.mines.wand", "prison.mines.admin"})
+    @Command(identifier = "mines wand", permissions = "mines.admin")
     public void wandCommand(Player sender) {
         Prison.get().getSelectionManager().bestowSelectionTool(sender);
     }

@@ -353,7 +353,8 @@ public class MinesList implements List<Mine> {
     }
 
     private void selectiveSend(Player x, Localizable localizable) {
-        if (PrisonMines.get().getWorlds().contains(x.getLocation().getWorld().getName().toLowerCase())) {
+        if (PrisonMines.get().getWorlds()
+            .contains(x.getLocation().getWorld().getName().toLowerCase())) {
             localizable.sendTo(x);
         }
     }
@@ -395,7 +396,8 @@ public class MinesList implements List<Mine> {
             // Send it to everyone if it's not multi-world
             if (!PrisonMines.get().getConfig().multiworld) {
                 Prison.get().getPlatform().getOnlinePlayers().forEach(
-                    x -> PrisonMines.get().getMinesMessages().getLocalizable("reset_message").sendTo(x));
+                    x -> PrisonMines.get().getMinesMessages().getLocalizable("reset_message")
+                        .sendTo(x));
             } else { // Or those affected if it's multi-world
                 Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x,
                     PrisonMines.get().getMinesMessages().getLocalizable("reset_message")));
@@ -417,7 +419,8 @@ public class MinesList implements List<Mine> {
 
                     Prison.get().getPlatform().getOnlinePlayers().forEach(
                         x -> PrisonMines.get().getMinesMessages().getLocalizable("reset_warning")
-                            .withReplacements(Text.getTimeUntilString(resetCount * 1000)).sendTo(x));
+                            .withReplacements(Text.getTimeUntilString(resetCount * 1000))
+                            .sendTo(x));
                 } else {
                     Prison.get().getPlatform().getOnlinePlayers().forEach(x -> selectiveSend(x,
                         PrisonMines.get().getMinesMessages().getLocalizable("reset_warning")
@@ -479,7 +482,8 @@ public class MinesList implements List<Mine> {
 
             if (!collOptional.isPresent()) {
                 Output.get().logError("Could not create 'mines' collection.");
-                PrisonMines.get().getStatus().toFailed("Could not create mines collection in storage.");
+                PrisonMines.get().getStatus()
+                    .toFailed("Could not create mines collection in storage.");
                 return false;
             }
         }
@@ -639,7 +643,7 @@ public class MinesList implements List<Mine> {
     /**
      * Adds a teleport rule. Teleport rules allow players only to teleport to/mine in certain mines.
      *
-     * @param uuid the player's uuid to add a teleport rule for
+     * @param uuid    the player's uuid to add a teleport rule for
      * @param sublist
      */
     public void addTeleportRule(UUID uuid, MinesList sublist) {
@@ -709,7 +713,7 @@ public class MinesList implements List<Mine> {
      * Checks if the specified player can mine in/teleport to the specified mine
      *
      * @param uuid the uuid to test
-     * @param mine   the mine to test
+     * @param mine the mine to test
      * @return true if there are no teleport rules created for the player OR
      * the teleport rule allows the player to mine in/teleport to the mine, false
      * if the teleport rule exists and doesn't contain the specified mine.
@@ -782,9 +786,9 @@ public class MinesList implements List<Mine> {
         });
         if (sublist.size() > 1) {
             Output.get().logWarn(
-                    "Potential overlap in mines -- there are " + sublist.size() + " mines at location "
-                            + location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ()
-                            + " in world " + location.getWorld().getName());
+                "Potential overlap in mines -- there are " + sublist.size() + " mines at location "
+                    + location.getBlockX() + "," + location.getBlockY() + "," + location.getBlockZ()
+                    + " in world " + location.getWorld().getName());
             forEach(x -> Output.get().logWarn(x.getName()));
         }
         if (sublist.select(new MinesFilter() {
