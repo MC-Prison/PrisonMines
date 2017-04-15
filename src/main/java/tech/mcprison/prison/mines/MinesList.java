@@ -464,7 +464,7 @@ public class MinesList implements List<Mine> {
 
         loadAll();
 
-        Output.get().logInfo("&bLoaded " + size() + " mines");
+        Output.get().logInfo("Loaded " + size() + " mines");
         resetCount = PrisonMines.get().getConfig().aliveTime;
         return this;
     }
@@ -498,7 +498,6 @@ public class MinesList implements List<Mine> {
                 if (PrisonMines.get().getConfig().asyncReset) {
                     generateBlockList(m);
                 }
-                Output.get().logInfo("&aLoaded mine " + m.getName());
             } catch (Exception e) {
                 Output.get()
                     .logError("&cFailed to load mine " + document.getOrDefault("name", "null"), e);
@@ -612,7 +611,6 @@ public class MinesList implements List<Mine> {
             }
         }
         randomizedBlocks.put(m, blocks);
-        System.out.println("Generated blocks #: " + blocks.size());
     }
 
     /**
