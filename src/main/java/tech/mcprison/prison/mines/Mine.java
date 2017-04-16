@@ -182,7 +182,6 @@ public class Mine {
                     }
                 }
             }
-            Output.get().logInfo("Reset mine " + name);
             if (PrisonMines.get().getConfig().asyncReset) {
                 asyncGen();
             }
