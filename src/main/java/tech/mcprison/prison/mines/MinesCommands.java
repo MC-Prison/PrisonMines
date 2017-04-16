@@ -316,7 +316,7 @@ public class MinesCommands {
     }
 
 
-    @Command(identifier = "mines redefine", permissions = "mines.admin")
+    @Command(identifier = "mines set area", permissions = "mines.admin")
     public void redefineCommand(CommandSender sender, @Arg(name = "mineName") String name) {
 
         Selection selection = Prison.get().getSelectionManager().getSelection((Player) sender);
