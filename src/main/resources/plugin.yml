@@ -5,3 +5,10 @@ depend: [Prison]
 description: A mines module for Prison.
 author: The MC-Prison Team
 website: https://mc-prison.tech
+permissions:
+  mines.user:
+    description: Contains all the commands a user would use with a mine.
+    default: true
+  mines.admin:
+    description: Contains all the commands reserved for admins.
+    default: op
