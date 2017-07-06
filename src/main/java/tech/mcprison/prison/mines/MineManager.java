@@ -37,7 +37,7 @@ import java.util.function.Predicate;
 /**
  * Represents a collection of mines which can be iterated through in a normal <i>for</i> loop
  */
-public class MinesList implements List<Mine> {
+public class MineManager implements List<Mine> {
     // Base list
     List<Mine> mines;
 
@@ -48,21 +48,21 @@ public class MinesList implements List<Mine> {
     int resetCount = 0;
 
     // NPE
-    private HashMap<UUID, MinesList> players;
+    private HashMap<UUID, MineManager> players;
 
     // Inherited methods -- don't know why I make things so difficult
 
     /**
-     * Initializes a new instance of {@link MinesList}
+     * Initializes a new instance of {@link MineManager}
      */
-    public MinesList() {
+    public MineManager() {
         mines = new ArrayList<>();
         randomizedBlocks = new HashMap<>();
         players = new HashMap<>();
     }
 
     /**
-     * Gets the amount of mines in this {@link MinesList}
+     * Gets the amount of mines in this {@link MineManager}
      *
      * @return the amount of loaded mines
      */
@@ -71,7 +71,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Returns true if there are no mines in this {@link MinesList}, false otherwise
+     * Returns true if there are no mines in this {@link MineManager}, false otherwise
      *
      * @return true if size() is equal to 0
      */
@@ -80,7 +80,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Check if there is an exact match of the specified {@link Mine} in this {@link MinesList}
+     * Check if there is an exact match of the specified {@link Mine} in this {@link MineManager}
      *
      * @param o the mine to check for
      * @return
@@ -90,7 +90,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Gets the iterator of this {@link MinesList}
+     * Gets the iterator of this {@link MineManager}
      *
      * @return the iterator
      */
@@ -99,7 +99,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Converts this {@link MinesList} to an array
+     * Converts this {@link MineManager} to an array
      *
      * @return a Mine[] with all the mines contained in this instance
      */
@@ -112,7 +112,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Adds a {@link Mine} to this {@link MinesList} instance
+     * Adds a {@link Mine} to this {@link MineManager} instance
      *
      * @param c the mine instance
      * @return if the add was successful
@@ -126,7 +126,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Removes an {@link Mine} from this {@link MinesList} instance (if the object is present)
+     * Removes an {@link Mine} from this {@link MineManager} instance (if the object is present)
      *
      * @param c
      * @return false if the mine was not found in this instance OR if the remove operation wasn't successful
@@ -140,7 +140,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Checks if this {@link MinesList} contains all of the objects in the specified colleciton
+     * Checks if this {@link MineManager} contains all of the objects in the specified colleciton
      *
      * @param c the collection
      * @return true if all of the objects are contained in this mine, false otherwise
@@ -150,7 +150,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Adds all of the specified {@link Mine}s to this {@link MinesList}
+     * Adds all of the specified {@link Mine}s to this {@link MineManager}
      *
      * @param c the collection to merge with this instance
      * @return true if the add operation succeeded
@@ -160,7 +160,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Adds all of the specified {@link Mine}s to this {@link MinesList} starting at the specified index
+     * Adds all of the specified {@link Mine}s to this {@link MineManager} starting at the specified index
      *
      * @param c the collection to merge with this instance
      * @return true if the add operation succeeded
@@ -180,7 +180,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Removes all the mines from this {@link MinesList} except the ones contained
+     * Removes all the mines from this {@link MineManager} except the ones contained
      * in the given collection
      *
      * @param c the items to keep in this instance
@@ -191,7 +191,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Removes all the mines contained within this {@link MinesList}
+     * Removes all the mines contained within this {@link MineManager}
      */
     public void clear() {
         mines.clear();
@@ -240,7 +240,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Gets the index of an element in this {@link MinesList}
+     * Gets the index of an element in this {@link MineManager}
      *
      * @param c the element to get the index of
      * @return the index of the element
@@ -250,7 +250,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Gets the last index of an element in this {@link MinesList}
+     * Gets the last index of an element in this {@link MineManager}
      *
      * @param c the element to get the last index of
      * @return the last index of the element
@@ -260,7 +260,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Gets a {@link ListIterator} for this {@link MinesList}
+     * Gets a {@link ListIterator} for this {@link MineManager}
      *
      * @return the iterator
      */
@@ -269,7 +269,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Gets a {@link ListIterator} for this {@link MinesList} from the specified index
+     * Gets a {@link ListIterator} for this {@link MineManager} from the specified index
      *
      * @return the iterator
      */
@@ -284,8 +284,8 @@ public class MinesList implements List<Mine> {
      * @param toIndex   the max index (upper bound of the sublist)
      * @return
      */
-    public MinesList subList(int fromIndex, int toIndex) {
-        return (MinesList) mines.subList(fromIndex, toIndex);
+    public MineManager subList(int fromIndex, int toIndex) {
+        return (MineManager) mines.subList(fromIndex, toIndex);
     }
 
     /**
@@ -307,15 +307,15 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Creates a new list from this {@link MinesList}, but only with the elements accepted
+     * Creates a new list from this {@link MineManager}, but only with the elements accepted
      * by the specified {@link MinesFilter}
      *
      * @param filter the filter to use to create the new list
      * @return the new list
      * @see MinesFilter#accept(Mine)
      */
-    public MinesList select(MinesFilter filter) {
-        MinesList out = new MinesList();
+    public MineManager select(MinesFilter filter) {
+        MineManager out = new MineManager();
         for (Mine c : this) {
             if (filter.accept(c)) {
                 out.add(c);
@@ -325,27 +325,27 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Creates a new list from this {@link MinesList}, but only with the elements accepted
+     * Creates a new list from this {@link MineManager}, but only with the elements accepted
      * by the specified filter.
      *
      * @param filter the filter that should return true for items to keep, false otherwise.
      * @return the new list
      */
-    public MinesList select(Predicate<? super Mine> filter) {
-        MinesList out = new MinesList();
+    public MineManager select(Predicate<? super Mine> filter) {
+        MineManager out = new MineManager();
         out.addAll(this);
         out.removeIf(x -> !filter.test(x));
         return out;
     }
 
     /**
-     * Loops through this {@link MinesList}, executing the action specified within the given
+     * Loops through this {@link MineManager}, executing the action specified within the given
      * {@link MinesFilter}
      *
      * @param filter the filter that contains the loop action
      * @return this instance for chaining
      */
-    public MinesList forEach(MinesFilter filter) {
+    public MineManager forEach(MinesFilter filter) {
         for (Mine c : this) {
             filter.action(c);
         }
@@ -360,7 +360,7 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Gets the {@link TimerTask} for the reset timer of this {@link MinesList}
+     * Gets the {@link TimerTask} for the reset timer of this {@link MineManager}
      *
      * @return
      */
@@ -368,7 +368,7 @@ public class MinesList implements List<Mine> {
         return new TimerTask() {
             @Override public void run() {
                 // Perform initial checks
-                if (PrisonMines.get().getConfig().aliveTime == 0) {
+                if (PrisonMines.get().getConfig().resetTime == 0) {
                     return;
                 }
                 if (size() == 0) {
@@ -405,7 +405,7 @@ public class MinesList implements List<Mine> {
         }
 
         // And reset the count
-        resetCount = PrisonMines.get().getConfig().aliveTime;
+        resetCount = PrisonMines.get().getConfig().resetTime;
     }
 
     private void broadcastResetWarnings() {
@@ -437,7 +437,7 @@ public class MinesList implements List<Mine> {
      * @return the mine with the specified name or false if there is no mine with the name
      */
     public Mine get(String name) {
-        MinesList sublist = select(new MinesFilter() {
+        MineManager sublist = select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return c.getName().equalsIgnoreCase(name);
             }
@@ -453,12 +453,12 @@ public class MinesList implements List<Mine> {
     }
 
     /**
-     * Initializes this {@link MinesList}. This should only be used for the instance created by
+     * Initializes this {@link MineManager}. This should only be used for the instance created by
      * {@link PrisonMines}
      *
      * @return the initialized list or null if it couldn't initialize
      */
-    public MinesList initialize() {
+    public MineManager initialize() {
         mines = new ArrayList<>();
 
         if (!initColl()) {
@@ -468,7 +468,7 @@ public class MinesList implements List<Mine> {
         loadAll();
 
         Output.get().logInfo("Loaded " + size() + " mines");
-        resetCount = PrisonMines.get().getConfig().aliveTime;
+        resetCount = PrisonMines.get().getConfig().resetTime;
         return this;
     }
 
@@ -632,7 +632,7 @@ public class MinesList implements List<Mine> {
      * @param player  the player to add a teleport rule for
      * @param sublist
      */
-    public void addTeleportRule(Player player, MinesList sublist) {
+    public void addTeleportRule(Player player, MineManager sublist) {
         if (players == null) {
             players = new HashMap<>();
         }
@@ -646,7 +646,7 @@ public class MinesList implements List<Mine> {
      * @param uuid    the player's uuid to add a teleport rule for
      * @param sublist
      */
-    public void addTeleportRule(UUID uuid, MinesList sublist) {
+    public void addTeleportRule(UUID uuid, MineManager sublist) {
         if (players == null) {
             players = new HashMap<>();
         }
@@ -678,7 +678,7 @@ public class MinesList implements List<Mine> {
      * @param player the player
      * @return the teleport rule
      */
-    public MinesList getTeleportRule(Player player) {
+    public MineManager getTeleportRule(Player player) {
         return players.get(player.getUUID());
     }
 
@@ -688,7 +688,7 @@ public class MinesList implements List<Mine> {
      * @param uuid the player's UUID
      * @return the teleport rule
      */
-    public MinesList getTeleportRule(UUID uuid) {
+    public MineManager getTeleportRule(UUID uuid) {
         return players.get(uuid);
     }
 
@@ -735,7 +735,7 @@ public class MinesList implements List<Mine> {
      * @return true if the player is allowed to mine in this mine, false otherwise.
      */
     public boolean allowedToMine(Player player, Location location) {
-        MinesList sublist = select(new MinesFilter() {
+        MineManager sublist = select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return c.isInMine(location);
             }
@@ -775,7 +775,7 @@ public class MinesList implements List<Mine> {
      * @return true if the player is allowed to mine in this mine, false otherwise.
      */
     public boolean allowedToMine(UUID uuid, Location location) {
-        MinesList sublist = select(new MinesFilter() {
+        MineManager sublist = select(new MinesFilter() {
             @Override public boolean accept(Mine c) {
                 return c.isInMine(location);
             }

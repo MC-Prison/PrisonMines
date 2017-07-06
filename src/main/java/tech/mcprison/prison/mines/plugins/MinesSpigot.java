@@ -27,6 +27,7 @@ import tech.mcprison.prison.mines.PrisonMines;
  */
 public class MinesSpigot extends JavaPlugin {
     public void onEnable() {
-        Prison.get().getModuleManager().registerModule(new PrisonMines(getDescription().getVersion()));
+        Prison.get().getModuleManager()
+            .registerModule(new PrisonMines(getDescription().getVersion()));
     }
 }

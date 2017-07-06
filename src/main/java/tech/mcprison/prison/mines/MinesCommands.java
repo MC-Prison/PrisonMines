@@ -26,7 +26,6 @@ import tech.mcprison.prison.internal.CommandSender;
 import tech.mcprison.prison.internal.Player;
 import tech.mcprison.prison.localization.Localizable;
 import tech.mcprison.prison.mines.util.Block;
-import tech.mcprison.prison.mines.util.MinesUtil;
 import tech.mcprison.prison.output.BulletedListComponent;
 import tech.mcprison.prison.output.ChatDisplay;
 import tech.mcprison.prison.output.Output;
@@ -42,30 +41,11 @@ public class MinesCommands {
 
     private boolean performCheckMineExists(CommandSender sender, String name) {
         if (!PrisonMines.get().getMines().contains(name)) {
-            PrisonMines.get().getMinesMessages().getLocalizable("mine_does_not_exist").sendTo(sender);
+            PrisonMines.get().getMinesMessages().getLocalizable("mine_does_not_exist")
+                .sendTo(sender);
             return false;
         }
         return true;
-    }
-
-    @Command(identifier = "autosmelt", permissions = "mines.admin") public void autosmeltCommand(CommandSender sender) {
-        if (MinesUtil.usingAutosmelt((Player) sender)) {
-            try {
-                MinesUtil.disableAutosmelt((Player) sender);
-                PrisonMines.get().getMinesMessages().getLocalizable("autosmelt_disable").sendTo(sender);
-            } catch (Exception e) {
-                Output.get()
-                    .logError("Couldn't disable autosmelt for player " + sender.getName(), e);
-            }
-        } else {
-            try {
-                MinesUtil.enableAutosmelt((Player) sender);
-                PrisonMines.get().getMinesMessages().getLocalizable("autosmelt_enable").sendTo(sender);
-            } catch (Exception e) {
-                Output.get()
-                    .logError("Couldn't enable autosmelt for player " + sender.getName(), e);
-            }
-        }
     }
 
     @Command(identifier = "mines create", permissions = "mines.admin")
@@ -111,7 +91,8 @@ public class MinesCommands {
 
         if (!((Player) sender).getLocation().getWorld().getName()
             .equalsIgnoreCase(PrisonMines.get().getMines().get(name).getWorld().get().getName())) {
-            PrisonMines.get().getMinesMessages().getLocalizable("spawnpoint_same_world").sendTo(sender);
+            PrisonMines.get().getMinesMessages().getLocalizable("spawnpoint_same_world")
+                .sendTo(sender);
             return;
         }
 
@@ -128,13 +109,14 @@ public class MinesCommands {
 
         BlockType blockType = BlockType.getBlock(block);
         if (blockType == null) {
-            PrisonMines.get().getMinesMessages().getLocalizable("not_a_block").withReplacements(block)
-                .sendTo(sender);
+            PrisonMines.get().getMinesMessages().getLocalizable("not_a_block")
+                .withReplacements(block).sendTo(sender);
             return;
         }
 
         if (PrisonMines.get().getMines().get(mine).isInMine(blockType)) {
-            PrisonMines.get().getMinesMessages().getLocalizable("block_already_added").sendTo(sender);
+            PrisonMines.get().getMinesMessages().getLocalizable("block_already_added")
+                .sendTo(sender);
             return;
         }
 
@@ -147,10 +129,10 @@ public class MinesCommands {
             return;
         }
 
-        PrisonMines.get().getMines().get(mine).getBlocks().add(new Block().create(blockType, chance));
-        PrisonMines
-            .get().getMinesMessages().getLocalizable("block_added").withReplacements(block, mine)
-            .sendTo(sender);
+        PrisonMines.get().getMines().get(mine).getBlocks()
+            .add(new Block().create(blockType, chance));
+        PrisonMines.get().getMinesMessages().getLocalizable("block_added")
+            .withReplacements(block, mine).sendTo(sender);
         PrisonMines.get().getMines().clearCache();
     }
 
@@ -163,8 +145,8 @@ public class MinesCommands {
 
         BlockType blockType = BlockType.getBlock(block);
         if (blockType == null) {
-            PrisonMines.get().getMinesMessages().getLocalizable("not_a_block").withReplacements(block)
-                .sendTo(sender);
+            PrisonMines.get().getMinesMessages().getLocalizable("not_a_block")
+                .withReplacements(block).sendTo(sender);
             return;
         }
 
@@ -193,9 +175,8 @@ public class MinesCommands {
             }
         }
 
-        PrisonMines
-            .get().getMinesMessages().getLocalizable("block_set").withReplacements(block, mine)
-            .sendTo(sender);
+        PrisonMines.get().getMinesMessages().getLocalizable("block_set")
+            .withReplacements(block, mine).sendTo(sender);
         PrisonMines.get().getMines().clearCache();
 
     }
@@ -210,8 +191,8 @@ public class MinesCommands {
 
         BlockType blockType = BlockType.getBlock(block);
         if (blockType == null) {
-            PrisonMines.get().getMinesMessages().getLocalizable("not_a_block").withReplacements(block)
-                .sendTo(sender);
+            PrisonMines.get().getMinesMessages().getLocalizable("not_a_block")
+                .withReplacements(block).sendTo(sender);
             return;
         }
 
@@ -221,9 +202,8 @@ public class MinesCommands {
         }
 
         PrisonMines.get().getMines().get(mine).getBlocks().removeIf(x -> x.type == blockType);
-        PrisonMines
-            .get().getMinesMessages().getLocalizable("block_deleted").withReplacements(block, mine)
-            .sendTo(sender);
+        PrisonMines.get().getMinesMessages().getLocalizable("block_deleted")
+            .withReplacements(block, mine).sendTo(sender);
         PrisonMines.get().getMines().clearCache();
     }
 

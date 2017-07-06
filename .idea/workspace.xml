@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="322e1846-0d7f-429e-baaf-d3f965d62df6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Miner.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/MinesUtil.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_aopalliance_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_aopalliance_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_lang_commons_lang_2_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_lang_commons_lang_2_6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_persistence_persistence_api_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_persistence_persistence_api_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_avaje_ebean_2_8_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_avaje_ebean_2_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesFilter.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/plugins/MinesSpigot.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/plugins/MinesSpigot.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -57,178 +72,88 @@
     <favorites_list name="prison-mines" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="MinesCommands.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3328">
-              <caret line="239" column="67" lean-forward="false" selection-start-line="239" selection-start-column="67" selection-end-line="239" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrisonMines.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="928">
-              <caret line="95" column="5" lean-forward="false" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Storage.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.6.0-SNAPSHOT/1b36009f282410f5b28adb4aa5435f80290c7c03/prison-core-0.6.0-SNAPSHOT.jar!/tech/mcprison/prison/store/Storage.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MinesListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Mine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="184" column="35" lean-forward="false" selection-start-line="184" selection-start-column="35" selection-end-line="184" selection-end-column="35" />
+            <state relative-caret-position="112">
+              <caret line="23" column="46" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="en_US.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/lang/en_US.properties">
+      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Servers/Spigot/plugins/Prison/module_conf/mines/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="96">
+              <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MinesList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
+      <file leaf-file-name="MinesCommands.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11312">
-              <caret line="805" column="5" lean-forward="false" selection-start-line="805" selection-start-column="5" selection-end-line="805" selection-end-column="5" />
+            <state relative-caret-position="176">
+              <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MinesFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MineManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4656">
+              <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PrisonMines.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2048">
+              <caret line="168" column="0" lean-forward="true" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2187#2188#0" expanded="true" />
-                <element signature="e#2222#2223#0" expanded="true" />
-                <element signature="e#2406#2407#0" expanded="true" />
-                <element signature="e#2444#2445#0" expanded="true" />
-                <element signature="e#2657#2658#0" expanded="true" />
-                <element signature="e#2697#2698#0" expanded="true" />
-                <element signature="e#2839#2840#0" expanded="true" />
-                <element signature="e#2878#2879#0" expanded="true" />
-                <element signature="e#3053#3054#0" expanded="true" />
-                <element signature="e#3100#3101#0" expanded="true" />
-                <element signature="e#3137#3138#0" expanded="true" />
-                <element signature="e#3176#3177#0" expanded="true" />
-                <element signature="e#4178#4179#0" expanded="true" />
-                <element signature="e#4221#4222#0" expanded="true" />
-                <element signature="e#4486#4487#0" expanded="true" />
-                <element signature="e#4524#4525#0" expanded="true" />
-                <element signature="e#5145#5146#0" expanded="true" />
-                <element signature="e#5186#5187#0" expanded="true" />
-                <element signature="e#5467#5468#0" expanded="true" />
-                <element signature="e#5508#5509#0" expanded="true" />
-                <element signature="e#5620#5621#0" expanded="true" />
-                <element signature="e#5649#5650#0" expanded="true" />
-                <element signature="e#5825#5826#0" expanded="true" />
-                <element signature="e#5864#5865#0" expanded="true" />
-                <element signature="e#6102#6103#0" expanded="true" />
-                <element signature="e#6150#6151#0" expanded="true" />
-                <element signature="e#6453#6454#0" expanded="true" />
-                <element signature="e#6488#6489#0" expanded="true" />
-                <element signature="e#6653#6654#0" expanded="true" />
-                <element signature="e#6695#6696#0" expanded="true" />
-                <element signature="e#6904#6905#0" expanded="true" />
-                <element signature="e#6943#6944#0" expanded="true" />
-                <element signature="e#7171#7172#0" expanded="true" />
-                <element signature="e#7214#7215#0" expanded="true" />
-                <element signature="e#7375#7376#0" expanded="true" />
-                <element signature="e#7418#7419#0" expanded="true" />
-                <element signature="e#7613#7614#0" expanded="true" />
-                <element signature="e#7661#7662#0" expanded="true" />
-                <element signature="e#8386#8387#0" expanded="true" />
-                <element signature="e#8459#8460#0" expanded="true" />
-                <element signature="e#13083#13084#0" expanded="true" />
-                <element signature="e#13156#13157#0" expanded="true" />
-                <element signature="e#15589#15590#0" expanded="true" />
-                <element signature="e#15632#15633#0" expanded="true" />
-                <element signature="e#15684#15685#0" expanded="true" />
-                <element signature="e#15725#15726#0" expanded="true" />
-                <element signature="e#15991#15992#0" expanded="true" />
-                <element signature="e#16047#16048#0" expanded="true" />
-                <element signature="e#16424#16425#0" expanded="true" />
-                <element signature="e#16483#16484#0" expanded="true" />
-                <element signature="e#18576#18577#0" expanded="true" />
-                <element signature="e#18615#18616#0" expanded="true" />
-                <element signature="e#19581#19582#0" expanded="true" />
-                <element signature="e#19629#19630#0" expanded="true" />
-                <element signature="e#19778#19779#0" expanded="true" />
-                <element signature="e#19814#19815#0" expanded="true" />
-                <element signature="e#20043#20044#0" expanded="true" />
-                <element signature="e#20095#20096#0" expanded="true" />
-                <element signature="e#20325#20326#0" expanded="true" />
-                <element signature="e#20365#20366#0" expanded="true" />
-                <element signature="e#22150#22151#0" expanded="true" />
-                <element signature="e#22209#22210#0" expanded="true" />
-                <element signature="e#22798#22799#0" expanded="true" />
-                <element signature="e#22860#22861#0" expanded="true" />
-                <element signature="e#23542#23543#0" expanded="true" />
-                <element signature="e#23601#23602#0" expanded="true" />
-                <element signature="e#24190#24191#0" expanded="true" />
-                <element signature="e#24250#24251#0" expanded="true" />
-                <element signature="e#24777#24778#0" expanded="true" />
-                <element signature="e#24817#24818#0" expanded="true" />
-                <element signature="e#25708#25709#0" expanded="true" />
-                <element signature="e#25751#25752#0" expanded="true" />
-                <marker date="1492280558075" expanded="true" signature="24232:24328" ph="{...}" />
+                <element signature="e#4633#4634#0" expanded="true" />
+                <element signature="e#4661#4662#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Text.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.6.0-SNAPSHOT/1b36009f282410f5b28adb4aa5435f80290c7c03/prison-core-0.6.0-SNAPSHOT.jar!/tech/mcprison/prison/util/Text.class">
+      <file leaf-file-name="Block.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
-              <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+            <state relative-caret-position="416">
+              <caret line="42" column="47" lean-forward="false" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MinesConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="58" column="24" lean-forward="false" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -264,9 +189,9 @@
       <find>mines set</find>
       <find>d</find>
       <find>R</find>
-      <find>Reset</find>
       <find>Reset m</find>
       <find>Reset mine</find>
+      <find>Miner</find>
     </findStrings>
     <replaceStrings>
       <replace>%f</replace>
@@ -504,8 +429,9 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5965840839507" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="2827160947" />
+        <entry key="$USER_HOME$/.gradle/gradle.properties" value="3145281665" />
+        <entry key="$PROJECT_DIR$" value="5996151657902" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="3855303241" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="1171420429" />
       </map>
     </option>
@@ -521,7 +447,9 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jengelman.gradle.plugins/shadow/1.2.3/7b10b9c4a397b19ebfb80a9a6c4330325ea5606a/shadow-1.2.3-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jengelman.gradle.plugins/shadow/1.2.3/52bbde5e384f0860df145abe24070d74dd8ed590/shadow-1.2.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.org.spongepowered/spongegradle/0.6/1be2b4be1f5861d08fbca5694f0b8eb65c794c08/spongegradle-0.6-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.org.spongepowered/spongegradle/0.6/5a0973d37bf0f4569c9d979f831770a12b3ba530/spongegradle-0.6.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jdom/jdom2/2.0.5/769f3cca4ce92088288be3d0238ef96ef787e82f/jdom2-2.0.5-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jdom/jdom2/2.0.5/2001db51c131e555bafdb77fc52af6a9408c505e/jdom2-2.0.5.jar" />
@@ -537,6 +465,7 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/2.0.6/3a20c424a712a7c02b02af61dcad5f001b29a9fd/plexus-utils-2.0.6.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-backports-compat23/2.4.4/8c7351852ffdd79f8e06b4052f662cc996e3598c/groovy-backports-compat23-2.4.4-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-backports-compat23/2.4.4/db18ea377b154334e5323451835d329802222fa/groovy-backports-compat23-2.4.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.1.1/c75bb8308e76089c3af1d9f01888f74890b5d835/plugin-meta-0.1.1-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.1.1/d75ea1eeae33ecb5411e1cee73001f603ed5f5fc/plugin-meta-0.1.1.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/5.0.3/f0f24f6666c1a15c7e202e91610476bd4ce59368/asm-tree-5.0.3-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/5.0.3/287749b48ba7162fb67c93a026d690b29f410bed/asm-tree-5.0.3.jar" />
@@ -710,12 +639,17 @@
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Block.java" />
         <option value="$PROJECT_DIR$/src/main/resources/lang/en_US.properties" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mines.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/MinesUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Miner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java" />
       </list>
     </option>
   </component>
@@ -750,9 +684,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -778,6 +712,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -797,26 +735,12 @@
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prison-mines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PrisonMines" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="mines" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -858,7 +782,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PrisonRanks" />
     <property name="SearchEverywhereHistoryKey" value="MinesList&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/java/tech/mcprison/prison/mines/MinesList.java&#10;mines&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/java/tech/mcprison/prison/mines/Mines.java&#10;en_US&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/resources/lang/en_US.properties&#10;Minescomma&#9;FILE&#9;file://C:/Users/fdato/IdeaProjects/PrisonMines/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
   </component>
   <component name="RunDashboard">
@@ -1334,6 +1258,16 @@
       <workItem from="1492279108669" duration="2943000" />
       <workItem from="1492293699756" duration="4055000" />
       <workItem from="1492376611222" duration="17000" />
+      <workItem from="1498840556883" duration="668000" />
+      <workItem from="1499105216003" duration="1887000" />
+      <workItem from="1499187806846" duration="97000" />
+      <workItem from="1499192840756" duration="825000" />
+      <workItem from="1499196626678" duration="254000" />
+      <workItem from="1499197763679" duration="460000" />
+      <workItem from="1499202387921" duration="147000" />
+      <workItem from="1499283483229" duration="173000" />
+      <workItem from="1499312092581" duration="511000" />
+      <workItem from="1499313395185" duration="279000" />
     </task>
     <task id="LOCAL-00001" summary="Switch to 0.5.0">
       <created>1491947201087</created>
@@ -1430,7 +1364,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21114000" />
+    <option name="totallyTimeSpent" value="26415000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1443,7 +1377,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1453,13 +1386,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30989584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23958333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42706132" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1467,8 +1400,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1499,7 +1432,8 @@
     <MESSAGE value="Added /mines set area" />
     <MESSAGE value="Added default permissions (Spigot)" />
     <MESSAGE value="Fix version numbers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix version numbers" />
+    <MESSAGE value="Removed autoblock and autosmelt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed autoblock and autosmelt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1510,96 +1444,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="49" column="67" lean-forward="true" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6096">
-          <caret line="381" column="45" lean-forward="false" selection-start-line="381" selection-start-column="45" selection-end-line="381" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2187#2188#0" expanded="true" />
-            <element signature="e#2222#2223#0" expanded="true" />
-            <element signature="e#2406#2407#0" expanded="true" />
-            <element signature="e#2444#2445#0" expanded="true" />
-            <element signature="e#2657#2658#0" expanded="true" />
-            <element signature="e#2697#2698#0" expanded="true" />
-            <element signature="e#2839#2840#0" expanded="true" />
-            <element signature="e#2878#2879#0" expanded="true" />
-            <element signature="e#3053#3054#0" expanded="true" />
-            <element signature="e#3100#3101#0" expanded="true" />
-            <element signature="e#3137#3138#0" expanded="true" />
-            <element signature="e#3176#3177#0" expanded="true" />
-            <element signature="e#4178#4179#0" expanded="true" />
-            <element signature="e#4221#4222#0" expanded="true" />
-            <element signature="e#4486#4487#0" expanded="true" />
-            <element signature="e#4524#4525#0" expanded="true" />
-            <element signature="e#5145#5146#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5467#5468#0" expanded="true" />
-            <element signature="e#5508#5509#0" expanded="true" />
-            <element signature="e#5620#5621#0" expanded="true" />
-            <element signature="e#5649#5650#0" expanded="true" />
-            <element signature="e#5825#5826#0" expanded="true" />
-            <element signature="e#5864#5865#0" expanded="true" />
-            <element signature="e#6102#6103#0" expanded="true" />
-            <element signature="e#6150#6151#0" expanded="true" />
-            <element signature="e#6453#6454#0" expanded="true" />
-            <element signature="e#6488#6489#0" expanded="true" />
-            <element signature="e#6653#6654#0" expanded="true" />
-            <element signature="e#6695#6696#0" expanded="true" />
-            <element signature="e#6904#6905#0" expanded="true" />
-            <element signature="e#6943#6944#0" expanded="true" />
-            <element signature="e#7171#7172#0" expanded="true" />
-            <element signature="e#7214#7215#0" expanded="true" />
-            <element signature="e#7375#7376#0" expanded="true" />
-            <element signature="e#7418#7419#0" expanded="true" />
-            <element signature="e#7613#7614#0" expanded="true" />
-            <element signature="e#7661#7662#0" expanded="true" />
-            <element signature="e#8386#8387#0" expanded="true" />
-            <element signature="e#8459#8460#0" expanded="true" />
-            <element signature="e#13083#13084#0" expanded="true" />
-            <element signature="e#13156#13157#0" expanded="true" />
-            <element signature="e#15589#15590#0" expanded="true" />
-            <element signature="e#15632#15633#0" expanded="true" />
-            <element signature="e#15684#15685#0" expanded="true" />
-            <element signature="e#15725#15726#0" expanded="true" />
-            <element signature="e#15991#15992#0" expanded="true" />
-            <element signature="e#16047#16048#0" expanded="true" />
-            <element signature="e#16424#16425#0" expanded="true" />
-            <element signature="e#16483#16484#0" expanded="true" />
-            <element signature="e#18576#18577#0" expanded="true" />
-            <element signature="e#18615#18616#0" expanded="true" />
-            <element signature="e#19581#19582#0" expanded="true" />
-            <element signature="e#19629#19630#0" expanded="true" />
-            <element signature="e#19778#19779#0" expanded="true" />
-            <element signature="e#19814#19815#0" expanded="true" />
-            <element signature="e#20043#20044#0" expanded="true" />
-            <element signature="e#20095#20096#0" expanded="true" />
-            <element signature="e#20325#20326#0" expanded="true" />
-            <element signature="e#20365#20366#0" expanded="true" />
-            <element signature="e#22150#22151#0" expanded="true" />
-            <element signature="e#22209#22210#0" expanded="true" />
-            <element signature="e#22798#22799#0" expanded="true" />
-            <element signature="e#22860#22861#0" expanded="true" />
-            <element signature="e#23542#23543#0" expanded="true" />
-            <element signature="e#23601#23602#0" expanded="true" />
-            <element signature="e#24190#24191#0" expanded="true" />
-            <element signature="e#24250#24251#0" expanded="true" />
-            <element signature="e#24777#24778#0" expanded="true" />
-            <element signature="e#24817#24818#0" expanded="true" />
-            <element signature="e#25708#25709#0" expanded="true" />
-            <element signature="e#25751#25752#0" expanded="true" />
-            <marker date="1492280558075" expanded="true" signature="24232:24328" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/plugins/MinesSponge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -1633,7 +1477,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1440">
           <caret line="90" column="17" lean-forward="true" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1648,7 +1491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1685,90 +1527,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4512">
           <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2187#2188#0" expanded="true" />
-            <element signature="e#2222#2223#0" expanded="true" />
-            <element signature="e#2406#2407#0" expanded="true" />
-            <element signature="e#2444#2445#0" expanded="true" />
-            <element signature="e#2657#2658#0" expanded="true" />
-            <element signature="e#2697#2698#0" expanded="true" />
-            <element signature="e#2839#2840#0" expanded="true" />
-            <element signature="e#2878#2879#0" expanded="true" />
-            <element signature="e#3053#3054#0" expanded="true" />
-            <element signature="e#3100#3101#0" expanded="true" />
-            <element signature="e#3137#3138#0" expanded="true" />
-            <element signature="e#3176#3177#0" expanded="true" />
-            <element signature="e#4178#4179#0" expanded="true" />
-            <element signature="e#4221#4222#0" expanded="true" />
-            <element signature="e#4486#4487#0" expanded="true" />
-            <element signature="e#4524#4525#0" expanded="true" />
-            <element signature="e#5145#5146#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5467#5468#0" expanded="true" />
-            <element signature="e#5508#5509#0" expanded="true" />
-            <element signature="e#5620#5621#0" expanded="true" />
-            <element signature="e#5649#5650#0" expanded="true" />
-            <element signature="e#5825#5826#0" expanded="true" />
-            <element signature="e#5864#5865#0" expanded="true" />
-            <element signature="e#6102#6103#0" expanded="true" />
-            <element signature="e#6150#6151#0" expanded="true" />
-            <element signature="e#6453#6454#0" expanded="true" />
-            <element signature="e#6488#6489#0" expanded="true" />
-            <element signature="e#6653#6654#0" expanded="true" />
-            <element signature="e#6695#6696#0" expanded="true" />
-            <element signature="e#6904#6905#0" expanded="true" />
-            <element signature="e#6943#6944#0" expanded="true" />
-            <element signature="e#7171#7172#0" expanded="true" />
-            <element signature="e#7214#7215#0" expanded="true" />
-            <element signature="e#7375#7376#0" expanded="true" />
-            <element signature="e#7418#7419#0" expanded="true" />
-            <element signature="e#7613#7614#0" expanded="true" />
-            <element signature="e#7661#7662#0" expanded="true" />
-            <element signature="e#8386#8387#0" expanded="true" />
-            <element signature="e#8459#8460#0" expanded="true" />
-            <element signature="e#13083#13084#0" expanded="true" />
-            <element signature="e#13156#13157#0" expanded="true" />
-            <element signature="e#15589#15590#0" expanded="true" />
-            <element signature="e#15632#15633#0" expanded="true" />
-            <element signature="e#15684#15685#0" expanded="true" />
-            <element signature="e#15725#15726#0" expanded="true" />
-            <element signature="e#15991#15992#0" expanded="true" />
-            <element signature="e#16047#16048#0" expanded="true" />
-            <element signature="e#16424#16425#0" expanded="true" />
-            <element signature="e#16483#16484#0" expanded="true" />
-            <element signature="e#18576#18577#0" expanded="true" />
-            <element signature="e#18615#18616#0" expanded="true" />
-            <element signature="e#19581#19582#0" expanded="true" />
-            <element signature="e#19629#19630#0" expanded="true" />
-            <element signature="e#19778#19779#0" expanded="true" />
-            <element signature="e#19814#19815#0" expanded="true" />
-            <element signature="e#20043#20044#0" expanded="true" />
-            <element signature="e#20095#20096#0" expanded="true" />
-            <element signature="e#20325#20326#0" expanded="true" />
-            <element signature="e#20365#20366#0" expanded="true" />
-            <element signature="e#22150#22151#0" expanded="true" />
-            <element signature="e#22209#22210#0" expanded="true" />
-            <element signature="e#22798#22799#0" expanded="true" />
-            <element signature="e#22860#22861#0" expanded="true" />
-            <element signature="e#23542#23543#0" expanded="true" />
-            <element signature="e#23601#23602#0" expanded="true" />
-            <element signature="e#24190#24191#0" expanded="true" />
-            <element signature="e#24250#24251#0" expanded="true" />
-            <element signature="e#24777#24778#0" expanded="true" />
-            <element signature="e#24817#24818#0" expanded="true" />
-            <element signature="e#25708#25709#0" expanded="true" />
-            <element signature="e#25751#25752#0" expanded="true" />
-            <marker date="1492280558075" expanded="true" signature="24232:24328" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1822,13 +1587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/events/MineResetEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1852,107 +1610,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesState.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/events/StateChangeEvent.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="71" column="24" lean-forward="false" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Miner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="30" column="4" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/MinesUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="121" column="49" lean-forward="false" selection-start-line="121" selection-start-column="49" selection-end-line="121" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8560">
           <caret line="616" column="6" lean-forward="false" selection-start-line="616" selection-start-column="6" selection-end-line="616" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2187#2188#0" expanded="true" />
-            <element signature="e#2222#2223#0" expanded="true" />
-            <element signature="e#2406#2407#0" expanded="true" />
-            <element signature="e#2444#2445#0" expanded="true" />
-            <element signature="e#2657#2658#0" expanded="true" />
-            <element signature="e#2697#2698#0" expanded="true" />
-            <element signature="e#2839#2840#0" expanded="true" />
-            <element signature="e#2878#2879#0" expanded="true" />
-            <element signature="e#3053#3054#0" expanded="true" />
-            <element signature="e#3100#3101#0" expanded="true" />
-            <element signature="e#3137#3138#0" expanded="true" />
-            <element signature="e#3176#3177#0" expanded="true" />
-            <element signature="e#4178#4179#0" expanded="true" />
-            <element signature="e#4221#4222#0" expanded="true" />
-            <element signature="e#4486#4487#0" expanded="true" />
-            <element signature="e#4524#4525#0" expanded="true" />
-            <element signature="e#5145#5146#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5467#5468#0" expanded="true" />
-            <element signature="e#5508#5509#0" expanded="true" />
-            <element signature="e#5620#5621#0" expanded="true" />
-            <element signature="e#5649#5650#0" expanded="true" />
-            <element signature="e#5825#5826#0" expanded="true" />
-            <element signature="e#5864#5865#0" expanded="true" />
-            <element signature="e#6102#6103#0" expanded="true" />
-            <element signature="e#6150#6151#0" expanded="true" />
-            <element signature="e#6453#6454#0" expanded="true" />
-            <element signature="e#6488#6489#0" expanded="true" />
-            <element signature="e#6653#6654#0" expanded="true" />
-            <element signature="e#6695#6696#0" expanded="true" />
-            <element signature="e#6904#6905#0" expanded="true" />
-            <element signature="e#6943#6944#0" expanded="true" />
-            <element signature="e#7171#7172#0" expanded="true" />
-            <element signature="e#7214#7215#0" expanded="true" />
-            <element signature="e#7375#7376#0" expanded="true" />
-            <element signature="e#7418#7419#0" expanded="true" />
-            <element signature="e#7613#7614#0" expanded="true" />
-            <element signature="e#7661#7662#0" expanded="true" />
-            <element signature="e#8386#8387#0" expanded="true" />
-            <element signature="e#8459#8460#0" expanded="true" />
-            <element signature="e#13083#13084#0" expanded="true" />
-            <element signature="e#13156#13157#0" expanded="true" />
-            <element signature="e#15589#15590#0" expanded="true" />
-            <element signature="e#15632#15633#0" expanded="true" />
-            <element signature="e#15684#15685#0" expanded="true" />
-            <element signature="e#15725#15726#0" expanded="true" />
-            <element signature="e#15991#15992#0" expanded="true" />
-            <element signature="e#16047#16048#0" expanded="true" />
-            <element signature="e#16424#16425#0" expanded="true" />
-            <element signature="e#16483#16484#0" expanded="true" />
-            <element signature="e#18576#18577#0" expanded="true" />
-            <element signature="e#18615#18616#0" expanded="true" />
-            <element signature="e#19581#19582#0" expanded="true" />
-            <element signature="e#19629#19630#0" expanded="true" />
-            <element signature="e#19778#19779#0" expanded="true" />
-            <element signature="e#19814#19815#0" expanded="true" />
-            <element signature="e#20043#20044#0" expanded="true" />
-            <element signature="e#20095#20096#0" expanded="true" />
-            <element signature="e#20325#20326#0" expanded="true" />
-            <element signature="e#20365#20366#0" expanded="true" />
-            <element signature="e#22150#22151#0" expanded="true" />
-            <element signature="e#22209#22210#0" expanded="true" />
-            <element signature="e#22798#22799#0" expanded="true" />
-            <element signature="e#22860#22861#0" expanded="true" />
-            <element signature="e#23542#23543#0" expanded="true" />
-            <element signature="e#23601#23602#0" expanded="true" />
-            <element signature="e#24190#24191#0" expanded="true" />
-            <element signature="e#24250#24251#0" expanded="true" />
-            <element signature="e#24777#24778#0" expanded="true" />
-            <element signature="e#24817#24818#0" expanded="true" />
-            <element signature="e#25708#25709#0" expanded="true" />
-            <element signature="e#25751#25752#0" expanded="true" />
-            <marker date="1492280558075" expanded="true" signature="24232:24328" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1968,29 +1629,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Developer/PrisonDeploy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Developer/PrisonDeploy.txt" />
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="42" column="47" lean-forward="false" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2008,19 +1654,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/lang/en_US.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2028,114 +1665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1632">
           <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.6.0-SNAPSHOT/1b36009f282410f5b28adb4aa5435f80290c7c03/prison-core-0.6.0-SNAPSHOT.jar!/tech/mcprison/prison/store/Storage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="95" column="5" lean-forward="false" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11312">
-          <caret line="805" column="5" lean-forward="false" selection-start-line="805" selection-start-column="5" selection-end-line="805" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2187#2188#0" expanded="true" />
-            <element signature="e#2222#2223#0" expanded="true" />
-            <element signature="e#2406#2407#0" expanded="true" />
-            <element signature="e#2444#2445#0" expanded="true" />
-            <element signature="e#2657#2658#0" expanded="true" />
-            <element signature="e#2697#2698#0" expanded="true" />
-            <element signature="e#2839#2840#0" expanded="true" />
-            <element signature="e#2878#2879#0" expanded="true" />
-            <element signature="e#3053#3054#0" expanded="true" />
-            <element signature="e#3100#3101#0" expanded="true" />
-            <element signature="e#3137#3138#0" expanded="true" />
-            <element signature="e#3176#3177#0" expanded="true" />
-            <element signature="e#4178#4179#0" expanded="true" />
-            <element signature="e#4221#4222#0" expanded="true" />
-            <element signature="e#4486#4487#0" expanded="true" />
-            <element signature="e#4524#4525#0" expanded="true" />
-            <element signature="e#5145#5146#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5467#5468#0" expanded="true" />
-            <element signature="e#5508#5509#0" expanded="true" />
-            <element signature="e#5620#5621#0" expanded="true" />
-            <element signature="e#5649#5650#0" expanded="true" />
-            <element signature="e#5825#5826#0" expanded="true" />
-            <element signature="e#5864#5865#0" expanded="true" />
-            <element signature="e#6102#6103#0" expanded="true" />
-            <element signature="e#6150#6151#0" expanded="true" />
-            <element signature="e#6453#6454#0" expanded="true" />
-            <element signature="e#6488#6489#0" expanded="true" />
-            <element signature="e#6653#6654#0" expanded="true" />
-            <element signature="e#6695#6696#0" expanded="true" />
-            <element signature="e#6904#6905#0" expanded="true" />
-            <element signature="e#6943#6944#0" expanded="true" />
-            <element signature="e#7171#7172#0" expanded="true" />
-            <element signature="e#7214#7215#0" expanded="true" />
-            <element signature="e#7375#7376#0" expanded="true" />
-            <element signature="e#7418#7419#0" expanded="true" />
-            <element signature="e#7613#7614#0" expanded="true" />
-            <element signature="e#7661#7662#0" expanded="true" />
-            <element signature="e#8386#8387#0" expanded="true" />
-            <element signature="e#8459#8460#0" expanded="true" />
-            <element signature="e#13083#13084#0" expanded="true" />
-            <element signature="e#13156#13157#0" expanded="true" />
-            <element signature="e#15589#15590#0" expanded="true" />
-            <element signature="e#15632#15633#0" expanded="true" />
-            <element signature="e#15684#15685#0" expanded="true" />
-            <element signature="e#15725#15726#0" expanded="true" />
-            <element signature="e#15991#15992#0" expanded="true" />
-            <element signature="e#16047#16048#0" expanded="true" />
-            <element signature="e#16424#16425#0" expanded="true" />
-            <element signature="e#16483#16484#0" expanded="true" />
-            <element signature="e#18576#18577#0" expanded="true" />
-            <element signature="e#18615#18616#0" expanded="true" />
-            <element signature="e#19581#19582#0" expanded="true" />
-            <element signature="e#19629#19630#0" expanded="true" />
-            <element signature="e#19778#19779#0" expanded="true" />
-            <element signature="e#19814#19815#0" expanded="true" />
-            <element signature="e#20043#20044#0" expanded="true" />
-            <element signature="e#20095#20096#0" expanded="true" />
-            <element signature="e#20325#20326#0" expanded="true" />
-            <element signature="e#20365#20366#0" expanded="true" />
-            <element signature="e#22150#22151#0" expanded="true" />
-            <element signature="e#22209#22210#0" expanded="true" />
-            <element signature="e#22798#22799#0" expanded="true" />
-            <element signature="e#22860#22861#0" expanded="true" />
-            <element signature="e#23542#23543#0" expanded="true" />
-            <element signature="e#23601#23602#0" expanded="true" />
-            <element signature="e#24190#24191#0" expanded="true" />
-            <element signature="e#24250#24251#0" expanded="true" />
-            <element signature="e#24777#24778#0" expanded="true" />
-            <element signature="e#24817#24818#0" expanded="true" />
-            <element signature="e#25708#25709#0" expanded="true" />
-            <element signature="e#25751#25752#0" expanded="true" />
-            <marker date="1492280558075" expanded="true" signature="24232:24328" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3328">
-          <caret line="239" column="67" lean-forward="false" selection-start-line="239" selection-start-column="67" selection-end-line="239" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2143,23 +1672,121 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.6.0-SNAPSHOT/1b36009f282410f5b28adb4aa5435f80290c7c03/prison-core-0.6.0-SNAPSHOT.jar!/tech/mcprison/prison/store/Storage.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tech.mcprison.prison/prison-core/0.12.0-SNAPSHOT/b401fe61aa51457023deb69cc63f2c95378505e1/prison-core-0.12.0-SNAPSHOT.jar!/tech/mcprison/prison/util/Bounds.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="67" column="79" lean-forward="false" selection-start-line="67" selection-start-column="79" selection-end-line="67" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Servers/Spigot/plugins/Prison/module_conf/mines/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="42" column="47" lean-forward="false" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/Mine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="184" column="35" lean-forward="false" selection-start-line="184" selection-start-column="35" selection-end-line="184" selection-end-column="35" />
+        <state relative-caret-position="112">
+          <caret line="23" column="46" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+        <state relative-caret-position="464">
+          <caret line="58" column="24" lean-forward="false" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="33" column="1" lean-forward="false" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/Miner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/util/MinesUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4656">
+          <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2048">
+          <caret line="168" column="0" lean-forward="true" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
+          <folding>
+            <element signature="e#4633#4634#0" expanded="true" />
+            <element signature="e#4661#4662#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

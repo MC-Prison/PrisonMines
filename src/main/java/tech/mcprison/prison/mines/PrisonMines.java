@@ -24,7 +24,6 @@ import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.error.Error;
 import tech.mcprison.prison.error.ErrorManager;
 import tech.mcprison.prison.localization.LocaleManager;
-import tech.mcprison.prison.mines.util.Miner;
 import tech.mcprison.prison.modules.Module;
 import tech.mcprison.prison.output.Output;
 import tech.mcprison.prison.store.Database;
@@ -51,7 +50,6 @@ public class PrisonMines extends Module {
     private static PrisonMines i = null;
     private MinesConfig config;
     private List<String> worlds;
-    private List<Miner> players;
     private LocaleManager localeManager;
     private Gson gson;
     private Database db;
@@ -60,7 +58,7 @@ public class PrisonMines extends Module {
     /*
      * Constructor
      */
-    private MinesList mines;
+    private MineManager mines;
 
     /*
      * Methods
@@ -84,7 +82,6 @@ public class PrisonMines extends Module {
         errorManager = new ErrorManager(this);
 
         initWorlds();
-        initPlayers();
         initMines();
 
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
@@ -125,7 +122,8 @@ public class PrisonMines extends Module {
                 String json = gson.toJson(config);
                 Files.write(configFile.toPath(), json.getBytes());
             } catch (IOException e) {
-                errorManager.throwError(new Error("Failed to create config").appendStackTrace("while creating", e));
+                errorManager.throwError(
+                    new Error("Failed to create config").appendStackTrace("while creating", e));
                 getStatus().toFailed("Failed to create config");
             }
         } else {
@@ -133,7 +131,8 @@ public class PrisonMines extends Module {
                 String json = new String(Files.readAllBytes(configFile.toPath()));
                 config = gson.fromJson(json, MinesConfig.class);
             } catch (IOException e) {
-                errorManager.throwError(new Error("Failed to load config").appendStackTrace("while loading", e));
+                errorManager.throwError(
+                    new Error("Failed to load config").appendStackTrace("while loading", e));
                 getStatus().toFailed("Failed to load config");
             }
         }
@@ -147,42 +146,17 @@ public class PrisonMines extends Module {
         }
     }
 
-    private void initPlayers() {
-        players = new ArrayList<>();
-
-        if (config.savePlayers) {
-            try {
-                String json = new String(
-                    Files.readAllBytes(new File(getDataFolder(), "/players.json").toPath()));
-                players = gson.fromJson(json, players.getClass());
-            } catch (IOException e) {
-                errorManager.throwError(new Error("Failed to load players").appendStackTrace("while loading", e));
-                getStatus().toFailed("Failed to load players");
-            }
-        }
-    }
-
-
     /*
      * Getters & Setters
      */
 
     private void initMines() {
-        mines = new MinesList().initialize();
-        new MinesListener().init();
+        mines = new MineManager().initialize();
         Prison.get().getPlatform().getScheduler().runTaskTimer(mines.getTimerTask(), 20, 20);
     }
 
     public void disable() {
         mines.save();
-        if (config.savePlayers) {
-            try {
-                String json = gson.toJson(players);
-                Files.write(new File(getDataFolder(), "players.json").toPath(), json.getBytes());
-            } catch (IOException e) {
-                Output.get().logError("Couldn't save players.", e);
-            }
-        }
     }
 
     public MinesConfig getConfig() {
@@ -193,15 +167,7 @@ public class PrisonMines extends Module {
         return db;
     }
 
-    public List<Miner> getPlayers() {
-        return players;
-    }
-
-    public void addMiner(Miner miner) {
-        players.add(miner);
-    }
-
-    public MinesList getMines() {
+    public MineManager getMines() {
         return mines;
     }
 

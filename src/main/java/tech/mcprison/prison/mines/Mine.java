@@ -79,7 +79,8 @@ public class Mine {
         if (hasSpawn) {
             spawn = new Location(worldOptional.get(), (double) document.get("spawnX"),
                 (double) document.get("spawnY"), (double) document.get("spawnZ"),
-                ((Double) document.get("spawnPitch")).floatValue(), ((Double) document.get("spawnYaw")).floatValue());
+                ((Double) document.get("spawnPitch")).floatValue(),
+                ((Double) document.get("spawnYaw")).floatValue());
         }
 
         worldName = worldOptional.get().getName();

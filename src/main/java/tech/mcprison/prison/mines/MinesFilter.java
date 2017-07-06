@@ -19,12 +19,12 @@
 package tech.mcprison.prison.mines;
 
 /**
- * A filter usable with certain methods in {@link MinesList}
+ * A filter usable with certain methods in {@link MineManager}
  */
 public interface MinesFilter {
 
     /**
-     * Used in {@link MinesList#select(MinesFilter)}
+     * Used in {@link MineManager#select(MinesFilter)}
      * <p>
      * Check if this {@link MinesFilter} accepts the {@link Mine}. If it does, continue operating.
      *
@@ -34,7 +34,7 @@ public interface MinesFilter {
     boolean accept(Mine c);
 
     /**
-     * Used in {@link MinesList#forEach(MinesFilter)}
+     * Used in {@link MineManager#forEach(MinesFilter)}
      * <p>
      * Execute methods related to the specified {@link Mine}.
      *

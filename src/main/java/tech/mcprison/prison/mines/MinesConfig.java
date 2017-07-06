@@ -18,7 +18,6 @@
 
 package tech.mcprison.prison.mines;
 
-import tech.mcprison.prison.mines.util.Miner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,12 +48,6 @@ public class MinesConfig {
     public boolean multiworld = false;
 
     /**
-     * True if {@link Miner}s should be saved.
-     * False otherwise.
-     */
-    public boolean savePlayers = false;
-
-    /**
      * True if only blocks that are air should be replaced.
      * False otherwise
      */
@@ -63,7 +56,7 @@ public class MinesConfig {
     /**
      * The duration between mine resets in seconds.
      */
-    public int aliveTime = 600;
+    public int resetTime = 600;
 
     /**
      * The worlds that reset messages should be broadcasted to.
