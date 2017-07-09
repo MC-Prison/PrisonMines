@@ -21,6 +21,7 @@ package tech.mcprison.prison.mines;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import tech.mcprison.prison.Prison;
+import tech.mcprison.prison.PrisonAPI;
 import tech.mcprison.prison.error.Error;
 import tech.mcprison.prison.error.ErrorManager;
 import tech.mcprison.prison.localization.LocaleManager;
@@ -83,6 +84,7 @@ public class PrisonMines extends Module {
 
         initWorlds();
         initMines();
+        PrisonAPI.getEventBus().register(new MinesListener());
 
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
 

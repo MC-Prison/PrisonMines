@@ -20,6 +20,7 @@ package tech.mcprison.prison.mines;
 
 import org.apache.commons.lang3.StringUtils;
 import tech.mcprison.prison.Prison;
+import tech.mcprison.prison.chat.FancyMessage;
 import tech.mcprison.prison.commands.Arg;
 import tech.mcprison.prison.commands.Command;
 import tech.mcprison.prison.internal.CommandSender;
@@ -107,6 +108,8 @@ public class MinesCommands {
             return;
         }
 
+        Mine m = PrisonMines.get().getMines().get(mine);
+
         BlockType blockType = BlockType.getBlock(block);
         if (blockType == null) {
             PrisonMines.get().getMinesMessages().getLocalizable("not_a_block")
@@ -121,18 +124,18 @@ public class MinesCommands {
         }
 
         final double[] totalComp = {chance};
-        PrisonMines.get().getMines().get(mine).getBlocks()
-            .forEach(block1 -> totalComp[0] += block1.chance);
+        m.getBlocks().forEach(block1 -> totalComp[0] += block1.chance);
         if (totalComp[0] > 100) {
             PrisonMines.get().getMinesMessages().getLocalizable("mine_full")
                 .sendTo(sender, Localizable.Level.ERROR);
             return;
         }
 
-        PrisonMines.get().getMines().get(mine).getBlocks()
-            .add(new Block().create(blockType, chance));
+        m.getBlocks().add(new Block().create(blockType, chance));
         PrisonMines.get().getMinesMessages().getLocalizable("block_added")
             .withReplacements(block, mine).sendTo(sender);
+        getBlocksList(m).send(sender);
+
         PrisonMines.get().getMines().clearCache();
     }
 
@@ -142,6 +145,8 @@ public class MinesCommands {
         if (!performCheckMineExists(sender, mine)) {
             return;
         }
+
+        Mine m = PrisonMines.get().getMines().get(mine);
 
         BlockType blockType = BlockType.getBlock(block);
         if (blockType == null) {
@@ -156,7 +161,7 @@ public class MinesCommands {
         }
 
         final double[] totalComp = {chance};
-        PrisonMines.get().getMines().get(mine).getBlocks().forEach(block1 -> {
+        m.getBlocks().forEach(block1 -> {
             if (block1.type == blockType) {
                 totalComp[0] -= block1.chance;
             } else {
@@ -177,6 +182,8 @@ public class MinesCommands {
 
         PrisonMines.get().getMinesMessages().getLocalizable("block_set")
             .withReplacements(block, mine).sendTo(sender);
+        getBlocksList(m).send(sender);
+
         PrisonMines.get().getMines().clearCache();
 
     }
@@ -201,9 +208,12 @@ public class MinesCommands {
             return;
         }
 
-        PrisonMines.get().getMines().get(mine).getBlocks().removeIf(x -> x.type == blockType);
+        Mine m = PrisonMines.get().getMines().get(mine);
+        m.getBlocks().removeIf(x -> x.type == blockType);
         PrisonMines.get().getMinesMessages().getLocalizable("block_deleted")
             .withReplacements(block, mine).sendTo(sender);
+        getBlocksList(m).send(sender);
+
         PrisonMines.get().getMines().clearCache();
     }
 
@@ -242,6 +252,14 @@ public class MinesCommands {
         chatDisplay.text("&3Spawnpoint: &7%s", spawnPoint);
 
         chatDisplay.text("&3Blocks:");
+        chatDisplay.text("&8Click on a block's name to edit its chances of appearing.");
+        BulletedListComponent list = getBlocksList(m);
+        chatDisplay.addComponent(list);
+
+        chatDisplay.send(sender);
+    }
+
+    private BulletedListComponent getBlocksList(Mine m) {
         BulletedListComponent.BulletedListBuilder builder =
             new BulletedListComponent.BulletedListBuilder();
 
@@ -251,17 +269,18 @@ public class MinesCommands {
 
             String blockName =
                 StringUtils.capitalize(block.type.name().replaceAll("_", " ").toLowerCase());
-            String percent = Math.round(block.chance) + "%%";
-            builder.add("&7%s - %s", percent, blockName);
+            String percent = Math.round(block.chance) + "%";
+            FancyMessage msg = new FancyMessage(String.format("&7%s - %s", percent, blockName))
+                .suggest("/mines block set " + m.getName() + " " + block.type.getLegacyId()
+                    + " [chance]%").tooltip("&7Click to edit the block's chance.");
+            builder.add(msg);
         }
 
         if (totalChance < 100) {
-            builder.add("&e%s - Air", (100 - totalChance) + "%%");
+            builder.add("&e%s - Air", (100 - totalChance) + "%");
         }
 
-        chatDisplay.addComponent(builder.build());
-
-        chatDisplay.send(sender);
+        return builder.build();
     }
 
     @Command(identifier = "mines reset", permissions = "mines.admin")
@@ -285,11 +304,15 @@ public class MinesCommands {
     @Command(identifier = "mines list", permissions = {"prison.mines.list",
         "prison.mines.admin"}, onlyPlayers = false) public void listCommand(CommandSender sender) {
         ChatDisplay display = new ChatDisplay("Mines");
+        display.text("&8Click a mine's name to see more information.");
         BulletedListComponent.BulletedListBuilder builder =
             new BulletedListComponent.BulletedListBuilder();
 
         for (Mine m : PrisonMines.get().getMines()) {
-            builder.add("&7" + m.getName());
+            FancyMessage msg =
+                new FancyMessage("&7" + m.getName()).command("/mines info " + m.getName())
+                    .tooltip("&7Click to view info.");
+            builder.add(msg);
         }
         display.addComponent(builder.build());
         display.send(sender);
@@ -323,6 +346,8 @@ public class MinesCommands {
     @Command(identifier = "mines wand", permissions = "mines.admin")
     public void wandCommand(Player sender) {
         Prison.get().getSelectionManager().bestowSelectionTool(sender);
+        sender.sendMessage(
+            "&3Here you go! &7Left click to select the first corner, and right click to select the other.");
     }
 
 }

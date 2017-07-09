@@ -821,41 +821,4 @@ public class MineManager implements List<Mine> {
         randomizedBlocks.clear();
     }
 
-    /**
-     * Creates a GUI with all the mines the specified player can teleport to. If the mine has no spawn,
-     * it is ignored. {@link GUI#build()} is called, but not shown for the player.
-     *
-     * @param player the player to create the GUI for
-     * @return a built GUI
-     */
-    public GUI createGUI(Player player) {
-        GUI g = Prison.get().getPlatform().createGUI("Teleport to a mine", size() <= 9 ?
-            9 :
-            size() <= 18 ? 18 : size() <= 27 ? 27 : size() <= 36 ? 36 : size() <= 45 ? 45 : 54);
-        final int[] i = {0};
-        select(new MinesFilter() {
-            @Override public boolean accept(Mine c) {
-                return c.hasSpawn() && canTeleport(player, c);
-            }
-
-            @Override public void action(Mine c) {
-
-            }
-        }).forEach(new MinesFilter() {
-            @Override public boolean accept(Mine c) {
-                return true;
-            }
-
-            @Override public void action(Mine c) {
-                if (i[0] < 55) {
-                    g.addButton(i[0]++, new Button(BlockType.GRASS, new Action() {
-                        @Override public void run(ClickedButton btn) {
-                            c.teleport(btn.getPlayer());
-                        }
-                    }, "&6" + c.getName(), true));
-                }
-            }
-        });
-        return g.build();
-    }
 }
