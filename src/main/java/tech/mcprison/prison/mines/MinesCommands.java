@@ -160,6 +160,12 @@ public class MinesCommands {
             return;
         }
 
+        // If it's 0, just delete it!
+        if(chance <= 0) {
+            delBlockCommand(sender, mine, block);
+            return;
+        }
+
         final double[] totalComp = {chance};
         m.getBlocks().forEach(block1 -> {
             if (block1.type == blockType) {
