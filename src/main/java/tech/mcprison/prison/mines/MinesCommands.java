@@ -272,7 +272,7 @@ public class MinesCommands {
             String percent = Math.round(block.chance) + "%";
             FancyMessage msg = new FancyMessage(String.format("&7%s - %s", percent, blockName))
                 .suggest("/mines block set " + m.getName() + " " + block.type.getId().replace("minecraft:", "")
-                    + " [chance]%").tooltip("&7Click to edit the block's chance.");
+                    + " %").tooltip("&7Click to edit the block's chance.");
             builder.add(msg);
         }
 
