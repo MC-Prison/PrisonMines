@@ -2,45 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="322e1846-0d7f-429e-baaf-d3f965d62df6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesListener.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__aopalliance_aopalliance_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_7_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_math_1_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_flowpowered_flow_noise_1_0_1_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ben_manes_caffeine_caffeine_2_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ben_manes_caffeine_guava_2_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_19_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_inject_guice_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_json_simple_json_simple_1_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_typesafe_config_1_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_lang_commons_lang_2_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_persistence_persistence_api_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_md_5_bungeecord_chat_1_9_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ninja_leaping_configurate_configurate_core_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ninja_leaping_configurate_configurate_gson_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ninja_leaping_configurate_configurate_hocon_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ninja_leaping_configurate_configurate_yaml_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_avaje_ebean_2_8_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_5_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_21.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spigotmc_spigot_api_1_9_4_R0_1_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spongepowered_event_gen_core_2_1_0_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spongepowered_plugin_meta_0_2_1_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_spongepowered_spongeapi_5_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_yaml_snakeyaml_1_16.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MineManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" afterPath="$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/PrisonMines.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -109,8 +72,8 @@
       <file leaf-file-name="MinesCommands.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
-              <caret line="238" column="0" lean-forward="false" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+            <state relative-caret-position="-105">
+              <caret line="260" column="0" lean-forward="true" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -684,8 +647,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1552" />
+    <option name="height" value="840" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
@@ -1290,7 +1253,7 @@
       <workItem from="1499283483229" duration="173000" />
       <workItem from="1499312092581" duration="511000" />
       <workItem from="1499313395185" duration="884000" />
-      <workItem from="1499544077500" duration="7378000" />
+      <workItem from="1499544077500" duration="8650000" />
     </task>
     <task id="LOCAL-00001" summary="Switch to 0.5.0">
       <created>1491947201087</created>
@@ -1390,11 +1353,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499313674732</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="UX enhancements">
+      <created>1499566503707</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1499566503707</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34398000" />
+    <option name="totallyTimeSpent" value="35670000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1406,8 +1376,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1552" height="840" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1427,9 +1396,9 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42739725" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23958333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1464,7 +1433,8 @@
     <MESSAGE value="Added default permissions (Spigot)" />
     <MESSAGE value="Fix version numbers" />
     <MESSAGE value="Removed autoblock and autosmelt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed autoblock and autosmelt" />
+    <MESSAGE value="UX enhancements" />
+    <option name="LAST_COMMIT_MESSAGE" value="UX enhancements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1801,8 +1771,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tech/mcprison/prison/mines/MinesCommands.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="238" column="0" lean-forward="false" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+        <state relative-caret-position="-105">
+          <caret line="260" column="0" lean-forward="true" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
