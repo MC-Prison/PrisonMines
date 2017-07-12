@@ -29,6 +29,12 @@ public class MinesConversionAgent implements ConversionAgent {
         File oldFolder = new File(PrisonAPI.getPluginDirectory().getParent(), "Prison.old");
         File minesFolder = new File(oldFolder, "mines");
 
+        File alreadyConverted = new File(minesFolder, ".converted");
+        if (alreadyConverted.exists()) {
+            return ConversionResult.failure(getName(),
+                "Already converted. Delete the '/plugins/Prison.old/mines' folder.");
+        }
+
         String[] jsonFiles = minesFolder.list((dir, name) -> name.endsWith(".json"));
 
         try {
@@ -83,7 +89,7 @@ public class MinesConversionAgent implements ConversionAgent {
                     ourMine.setBounds(bounds);
                     ourMine.setBlocks(blocks);
 
-                    if(PrisonMines.get().getMines().contains(ourMine)) {
+                    if (PrisonMines.get().getMines().contains(ourMine)) {
                         break;
                     }
 
@@ -91,9 +97,11 @@ public class MinesConversionAgent implements ConversionAgent {
                 }
 
                 PrisonMines.get().getMines().save();
+                alreadyConverted.createNewFile();
                 return new ConversionResult(getName(), ConversionResult.Status.Success,
                     "Converted " + jsonFiles.length + " mines.");
             } else {
+                alreadyConverted.createNewFile();
                 return new ConversionResult(getName(), ConversionResult.Status.Success,
                     "Converted 0 mines.");
             }
