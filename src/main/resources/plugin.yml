@@ -5,10 +5,41 @@ depend: [Prison]
 description: A mines module for Prison.
 author: The MC-Prison Team
 website: https://mc-prison.tech
+
 permissions:
-  mines.user:
-    description: Contains all the commands a user would use with a mine.
-    default: true
+  mines.create:
+    description: Access to the /mines create command.
+
+  mines.set:
+    description: Access to the /mines set command.
+
+  mines.block:
+    description: Access to the /mines block command.
+
+  mines.delete:
+    description: Access to the /mines delete command.
+
+  mines.info:
+    description: Access to the /mines info command.
+
+  mines.wand:
+    description: Access to the /mines wand command.
+
+  mines.list:
+    description: Access to the /mines list command.
+
+  mines.reset:
+    description: Access to the /mines reset command.
+
   mines.admin:
-    description: Contains all the commands reserved for admins.
+    description: Contains all the commands for managing mines.
     default: op
+    children:
+      mines.create: true
+      mines.set: true
+      mines.block: true
+      mines.delete: true
+      mines.info: true
+      mines.wand: true
+      mines.list: true
+      mines.reset: true

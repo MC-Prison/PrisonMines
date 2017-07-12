@@ -49,8 +49,9 @@ public class MinesCommands {
         return true;
     }
 
-    @Command(identifier = "mines create", permissions = "mines.admin")
-    public void createCommand(CommandSender sender, @Arg(name = "mineName") String name) {
+    @Command(identifier = "mines create", description = "Creates a new mine.", permissions = "mines.create")
+    public void createCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the new mine.") String name) {
 
         Selection selection = Prison.get().getSelectionManager().getSelection((Player) sender);
         if (!selection.isComplete()) {
@@ -78,8 +79,9 @@ public class MinesCommands {
         PrisonMines.get().getMinesMessages().getLocalizable("mine_created").sendTo(sender);
     }
 
-    @Command(identifier = "mines set spawn", permissions = "mines.admin")
-    public void spawnpointCommand(CommandSender sender, @Arg(name = "mineName") String name) {
+    @Command(identifier = "mines set spawn", description = "Set the mine's spawn to where you're standing.", permissions = "mines.set")
+    public void spawnpointCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to edit.") String name) {
 
         if (!performCheckMineExists(sender, name)) {
             return;
@@ -101,9 +103,12 @@ public class MinesCommands {
         PrisonMines.get().getMinesMessages().getLocalizable("spawn_set").sendTo(sender);
     }
 
-    @Command(identifier = "mines block add", permissions = "mines.admin", onlyPlayers = false, description = "Adds a block to a mine")
-    public void addBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
+    @Command(identifier = "mines block add", permissions = "mines.block", onlyPlayers = false, description = "Adds a block to a mine.")
+    public void addBlockCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to add the block to.")
+            String mine, @Arg(name = "block", description = "The block's name or ID.") String block,
+        @Arg(name = "chance", description = "The percent chance (out of 100) that this block will occur.")
+            double chance) {
         if (!performCheckMineExists(sender, mine)) {
             return;
         }
@@ -139,9 +144,12 @@ public class MinesCommands {
         PrisonMines.get().getMines().clearCache();
     }
 
-    @Command(identifier = "mines block set", permissions = "mines.admin", onlyPlayers = false, description = "Changes the percentage of a block in a mine")
-    public void setBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block") String block, @Arg(name = "chance") double chance) {
+    @Command(identifier = "mines block set", permissions = "mines.block", onlyPlayers = false, description = "Changes the percentage of a block in a mine.")
+    public void setBlockCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to edit.") String mine,
+        @Arg(name = "block", description = "The block's name or ID.") String block,
+        @Arg(name = "chance", description = "The percent chance (out of 100) that this block will occur.")
+            double chance) {
         if (!performCheckMineExists(sender, mine)) {
             return;
         }
@@ -161,7 +169,7 @@ public class MinesCommands {
         }
 
         // If it's 0, just delete it!
-        if(chance <= 0) {
+        if (chance <= 0) {
             delBlockCommand(sender, mine, block);
             return;
         }
@@ -194,9 +202,10 @@ public class MinesCommands {
 
     }
 
-    @Command(identifier = "mines block remove", permissions = "mines.admin", onlyPlayers = false, description = "Deletes a block from a mine")
-    public void delBlockCommand(CommandSender sender, @Arg(name = "mineName") String mine,
-        @Arg(name = "block", def = "AIR") String block) {
+    @Command(identifier = "mines block remove", permissions = "mines.block", onlyPlayers = false, description = "Deletes a block from a mine.")
+    public void delBlockCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to edit.") String mine,
+        @Arg(name = "block", def = "AIR", description = "The block's name or ID.") String block) {
 
         if (!performCheckMineExists(sender, mine)) {
             return;
@@ -223,8 +232,9 @@ public class MinesCommands {
         PrisonMines.get().getMines().clearCache();
     }
 
-    @Command(identifier = "mines delete", permissions = "mines.admin", onlyPlayers = false, description = "Deletes a mine")
-    public void deleteCommand(CommandSender sender, @Arg(name = "mineName") String name) {
+    @Command(identifier = "mines delete", permissions = "mines.delete", onlyPlayers = false, description = "Deletes a mine.")
+    public void deleteCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to delete.") String name) {
         if (!performCheckMineExists(sender, name)) {
             return;
         }
@@ -233,8 +243,9 @@ public class MinesCommands {
         PrisonMines.get().getMinesMessages().getLocalizable("mine_deleted").sendTo(sender);
     }
 
-    @Command(identifier = "mines info", permissions = "mines.admin", onlyPlayers = false, description = "Lists basic information about a mine")
-    public void infoCommand(CommandSender sender, @Arg(name = "mineName") String name) {
+    @Command(identifier = "mines info", permissions = "mines.info", onlyPlayers = false, description = "Lists information about a mine.")
+    public void infoCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to view.") String name) {
         if (!performCheckMineExists(sender, name)) {
             return;
         }
@@ -277,8 +288,9 @@ public class MinesCommands {
                 StringUtils.capitalize(block.type.name().replaceAll("_", " ").toLowerCase());
             String percent = Math.round(block.chance) + "%";
             FancyMessage msg = new FancyMessage(String.format("&7%s - %s", percent, blockName))
-                .suggest("/mines block set " + m.getName() + " " + block.type.getId().replace("minecraft:", "")
-                    + " %").tooltip("&7Click to edit the block's chance.");
+                .suggest("/mines block set " + m.getName() + " " + block.type.getId()
+                    .replace("minecraft:", "") + " %")
+                .tooltip("&7Click to edit the block's chance.");
             builder.add(msg);
         }
 
@@ -289,8 +301,9 @@ public class MinesCommands {
         return builder.build();
     }
 
-    @Command(identifier = "mines reset", permissions = "mines.admin")
-    public void resetCommand(CommandSender sender, @Arg(name = "mineName") String name) {
+    @Command(identifier = "mines reset", permissions = "mines.reset", description = "Resets a mine.")
+    public void resetCommand(CommandSender sender,
+        @Arg(name = "mineName", description = "The name of the mine to reset.") String name) {
 
         if (!performCheckMineExists(sender, name)) {
             return;
@@ -307,8 +320,8 @@ public class MinesCommands {
     }
 
 
-    @Command(identifier = "mines list", permissions = {"prison.mines.list",
-        "prison.mines.admin"}, onlyPlayers = false) public void listCommand(CommandSender sender) {
+    @Command(identifier = "mines list", permissions = "mines.list", onlyPlayers = false)
+    public void listCommand(CommandSender sender) {
         ChatDisplay display = new ChatDisplay("Mines");
         display.text("&8Click a mine's name to see more information.");
         BulletedListComponent.BulletedListBuilder builder =
@@ -325,8 +338,8 @@ public class MinesCommands {
     }
 
 
-    @Command(identifier = "mines set area", permissions = "mines.admin")
-    public void redefineCommand(CommandSender sender, @Arg(name = "mineName") String name) {
+    @Command(identifier = "mines set area", permissions = "mines.set", description = "Set the area of a mine to your current selection.")
+    public void redefineCommand(CommandSender sender, @Arg(name = "mineName", description = "The name of the mine to edit.") String name) {
 
         Selection selection = Prison.get().getSelectionManager().getSelection((Player) sender);
         if (!selection.isComplete()) {
@@ -349,7 +362,7 @@ public class MinesCommands {
         PrisonMines.get().getMines().clearCache();
     }
 
-    @Command(identifier = "mines wand", permissions = "mines.admin")
+    @Command(identifier = "mines wand", permissions = "mines.wand", description = "Receive a wand to select a mine area.")
     public void wandCommand(Player sender) {
         Prison.get().getSelectionManager().bestowSelectionTool(sender);
         sender.sendMessage(
