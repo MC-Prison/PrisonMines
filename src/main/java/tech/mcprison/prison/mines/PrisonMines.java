@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import tech.mcprison.prison.Prison;
 import tech.mcprison.prison.PrisonAPI;
+import tech.mcprison.prison.convert.ConversionManager;
 import tech.mcprison.prison.error.Error;
 import tech.mcprison.prison.error.ErrorManager;
 import tech.mcprison.prison.localization.LocaleManager;
@@ -88,6 +89,7 @@ public class PrisonMines extends Module {
 
         Prison.get().getCommandHandler().registerCommands(new MinesCommands());
 
+        ConversionManager.getInstance().registerConversionAgent(new MinesConversionAgent());
     }
 
     private void initGson() {

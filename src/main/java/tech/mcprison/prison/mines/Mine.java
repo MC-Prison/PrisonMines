@@ -339,4 +339,12 @@ public class Mine {
         return getBounds().getArea();
     }
 
+    @Override public boolean equals(Object obj) {
+        return (obj instanceof Mine) && (((Mine) obj).name).equals(name);
+    }
+
+    @Override public int hashCode() {
+        return name.hashCode();
+    }
+
 }
