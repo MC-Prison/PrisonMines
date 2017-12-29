@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: ninja.leaping.configurate:configurate-yaml:3.2">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-yaml/3.2/66baeded1dc8e86847dd876c7c7292b96b91ec26/configurate-yaml-3.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/ninja/leaping/configurate/configurate-yaml/3.2/configurate-yaml-3.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
